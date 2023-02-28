@@ -1,0 +1,258 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+:root {
+  /* Primary Colors */
+  --color-primary-25: #fcfaff;
+  --color-primary-50: #f9f5ff;
+  --color-primary-100: #f4ebff;
+  --color-primary-200: #e9d7fe;
+  --color-primary-300: #f4ebff;
+  --color-primary-400: #b692f6;
+  --color-primary-500: #9e77ed;
+  --color-primary-600: #7f56d9;
+  --color-primary-700: #6941c6;
+  --color-primary-800: #53389e;
+  --color-primary-900: #42307d;
+
+  /* Gray Colors */
+  --color-gray-25: #fcfcfd;
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f2f4f7;
+  --color-gray-200: #eaecf0;
+  --color-gray-300: #d0d5dd;
+  --color-gray-400: #98a2b3;
+  --color-gray-500: #667085;
+  --color-gray-600: #475467;
+  --color-gray-700: #344054;
+  --color-gray-800: #1d2939;
+  --color-gray-900: #101828;
+
+  /* Accent Colors */
+  --color-accent-white: #fff;
+  --color-accent-black: #000;
+  --color-accent-red: #cb3b31;
+  --color-accent-red-two: #eeb4b0;
+  --color-accent-red-three: #fff4f3;
+  --color-accent-alert: #ffebe9;
+  --color-accent-green: #42926b;
+  --color-accent-green-two: #b8dbc9;
+  --color-accent-green-three: #f7f7f7;
+  --color-accent-yellow: #cd7b2d;
+
+  /* Other Colors */
+  --color-error-100: #fee4e2;
+  --color-success-100: #d1fadf;
+  --color-success-500: #12b76a;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Typography */
+
+::selection {
+  background-color: var(--color-gray-50);
+  color: var(--color-gray-700);
+}
+
+html {
+  font-size: 62.5%;
+}
+
+img {
+  width: 100%;
+}
+
+body {
+  background-color: var(--color-gray-50);
+  color: var(--color-gray-500);
+  font-family: 'Inter', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 400;
+  line-height: 2rem;
+}
+
+.main {
+  min-height: 100vh;
+  width: auto;
+}
+
+h1,
+h2 {
+  color: var(--color-gray-900);
+}
+
+h3,
+h4 {
+  color: var(--color-gray-500);
+}
+
+h1 {
+  font-size: 2.4rem;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+h3 {
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+h4 {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+@media screen and (min-width: 768px) {
+  h1 {
+    font-size: 3rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  h3 {
+    font-size: 1.6rem;
+  }
+
+  h4 {
+    font-size: 1.4rem;
+  }
+
+  body {
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+  }
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+/* Links */
+
+a {
+  text-decoration: none;
+}
+
+footer a:hover {
+  color: var(--color-gray-400);
+}
+
+/* App */
+
+.App {
+  min-height: 100vh;
+  width: 100vw;
+}
+
+/* Alerts */
+
+.form-alert,
+.form-alert-success {
+  align-items: center;
+  display: flex;
+  font-size: 1.5rem;
+  font-weight: 500;
+  font-weight: 700;
+  height: 6rem;
+  justify-content: center;
+  margin-top: 0.5rem;
+  padding: 2rem;
+  width: 100%;
+}
+
+.form-alert {
+  background-color: var(--color-accent-alert);
+  border: 1px solid var(--color-accent-red);
+  color: var(--color-accent-red);
+}
+
+.form-alert-success {
+  background-color: var(--color-success-100);
+  border: 1px solid var(--color-success-500);
+  color: var(--color-success-500);
+}
+
+/* Logos */
+
+.logo,
+.logo-login {
+  align-items: center;
+  display: flex;
+  font-family: 'Manrope', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 800;
+  gap: 1.2rem;
+  height: 4.3rem;
+  line-height: 2.8rem;
+  width: fit-content;
+}
+
+.logo {
+  color: var(--color-gray-25);
+}
+
+.logo-login {
+  color: var(--color-gray-600);
+}
+
+.logo a {
+  color: var(--color-gray-25);
+}
+
+.logo-login a {
+  color: var(--color-gray-600);
+}
+
+/* Sidebar Nav (Desktop) */
+
+.link-container,
+.link-container-active {
+  align-items: flex-start;
+  border-radius: 8px;
+  display: flex;
+  font-size: 1.6rem;
+  font-weight: 600;
+  gap: 1.2rem;
+  height: 5.6rem;
+  line-height: 2.4rem;
+  padding: 1.6rem;
+  width: 100%;
+}
+
+.link-container {
+  border: none;
+}
+
+.link-container-active {
+  border: 2px solid var(--color-accent-white);
+  background-color: var(--color-accent-white);
+  color: var(--color-accent-white);
+}
+
+.link-container a {
+  color: var(--color-accent-white);
+}
+
+.link-container-active a {
+  color: var(--color-gray-500);
+}
