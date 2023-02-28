@@ -12,7 +12,9 @@ const firebaseConfig = {
 }
 
 // init firebase
-firebase.initializeApp(firebaseConfig)
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig)
+}
 
 // init services
 const projectFirestore = firebase.firestore()
