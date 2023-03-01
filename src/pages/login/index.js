@@ -26,7 +26,12 @@ export default function LoginPage() {
     e.preventDefault()
 
     if (error) {
+      console.log(error)
       toast.error(error)
+      return
+    } else if (password.length < 7) {
+      toast.error('Password must be at least 7 characters')
+      setPassword('')
     } else {
       login(email, password)
     }
@@ -42,7 +47,7 @@ export default function LoginPage() {
 
   return (
     <div className={styles.pageContainer}>
-      {error && <ToastContainer />}
+      <ToastContainer />
       <div className={styles.leftContainer}>
         <div className={styles.leftContent}>
           <div className={styles.logo}>
