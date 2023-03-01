@@ -69,7 +69,6 @@ img {
 }
 
 body {
-  background-color: var(--color-gray-50);
   color: var(--color-gray-500);
   font-family: 'Inter', sans-serif;
   font-size: 1.4rem;
@@ -114,7 +113,7 @@ h4 {
 
 @media screen and (min-width: 768px) {
   h1 {
-    font-size: 3rem;
+    font-size: 2.8rem;
   }
 
   h2 {
