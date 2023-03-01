@@ -18,23 +18,25 @@ export default function Signup() {
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [displayName, setDisplayName] = useState('')
-  const [showAlert, setShowAlert] = useState(false)
 
   const { signup, isPending, error } = useSignup()
 
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    // check if passwords match and display alert if they don't
-    if (password !== confirmPassword) {
-      setShowAlert(true)
-      return
-    } else {
-      setShowAlert(false)
-    }
-
     if (error) {
+      console.log(error)
       toast.error(error)
+      return
+    } else if (password !== confirmPassword) {
+      toast.error('Passwords do not match')
+      setPassword('')
+      setConfirmPassword('')
+      return
+    } else if (password.length < 7) {
+      toast.error('Password must be at least 7 characters')
+      setPassword('')
+      setConfirmPassword('')
     } else {
       signup(email, password, displayName)
     }
@@ -45,7 +47,7 @@ export default function Signup() {
 
   return (
     <div className={styles.pageContainer}>
-      {error && <ToastContainer />}
+      <ToastContainer />
       <div className={styles.leftContainer}>
         <div className={styles.leftContent}>
           <div className={styles.logo}>
@@ -103,9 +105,6 @@ export default function Signup() {
                       required
                     />
                   </label>
-                  {showAlert && (
-                    <div className='form-alert'>*Passwords do not match</div>
-                  )}
                 </div>
                 <div className={styles.btnContainer}>
                   {!isPending && (
