@@ -7,6 +7,10 @@ import Image from 'next/image'
 // styles
 import styles from './LoginPage.module.css'
 
+// libraries
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
 // pages & components
 import Logo from '@/components/Logo'
 import MailIcon from '@/components/icons/MailIcon'
@@ -20,7 +24,12 @@ export default function LoginPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    login(email, password)
+
+    if (error) {
+      toast.error(error)
+    } else {
+      login(email, password)
+    }
   }
 
   // redirect users to forgot password page
@@ -33,6 +42,7 @@ export default function LoginPage() {
 
   return (
     <div className={styles.pageContainer}>
+      {error && <ToastContainer />}
       <div className={styles.leftContainer}>
         <div className={styles.leftContent}>
           <div className={styles.logo}>
@@ -109,7 +119,6 @@ export default function LoginPage() {
                     <strong>Sign Up</strong>
                   </Link>
                 </p>
-                {error && <div className='form-alert'>{error}</div>}
               </div>
               <div className={styles.copyright}>
                 Copyright &copy; {currentYear}
