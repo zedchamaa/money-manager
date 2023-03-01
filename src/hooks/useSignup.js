@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { projectAuth } from '@/firebase/config'
-import { useAuthContext } from '@/useAuthContext'
+import { useAuthContext } from './useAuthContext'
 
 export const useSignup = () => {
   const [isCancelled, setIsCancelled] = useState(false)
