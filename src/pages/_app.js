@@ -36,7 +36,9 @@ function AppWrapper({ Component, pageProps }) {
         !user &&
         currentPath !== '/signup' &&
         !user &&
-        currentPath !== '/forgot-password'
+        currentPath !== '/forgot-password' &&
+        !user &&
+        currentPath !== '/policy'
       ) {
         router.push('/login')
       }
