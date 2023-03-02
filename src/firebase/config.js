@@ -3,12 +3,12 @@ import 'firebase/firestore'
 import 'firebase/auth'
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyDjEUpIQxu81JXsrAzUhl7yJd_VMFJ3sk8',
-  authDomain: 'money-manager-demo-288cb.firebaseapp.com',
-  projectId: 'money-manager-demo-288cb',
-  storageBucket: 'money-manager-demo-288cb.appspot.com',
-  messagingSenderId: '773875729258',
-  appId: '1:773875729258:web:28bbce09cf0161d3d55b13',
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 }
 
 // init firebase
