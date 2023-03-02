@@ -41,6 +41,7 @@ export const useResetPassword = () => {
       }
     } catch (err) {
       if (!isCancelled) {
+        console.error(err)
         setError(err.message)
         setIsPending(false)
       }

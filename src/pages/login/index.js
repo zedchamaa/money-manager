@@ -26,7 +26,6 @@ export default function LoginPage() {
     e.preventDefault()
 
     if (error) {
-      console.log(error)
       toast.error(error)
       return
     } else if (password.length < 7) {
