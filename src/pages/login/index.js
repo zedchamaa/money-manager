@@ -7,10 +7,6 @@ import Image from 'next/image'
 // styles
 import styles from './LoginPage.module.css'
 
-// libraries
-import { ToastContainer, toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
-
 // pages & components
 import Logo from '@/components/Logo'
 import MailIcon from '@/components/icons/MailIcon'
@@ -24,16 +20,7 @@ export default function LoginPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-
-    if (error) {
-      toast.error(error)
-      return
-    } else if (password.length < 7) {
-      toast.error('Password must be at least 7 characters')
-      setPassword('')
-    } else {
-      login(email, password)
-    }
+    login(email, password)
   }
 
   // redirect users to forgot password page
@@ -46,7 +33,6 @@ export default function LoginPage() {
 
   return (
     <div className={styles.pageContainer}>
-      <ToastContainer />
       <div className={styles.leftContainer}>
         <div className={styles.leftContent}>
           <div className={styles.logo}>
@@ -57,6 +43,7 @@ export default function LoginPage() {
               onSubmit={handleSubmit}
               className={styles.formContainer}
             >
+              {error && <div className='form-alert'>{error}</div>}
               <div className={styles.topContainer}>
                 <h1>Login to your account</h1>
                 <p>Welcome! Please enter your login details.</p>
