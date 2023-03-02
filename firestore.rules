@@ -1,16 +1,9 @@
-// Firestore rules for the transactions collection
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /transactions/{document=**} {
-      // allow read, write;
-      // allow create, read, update, delete
-
-      // only allow logged in users to create documents
-      allow create: if request.auth != null;
-      
-      // logged in user uid must match the document creator to read, update or delete
-      allow read, update, delete: if request.auth.uid == resource.data.uid;
+    match /{document=**} {
+      allow read, write: if
+          request.time < timestamp.date(2023, 4, 1);
     }
   }
 }
