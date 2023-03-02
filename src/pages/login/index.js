@@ -35,6 +35,7 @@ export default function LoginPage() {
     <div className={styles.pageContainer}>
       <div className={styles.leftContainer}>
         <div className={styles.leftContent}>
+          {error && <div className='form-alert'>{error}</div>}
           <div className={styles.logo}>
             <Logo />
           </div>
@@ -43,7 +44,6 @@ export default function LoginPage() {
               onSubmit={handleSubmit}
               className={styles.formContainer}
             >
-              {error && <div className='form-alert'>{error}</div>}
               <div className={styles.topContainer}>
                 <h1>Login to your account</h1>
                 <p>Welcome! Please enter your login details.</p>

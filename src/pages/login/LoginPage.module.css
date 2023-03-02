@@ -52,6 +52,7 @@
   gap: 1.4rem;
   height: 6.4rem;
   margin-bottom: 1rem;
+  margin-top: -3rem;
   padding: 0px;
   width: 31.1rem;
 }
@@ -181,11 +182,9 @@
 }
 
 @media screen and (min-width: 1125px) {
-  .logo {
-    margin-top: 3rem;
-  }
   .formContainer {
     height: 57.7rem;
+    margin-top: 0.5rem;
     width: 48rem;
   }
   .topContainer {

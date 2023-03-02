@@ -77,6 +77,7 @@
   padding: 1.6rem 1.2rem;
   width: 31.1rem;
 }
+
 .username,
 .password {
   display: flex;
@@ -188,7 +189,7 @@
 @media screen and (min-width: 1125px) {
   .formContainer {
     height: 57.7rem;
-    margin-top: 5rem;
+    margin-top: 2.8rem;
     width: 48rem;
   }
   .topContainer {

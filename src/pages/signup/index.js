@@ -42,6 +42,8 @@ export default function Signup() {
     <div className={styles.pageContainer}>
       <div className={styles.leftContainer}>
         <div className={styles.leftContent}>
+          {error && <div className='form-alert'>{error}</div>}
+          {alert && <div className='form-alert'>{alert}</div>}
           <div className={styles.logo}>
             <Logo />
           </div>
@@ -50,13 +52,10 @@ export default function Signup() {
               onSubmit={handleSubmit}
               className={styles.formContainer}
             >
-              {error && <div className='form-alert'>{error}</div>}
-              {alert && <div className='form-alert'>{alert}</div>}
               <div className={styles.topContainer}>
                 <h1>Create a new account</h1>
                 <p>Please enter your details.</p>
               </div>
-
               <div className={styles.middleContainer}>
                 <div className={styles.labels}>
                   <label>
