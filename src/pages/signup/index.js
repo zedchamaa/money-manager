@@ -6,14 +6,11 @@ import Image from 'next/image'
 // styles
 import styles from './SignupPage.module.css'
 
-// libraries
-import { ToastContainer, toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
-
 // pages & components
 import Logo from '@/components/Logo'
 
 export default function Signup() {
+  const [alert, setAlert] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
@@ -24,17 +21,13 @@ export default function Signup() {
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    if (error) {
-      console.log(error)
-      toast.error(error)
-      return
-    } else if (password !== confirmPassword) {
-      toast.error('Passwords do not match')
+    if (password !== confirmPassword) {
+      setAlert('Passwords do not match')
       setPassword('')
       setConfirmPassword('')
       return
     } else if (password.length < 7) {
-      toast.error('Password must be at least 7 characters')
+      setAlert('Password must be at least 7 characters')
       setPassword('')
       setConfirmPassword('')
     } else {
@@ -47,7 +40,6 @@ export default function Signup() {
 
   return (
     <div className={styles.pageContainer}>
-      <ToastContainer />
       <div className={styles.leftContainer}>
         <div className={styles.leftContent}>
           <div className={styles.logo}>
@@ -58,6 +50,8 @@ export default function Signup() {
               onSubmit={handleSubmit}
               className={styles.formContainer}
             >
+              {error && <div className='form-alert'>{error}</div>}
+              {alert && <div className='form-alert'>{alert}</div>}
               <div className={styles.topContainer}>
                 <h1>Create a new account</h1>
                 <p>Please enter your details.</p>
