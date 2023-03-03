@@ -1,6 +1,9 @@
 import { useRouter } from 'next/router'
 import { useAuthContext } from '@/hooks/useAuthContext'
 
+// components
+import MobileMenu from '@/components/MobileMenu'
+
 export default function TransactionsSummary() {
   const router = useRouter()
   const { year } = router.query
@@ -14,6 +17,7 @@ export default function TransactionsSummary() {
 
   return (
     <div>
+      <MobileMenu />
       <h1>Summary of transactions for {year}</h1>
       {/* Your transaction summary can go here */}
     </div>

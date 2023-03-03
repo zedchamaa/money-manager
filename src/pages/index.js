@@ -1,9 +1,10 @@
 import { useAuthContext } from '@/hooks/useAuthContext'
-import { useLogout } from '@/hooks/useLogout'
+
+// components
+import MobileMenu from '@/components/MobileMenu'
 
 export default function HomePage() {
   const { user } = useAuthContext()
-  const { logout } = useLogout()
 
   // hide the page content from non-logged in users
   // always run this if statement first
@@ -11,14 +12,9 @@ export default function HomePage() {
     return
   }
 
-  const handleSignout = () => {
-    logout()
-  }
-
   return (
     <>
-      <div>Home Page</div>
-      <button onClick={handleSignout}>Log Out</button>
+      <MobileMenu />
     </>
   )
 }
