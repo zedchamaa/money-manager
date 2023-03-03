@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { projectAuth } from '@/firebase/config'
-import { useAuthContext } from '@/useAuthContext'
-import { useNavigate } from 'react-router-dom'
+import { useAuthContext } from '@/hooks/useAuthContext'
+import { useRouter } from 'next/router'
 
 export const useResetPassword = () => {
   const [isCancelled, setIsCancelled] = useState(false)
@@ -9,7 +9,7 @@ export const useResetPassword = () => {
   const [message, setMessage] = useState('')
   const [isPending, setIsPending] = useState(false)
   const [timerId, setTimerId] = useState('')
-  const navigate = useNavigate()
+  const router = useRouter()
   const { dispatch } = useAuthContext()
 
   const resetPassword = async (email) => {
@@ -31,7 +31,7 @@ export const useResetPassword = () => {
 
       setTimerId(
         setTimeout(() => {
-          navigate('/login')
+          router.push('/login')
         }, 5000)
       )
 
