@@ -38,7 +38,7 @@ export default function ForgotPasswordPage() {
             <div className='form-alert-success'>{message}</div>
           )}
           <div className={styles.logo}>
-            <Logo />
+            <Logo link={'/login'} />
           </div>
           <div className={styles.form}>
             <form
