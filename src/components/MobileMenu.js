@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { logout } from '@/hooks/useLogout'
 
 // styles
 import styles from './MobileMenu.module.css'
