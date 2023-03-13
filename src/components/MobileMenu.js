@@ -1,8 +1,10 @@
+import Link from 'next/link'
+import { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
+import { logout } from '@/hooks/useLogout'
+
 // styles
 import styles from './MobileMenu.module.css'
-import { useState, useEffect } from 'react'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
 
 // components
 import Logo from './Logo'
