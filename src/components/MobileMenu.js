@@ -10,6 +10,7 @@ import HamburgerMenuIcon from './icons/HamburgerMenuIcon'
 import CloseIcon from './icons/CloseIcon'
 import GraphIcon from './icons/GraphIcon'
 import ConnectionIcon from './icons/ConnectionIcon'
+import UserInfoMobile from './UserInfoMobile'
 
 export default function MobileMenu() {
   const [menuIsClosed, setMenuIsClosed] = useState(true)
@@ -77,6 +78,7 @@ export default function MobileMenu() {
               <Link href={`/transactions/year/${year}`}>Transactions</Link>
             </div>
           </nav>
+          <UserInfoMobile />
         </div>
       )}
     </>
