@@ -22,13 +22,17 @@ function AppWrapper({ Component, pageProps }) {
   const currentPath = router.pathname
   const { authIsReady, user } = useAuthContext()
 
+  // find the current year
+  const date = new Date()
+  const currentYear = date.getFullYear()
+
   useEffect(() => {
     if (authIsReady) {
       if (currentPath === '/login' && user) {
-        router.push('/')
+        router.push(`/transactions/summary/${currentYear}`)
       }
       if (currentPath === '/signup' && user) {
-        router.push('/')
+        router.push(`/transactions/summary/${currentYear}`)
       }
       if (
         !user &&
