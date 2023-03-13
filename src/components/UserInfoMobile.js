@@ -1,4 +1,5 @@
 import { useLogout } from '@/hooks/useLogout'
+import { useAuthContext } from '@/hooks/useAuthContext'
 
 // styles
 import styles from './UserInfoMobile.module.css'
@@ -8,6 +9,7 @@ import SignoutIcon from './icons/SignoutIcon'
 import ProfileIcon from './icons/ProfileIcon'
 
 export default function userInfoMobile() {
+  const { user } = useAuthContext()
   const { logout } = useLogout()
 
   const handleLogout = () => {
@@ -18,7 +20,7 @@ export default function userInfoMobile() {
     <div className={styles.container}>
       <div className={styles.userInfo}>
         <ProfileIcon />
-        <p>John Doe</p>
+        {user.displayName}
       </div>
       <div
         className={styles.signOut}
