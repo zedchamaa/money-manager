@@ -13,11 +13,11 @@ import ConnectionIcon from './icons/ConnectionIcon'
 
 export default function MobileMenu() {
   const [menuIsClosed, setMenuIsClosed] = useState(true)
+  const [summarySelected, setSummarySelected] = useState(false)
+  const [transactionsSelected, setTransactionsSelected] = useState(false)
   const router = useRouter()
   const currentPath = router.pathname
   const { year } = router.query
-  const [summarySelected, setSummarySelected] = useState(false)
-  const [transactionsSelected, setTransactionsSelected] = useState(false)
 
   let defaultColor = '#667085'
   let selectedColor = '#7F56D9'
@@ -66,7 +66,7 @@ export default function MobileMenu() {
               }
             >
               <GraphIcon color={summaryColor} />
-              <Link href='/transactions/summary/2024'>Summary</Link>
+              <Link href={`/transactions/summary/${year}`}>Summary</Link>
             </div>
             <div
               className={
@@ -74,7 +74,7 @@ export default function MobileMenu() {
               }
             >
               <ConnectionIcon color={transactionsColor} />
-              <p>Transactions</p>
+              <Link href={`/transactions/year/${year}`}>Transactions</Link>
             </div>
           </nav>
         </div>
