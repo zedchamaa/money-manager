@@ -20,7 +20,7 @@ export default function UserInfoDesktop() {
     <div className={styles.container}>
       <div className={styles.userInfo}>
         <ProfileIcon />
-        {user.displayName}
+        {user && user.displayName}
         <SignoutIcon onClick={handleLogout} />
       </div>
     </div>
