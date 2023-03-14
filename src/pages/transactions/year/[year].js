@@ -4,6 +4,7 @@ import { useAuthContext } from '@/hooks/useAuthContext'
 // components
 import MobileMenu from '@/components/MobileMenu'
 import DesktopMenu from '@/components/DesktopMenu'
+import IntroTopMobile from '@/components/IntroTopMobile'
 
 export default function TransactionsYear() {
   const router = useRouter()
@@ -19,8 +20,8 @@ export default function TransactionsYear() {
   return (
     <div>
       <MobileMenu />
+      <IntroTopMobile title='Transactions' />
       <DesktopMenu />
-      <h1>Transactions for {year}</h1>
       {/* Your transaction list and form can go here */}
     </div>
   )
