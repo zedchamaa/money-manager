@@ -19,8 +19,18 @@ export default function Modal({
         </div>
         <div className={styles.middle}>{children}</div>
         <div className={styles.bottom}>
-          <button onClick={handleCancel}>Cancel</button>
-          <button onClick={handleConfirm}>Confirm</button>
+          <button
+            className={styles.cancelButton}
+            onClick={handleCancel}
+          >
+            Cancel
+          </button>
+          <button
+            className={styles.confirmButton}
+            onClick={handleConfirm}
+          >
+            Confirm
+          </button>
         </div>
       </div>
     </div>
