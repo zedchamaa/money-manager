@@ -17,12 +17,5 @@ export default function TransactionsYear() {
     return
   }
 
-  return (
-    <div>
-      <MobileMenu />
-      <IntroTopMobile title='Transactions' />
-      <DesktopMenu />
-      {/* Your transaction list and form can go here */}
-    </div>
-  )
+  return <div>{/* Your transaction list and form can go here */}</div>
 }
