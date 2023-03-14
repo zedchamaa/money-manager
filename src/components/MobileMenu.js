@@ -68,7 +68,12 @@ export default function MobileMenu() {
               }
             >
               <GraphIcon color={summaryColor} />
-              <Link href={`/transactions/summary/${year}`}>Summary</Link>
+              <Link
+                onClick={handleCloseMenu}
+                href={`/transactions/summary/${year}`}
+              >
+                Summary
+              </Link>
             </div>
             <div
               className={
@@ -76,7 +81,12 @@ export default function MobileMenu() {
               }
             >
               <ConnectionIcon color={transactionsColor} />
-              <Link href={`/transactions/year/${year}`}>Transactions</Link>
+              <Link
+                onClick={handleCloseMenu}
+                href={`/transactions/year/${year}`}
+              >
+                Transactions
+              </Link>
             </div>
           </nav>
           <UserInfoMobile />
