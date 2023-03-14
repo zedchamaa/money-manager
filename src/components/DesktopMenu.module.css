@@ -1,0 +1,43 @@
+.container {
+  display: none;
+}
+
+@media screen and (min-width: 415px) {
+  .container {
+    align-items: center;
+    border-bottom: 0.1rem solid var(--color-gray-300);
+    display: flex;
+    gap: 6.4rem;
+    height: 8.4rem;
+    justify-content: space-around;
+    min-width: 127rem;
+    width: 100%;
+  }
+  .container nav {
+    align-items: center;
+    display: flex;
+    gap: 3.2rem;
+    height: 6.8rem;
+    width: 50.8rem;
+  }
+  .rightContainer {
+    align-items: center;
+    display: flex;
+    gap: 2.4rem;
+    height: 5.4rem;
+    width: fit-content;
+  }
+  .navItem,
+  .navItemSelected {
+    border-bottom: 0.3rem solid var(--color-accent-white);
+    color: var(--color-gray-800);
+    display: flex;
+    font-size: 1.6rem;
+    font-weight: 500;
+    gap: 0.8rem;
+    padding: 2.4rem 0;
+  }
+  .navItemSelected {
+    border-bottom: 0.3rem solid var(--color-primary-600);
+  }
+}
