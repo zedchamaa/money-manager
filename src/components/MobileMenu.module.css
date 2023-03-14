@@ -40,3 +40,10 @@
 .navItemSelected {
   border-left: 0.6rem solid var(--color-primary-600);
 }
+
+@media screen and (min-width: 415px) {
+  .container,
+  .openedMenu {
+    display: none;
+  }
+}
