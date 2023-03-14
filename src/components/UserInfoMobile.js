@@ -8,7 +8,7 @@ import styles from './UserInfoMobile.module.css'
 import SignoutIcon from './icons/SignoutIcon'
 import ProfileIcon from './icons/ProfileIcon'
 
-export default function userInfoMobile() {
+export default function UserInfoMobile() {
   const { user } = useAuthContext()
   const { logout } = useLogout()
 
