@@ -1,0 +1,25 @@
+.container {
+  display: none;
+}
+
+@media screen and (min-width: 415px) {
+  .container {
+    align-items: center;
+    border-radius: 1.2rem;
+    border: 0.1rem solid var(--color-gray-200);
+    color: var(--color-gray-900);
+    display: flex;
+    font-size: 1.6rem;
+    font-weight: 600;
+    gap: 1.2rem;
+    height: 5.4rem;
+    justify-content: space-between;
+    padding: 1.2rem;
+    width: fit-content;
+  }
+  .userInfo {
+    align-items: center;
+    display: flex;
+    gap: 1.2rem;
+  }
+}
