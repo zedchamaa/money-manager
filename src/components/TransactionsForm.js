@@ -25,6 +25,8 @@ export default function TransactionsForm({ handleCancel }) {
   const [alert, setAlert] = useState('')
   const [incomeColor, setIncomeColor] = useState('#667085')
   const [expenseColor, setExpenseColor] = useState('#667085')
+  const [incomeSelected, setIncomeSelected] = useState(false)
+  const [expenseSelected, setExpenseSelected] = useState(false)
 
   // category drop down menu
   const handleCategoryChange = (selectedOption) => {
@@ -34,6 +36,8 @@ export default function TransactionsForm({ handleCancel }) {
   // handle income selection
   const handleIncomeType = () => {
     setType('income')
+    setIncomeSelected(true)
+    setExpenseSelected(false)
     setIncomeColor('#43936C')
     setExpenseColor('#667085')
   }
@@ -41,6 +45,8 @@ export default function TransactionsForm({ handleCancel }) {
   // handle expense selection
   const handleExpenseType = () => {
     setType('expense')
+    setExpenseSelected(true)
+    setIncomeSelected(false)
     setExpenseColor('#CB3A31')
     setIncomeColor('#667085')
   }
@@ -106,14 +112,16 @@ export default function TransactionsForm({ handleCancel }) {
           <span>Transaction type</span>
           <div className={styles.transactionType}>
             <div
-              className={styles.income}
+              className={incomeSelected ? styles.incomeSelected : styles.income}
               onClick={handleIncomeType}
             >
               <IncomeIcon color={incomeColor} />
               Income
             </div>
             <div
-              className={styles.expense}
+              className={
+                expenseSelected ? styles.expenseSelected : styles.expense
+              }
               onClick={handleExpenseType}
             >
               <ExpenseIcon color={expenseColor} />

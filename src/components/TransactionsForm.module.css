@@ -58,12 +58,24 @@
   border: 0.1rem solid var(--color-gray-500);
 }
 
-.income:active {
-  border: 0.3rem solid green;
+.incomeSelected,
+.expenseSelected {
+  border-radius: 1.2rem;
+  display: flex;
+  gap: 0.8rem;
+  height: 5.6rem;
+  padding: 1.6rem;
+  width: 14.75rem;
 }
 
-.expense:active {
-  border: 0.3rem solid red;
+.incomeSelected {
+  background-color: var(--color-accent-green-three);
+  border: 0.1rem solid var(--color-accent-green);
+}
+
+.expenseSelected {
+  background-color: var(--color-accent-red-three);
+  border: 0.1rem solid var(--color-accent-red);
 }
 
 .bottom {
