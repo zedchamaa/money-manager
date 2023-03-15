@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useFirestore } from '@/hooks/useFirestore'
 import { useAuthContext } from '@/hooks/useAuthContext'
 
@@ -7,6 +7,9 @@ import styles from './TransactionsForm.module.css'
 
 // components
 import CategoryMenu from './CategoryMenu'
+
+// libraries
+import dateFormat from 'dateformat'
 
 export default function TransactionsForm({ handleCancel }) {
   const { addDocument } = useFirestore('transactions')
@@ -54,10 +57,10 @@ export default function TransactionsForm({ handleCancel }) {
 
     // add transactions to firebase database
     addDocument({
-      date,
+      date: dateFormat(date, 'dddd, d mmm yyyy'),
       amount: Number(amount),
       type,
-      category,
+      category: category.toLowerCase(),
       uid: user.uid,
     })
 
