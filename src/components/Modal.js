@@ -4,12 +4,7 @@ import styles from './Modal.module.css'
 // components
 import TransactionsIcon from './icons/TransactionsIcon'
 
-export default function Modal({
-  children,
-  handleCancel,
-  handleConfirm,
-  title,
-}) {
+export default function Modal({ children, title }) {
   return (
     <div className={styles.modalBackdrop}>
       <div className={styles.container}>
@@ -18,20 +13,6 @@ export default function Modal({
           <div className={styles.title}>{title}</div>
         </div>
         <div className={styles.middle}>{children}</div>
-        <div className={styles.bottom}>
-          <button
-            className={styles.cancelButton}
-            onClick={handleCancel}
-          >
-            Cancel
-          </button>
-          <button
-            className={styles.confirmButton}
-            onClick={handleConfirm}
-          >
-            Confirm
-          </button>
-        </div>
       </div>
     </div>
   )
