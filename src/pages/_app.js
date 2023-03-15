@@ -11,6 +11,7 @@ import MobileMenu from '@/components/MobileMenu'
 import DesktopMenu from '@/components/DesktopMenu'
 import IntroTopMobile from '@/components/IntroTopMobile'
 import Modal from '@/components/Modal'
+import TransactionsForm from '@/components/TransactionsForm'
 
 export default function App({ Component, pageProps }) {
   const [showModal, setShowModal] = useState(false)
@@ -34,11 +35,6 @@ export default function App({ Component, pageProps }) {
     setShowModal(false)
   }
 
-  // submit form on confirm
-  const handleConfirm = () => {
-    console.log('Confirm button clicked')
-  }
-
   return (
     <AuthContextProvider>
       <AppWrapper
@@ -46,11 +42,9 @@ export default function App({ Component, pageProps }) {
         pageProps={pageProps}
       />
       {showModal && (
-        <Modal
-          title='Add Transaction'
-          handleCancel={handleCancel}
-          handleConfirm={handleConfirm}
-        />
+        <Modal title='Add Transaction'>
+          <TransactionsForm handleCancel={handleCancel} />
+        </Modal>
       )}
       <MobileMenu />
       <DesktopMenu onClick={handleShowModal} />
