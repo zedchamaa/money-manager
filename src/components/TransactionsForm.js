@@ -8,6 +8,8 @@ import styles from './TransactionsForm.module.css'
 // components
 import CategoryMenuIncome from './CategoryMenuIncome'
 import CategoryMenuExpense from './CategoryMenuExpense'
+import IncomeIcon from './icons/IncomeIcon'
+import ExpenseIcon from './icons/ExpenseIcon'
 
 // libraries
 import dateFormat from 'dateformat'
@@ -21,6 +23,8 @@ export default function TransactionsForm({ handleCancel }) {
   const [type, setType] = useState('')
   const [category, setCategory] = useState('')
   const [alert, setAlert] = useState('')
+  const [incomeColor, setIncomeColor] = useState('#667085')
+  const [expenseColor, setExpenseColor] = useState('#667085')
 
   // category drop down menu
   const handleCategoryChange = (selectedOption) => {
@@ -30,11 +34,15 @@ export default function TransactionsForm({ handleCancel }) {
   // handle income selection
   const handleIncomeType = () => {
     setType('income')
+    setIncomeColor('#43936C')
+    setExpenseColor('#667085')
   }
 
   // handle expense selection
   const handleExpenseType = () => {
     setType('expense')
+    setExpenseColor('#CB3A31')
+    setIncomeColor('#667085')
   }
 
   // handle submit form
@@ -97,8 +105,20 @@ export default function TransactionsForm({ handleCancel }) {
         <label>
           <span>Transaction type</span>
           <div className={styles.transactionType}>
-            <div onClick={handleIncomeType}>Income</div>
-            <div onClick={handleExpenseType}>Expense</div>
+            <div
+              className={styles.income}
+              onClick={handleIncomeType}
+            >
+              <IncomeIcon color={incomeColor} />
+              Income
+            </div>
+            <div
+              className={styles.expense}
+              onClick={handleExpenseType}
+            >
+              <ExpenseIcon color={expenseColor} />
+              Expense
+            </div>
           </div>
         </label>
         <label>

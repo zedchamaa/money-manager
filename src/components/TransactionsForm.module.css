@@ -36,11 +36,34 @@
 }
 
 .transactionType {
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
   cursor: pointer;
-  border: 2px solid red;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.income,
+.expense {
+  border-radius: 1.2rem;
+  border: 0.1rem solid var(--color-gray-300);
+  display: flex;
+  gap: 0.8rem;
+  height: 5.6rem;
+  padding: 1.6rem;
+  width: 14.75rem;
+}
+
+.income:hover,
+.expense:hover {
+  border: 0.1rem solid var(--color-gray-500);
+}
+
+.income:active {
+  border: 0.3rem solid green;
+}
+
+.expense:active {
+  border: 0.3rem solid red;
 }
 
 .bottom {
