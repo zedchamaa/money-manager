@@ -1,17 +1,17 @@
-.formContainer {
+.container {
   display: flex;
   flex-direction: column;
   width: 100%;
 }
 
-.formContainer form {
+.container form {
   display: flex;
   flex-direction: column;
   gap: 2.4rem;
   width: 100%;
 }
 
-.formContainer span {
+.container span {
   color: var(--color-gray-700);
   display: block;
   font-size: 1.4rem;
@@ -22,12 +22,11 @@
   width: 100%;
 }
 
-.formContainer input,
-.dropDownMenu {
+.container input {
   border-radius: 8px;
   border: 1px solid var(--color-gray-300);
   box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
-  color: var(--color-gray-400);
+  color: var(--color-gray-500);
   font-size: 1.6rem;
   font-weight: 400;
   height: 4.4rem;
@@ -36,46 +35,12 @@
   width: 100%;
 }
 
-.formContainer .footer {
-  align-items: center;
-  border-top: 1px solid var(--color-gray-200);
-  display: flex;
-  height: 7.6rem;
-  justify-content: space-between;
-  padding-top: 2.5rem;
-  width: 100%;
-}
-
-.formContainer .footer .cancel {
-  color: var(--color-blue-gray-500);
-  cursor: pointer;
-  font-size: 1.6rem;
-  font-weight: 600;
-  height: 4.4rem;
-  line-height: 2.4rem;
-  padding: 1rem 1.8rem;
-  width: 14.15rem;
-}
-
-.formContainer .footer .confirm {
-  background-color: var(--color-blue-gray-500);
-  border-radius: 8px;
-  box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
-  color: var(--color-accent-white);
-  cursor: pointer;
-  font-size: 1.6rem;
-  font-weight: 600;
-  height: 4.4rem;
-  line-height: 2.4rem;
-  padding: 1rem 1.8rem;
-  width: 14.15rem;
-}
-
 .transactionType {
   display: flex;
   width: 100%;
   justify-content: space-between;
   cursor: pointer;
+  border: 2px solid red;
 }
 
 .bottom {
@@ -108,13 +73,4 @@
   background-color: var(--color-primary-600);
   border: 0.1rem solid var(--color-primary-600);
   color: var(--color-accent-white);
-}
-
-@media screen and (min-width: 415px) {
-  .formContainer .footer .cancel {
-    width: 22.15rem;
-  }
-  .formContainer .footer .confirm {
-    width: 22.15rem;
-  }
 }

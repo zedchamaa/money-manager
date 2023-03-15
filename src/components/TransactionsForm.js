@@ -73,7 +73,7 @@ export default function TransactionsForm({ handleCancel }) {
   }
 
   return (
-    <div className={styles.formContainer}>
+    <div className={styles.container}>
       {alert && <div className='form-alert'>{alert}</div>}
       <form onSubmit={handleSubmit}>
         <label>
