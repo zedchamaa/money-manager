@@ -13,6 +13,7 @@ import ExpenseIcon from './icons/ExpenseIcon'
 
 // libraries
 import dateFormat from 'dateformat'
+import { toast } from 'react-toastify'
 
 export default function TransactionsForm({ handleCancel }) {
   const { addDocument } = useFirestore('transactions')
@@ -22,7 +23,6 @@ export default function TransactionsForm({ handleCancel }) {
   const [amount, setAmount] = useState('')
   const [type, setType] = useState('')
   const [category, setCategory] = useState('')
-  const [alert, setAlert] = useState('')
   const [incomeColor, setIncomeColor] = useState('#667085')
   const [expenseColor, setExpenseColor] = useState('#667085')
   const [incomeSelected, setIncomeSelected] = useState(false)
@@ -57,16 +57,16 @@ export default function TransactionsForm({ handleCancel }) {
 
     // form validation
     if (!date) {
-      setAlert('Please select a date')
+      toast.error('Please select a date')
       return
     } else if (!amount) {
-      setAlert('Please enter an amount')
+      toast.error('Please enter an amount')
       return
     } else if (!type) {
-      setAlert('Please select a type')
+      toast.error('Please select a type')
       return
     } else if (!category) {
-      setAlert('Please select a category')
+      toast.error('Please select a category')
       return
     }
 
@@ -88,7 +88,6 @@ export default function TransactionsForm({ handleCancel }) {
 
   return (
     <div className={styles.container}>
-      {alert && <div className='form-alert'>{alert}</div>}
       <form onSubmit={handleSubmit}>
         <label>
           <span>Date</span>

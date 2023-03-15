@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react'
 
 // styles
 import '@/styles/globals.css'
+import 'react-toastify/dist/ReactToastify.css'
 
 // components
 import MobileMenu from '@/components/MobileMenu'
@@ -12,6 +13,9 @@ import DesktopMenu from '@/components/DesktopMenu'
 import IntroTopMobile from '@/components/IntroTopMobile'
 import Modal from '@/components/Modal'
 import TransactionsForm from '@/components/TransactionsForm'
+
+// libraries
+import { ToastContainer } from 'react-toastify'
 
 export default function App({ Component, pageProps }) {
   const [showModal, setShowModal] = useState(false)
@@ -41,6 +45,7 @@ export default function App({ Component, pageProps }) {
         Component={Component}
         pageProps={pageProps}
       />
+      <ToastContainer position='top-right' />
       {showModal && (
         <Modal title='Add Transaction'>
           <TransactionsForm handleCancel={handleCancel} />
