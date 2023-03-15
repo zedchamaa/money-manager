@@ -6,7 +6,8 @@ import { useAuthContext } from '@/hooks/useAuthContext'
 import styles from './TransactionsForm.module.css'
 
 // components
-import CategoryMenu from './CategoryMenu'
+import CategoryMenuIncome from './CategoryMenuIncome'
+import CategoryMenuExpense from './CategoryMenuExpense'
 
 // libraries
 import dateFormat from 'dateformat'
@@ -102,7 +103,11 @@ export default function TransactionsForm({ handleCancel }) {
         </label>
         <label>
           <span>Category</span>
-          <CategoryMenu onChange={handleCategoryChange} />
+          {type === 'income' ? (
+            <CategoryMenuIncome onChange={handleCategoryChange} />
+          ) : (
+            <CategoryMenuExpense onChange={handleCategoryChange} />
+          )}
         </label>
       </form>
       <div className={styles.bottom}>

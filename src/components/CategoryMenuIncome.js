@@ -1,10 +1,7 @@
 import Select from 'react-select'
 
-export default function CategoryMenu({ onChange, category }) {
-  const categories = [
-    { value: 'Household', label: 'Household' },
-    { value: 'Salary', label: 'Salary' },
-  ]
+export default function CategoryMenuIncome({ onChange, category }) {
+  const categories = [{ value: 'Salary', label: 'Salary' }]
 
   const menuContainer = document.body // or any other container with a max-width set
 
