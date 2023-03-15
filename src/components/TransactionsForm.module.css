@@ -109,3 +109,17 @@
   border: 0.1rem solid var(--color-primary-600);
   color: var(--color-accent-white);
 }
+
+@media screen and (min-width: 415px) {
+  .income,
+  .incomeSelected,
+  .expense,
+  .expenseSelected {
+    width: 19.05rem;
+  }
+  .cancelButton,
+  .confirmButton {
+    width: 18.8rem;
+    height: 4.4rem;
+  }
+}

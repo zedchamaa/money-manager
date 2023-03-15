@@ -35,3 +35,10 @@
 .middle {
   height: 34rem;
 }
+
+@media screen and (min-width: 415px) {
+  .container {
+    padding: 2.4rem;
+    width: 44.5rem;
+  }
+}
