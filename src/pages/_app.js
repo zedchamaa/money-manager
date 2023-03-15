@@ -53,7 +53,7 @@ export default function App({ Component, pageProps }) {
         />
       )}
       <MobileMenu />
-      <DesktopMenu />
+      <DesktopMenu onClick={handleShowModal} />
       <IntroTopMobile
         title={pageTitle}
         onClick={handleShowModal}

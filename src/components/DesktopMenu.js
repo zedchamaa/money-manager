@@ -12,7 +12,7 @@ import ConnectionIcon from './icons/ConnectionIcon'
 import UserInfoDesktop from './UserInfoDesktop'
 import CallToActionButton from './CallToActionButton'
 
-export default function DesktopMenu() {
+export default function DesktopMenu({ onClick }) {
   const [summarySelected, setSummarySelected] = useState(false)
   const [transactionsSelected, setTransactionsSelected] = useState(false)
   const router = useRouter()
@@ -65,7 +65,10 @@ export default function DesktopMenu() {
           </div>
         </nav>
         <div className={styles.rightContainer}>
-          <CallToActionButton title='Add Transaction' />
+          <CallToActionButton
+            title='Add Transaction'
+            onClick={onClick}
+          />
           <UserInfoDesktop />
         </div>
       </div>
