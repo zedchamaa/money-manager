@@ -69,6 +69,7 @@ img {
 }
 
 body {
+  background-color: var(--color-gray-25);
   color: var(--color-gray-500);
   font-family: 'Inter', sans-serif;
   font-size: 1.4rem;
