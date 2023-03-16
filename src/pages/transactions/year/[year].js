@@ -10,6 +10,7 @@ import Modal from '@/components/Modal'
 import TransactionsForm from '@/components/TransactionsForm'
 import YearsCarouselMobile from '@/components/YearsCarouselMobile'
 import YearsCarouselDesktop from '@/components/YearsCarouselDesktop'
+import TransactionsSummaryMobile from '@/components/TransactionsSummaryMobile'
 
 export default function TransactionsYear() {
   const [showModal, setShowModal] = useState(false)
@@ -48,6 +49,12 @@ export default function TransactionsYear() {
       />
       <YearsCarouselMobile />
       <YearsCarouselDesktop />
+      <TransactionsSummaryMobile
+        transactions={24}
+        income={10000}
+        expenses={5000}
+        balance={5000}
+      />
     </>
   )
 }
