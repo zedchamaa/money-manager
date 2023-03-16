@@ -1,12 +1,17 @@
 import { useRouter } from 'next/router'
 import { useAuthContext } from '@/hooks/useAuthContext'
+import { useState } from 'react'
 
 // components
 import MobileMenu from '@/components/MobileMenu'
 import DesktopMenu from '@/components/DesktopMenu'
 import IntroTopMobile from '@/components/IntroTopMobile'
+import Modal from '@/components/Modal'
+import TransactionsForm from '@/components/TransactionsForm'
+import YearsCarouselMobile from '@/components/YearsCarouselMobile'
 
 export default function TransactionsYear() {
+  const [showModal, setShowModal] = useState(false)
   const router = useRouter()
   const { year } = router.query
   const { user } = useAuthContext()
@@ -17,5 +22,30 @@ export default function TransactionsYear() {
     return
   }
 
-  return <div>{/* Your transaction list and form can go here */}</div>
+  // show the modal
+  const handleShowModal = () => {
+    setShowModal(true)
+  }
+
+  // hide the modal
+  const handleCancel = () => {
+    setShowModal(false)
+  }
+
+  return (
+    <>
+      {showModal && (
+        <Modal title='Add Transaction'>
+          <TransactionsForm handleCancel={handleCancel} />
+        </Modal>
+      )}
+      <MobileMenu />
+      <DesktopMenu onClick={handleShowModal} />
+      <IntroTopMobile
+        title='Transactions'
+        onClick={handleShowModal}
+      />
+      <YearsCarouselMobile />
+    </>
+  )
 }

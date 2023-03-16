@@ -1,44 +1,16 @@
 import { AuthContextProvider } from '@/context/AuthContext'
 import { useRouter } from 'next/router'
 import { useAuthContext } from '@/hooks/useAuthContext'
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 
 // styles
 import '@/styles/globals.css'
 import 'react-toastify/dist/ReactToastify.css'
 
-// components
-import MobileMenu from '@/components/MobileMenu'
-import DesktopMenu from '@/components/DesktopMenu'
-import IntroTopMobile from '@/components/IntroTopMobile'
-import Modal from '@/components/Modal'
-import TransactionsForm from '@/components/TransactionsForm'
-
 // libraries
 import { ToastContainer } from 'react-toastify'
 
 export default function App({ Component, pageProps }) {
-  const [showModal, setShowModal] = useState(false)
-  const router = useRouter()
-  const currentPath = router.pathname
-
-  // update page title based on current page path
-  let pageTitle
-
-  currentPath.includes('summary')
-    ? (pageTitle = 'Summary')
-    : (pageTitle = 'Transactions')
-
-  // show the modal
-  const handleShowModal = () => {
-    setShowModal(true)
-  }
-
-  // hide the modal
-  const handleCancel = () => {
-    setShowModal(false)
-  }
-
   return (
     <AuthContextProvider>
       <AppWrapper
@@ -46,17 +18,6 @@ export default function App({ Component, pageProps }) {
         pageProps={pageProps}
       />
       <ToastContainer position='top-right' />
-      {showModal && (
-        <Modal title='Add Transaction'>
-          <TransactionsForm handleCancel={handleCancel} />
-        </Modal>
-      )}
-      <MobileMenu />
-      <DesktopMenu onClick={handleShowModal} />
-      <IntroTopMobile
-        title={pageTitle}
-        onClick={handleShowModal}
-      />
     </AuthContextProvider>
   )
 }
