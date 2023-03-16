@@ -18,7 +18,10 @@ export default function TransactionsSummaryMobile({
 }) {
   // change balance symbol depending on balance value
   let balanceSymbol
-  balance > 0 ? (balanceSymbol = '+') : (balanceSymbol = '-')
+
+  if (balance === 0) balanceSymbol = ''
+  if (balance > 0) balanceSymbol = '+'
+  if (balance < 0) balanceSymbol = '-'
 
   return (
     <div className={styles.container}>
