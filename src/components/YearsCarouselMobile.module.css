@@ -1,0 +1,48 @@
+.container {
+  align-items: center;
+  display: flex;
+  gap: 1.6rem;
+  height: 4.1rem;
+  margin-top: 3.2rem;
+  overflow-x: auto;
+  width: auto;
+  padding: 0 1rem;
+}
+
+.year,
+.selectedYear {
+  align-items: center;
+  border-radius: 0.8rem;
+  display: flex;
+  font-size: 1.4rem;
+  height: 4.1rem;
+  justify-content: center;
+  min-width: 11.8rem;
+  padding: 1.2rem 2.2rem;
+}
+
+.year {
+  background-color: var(--color-accent-white);
+  border: 0.1rem solid var(--color-gray-200);
+  color: var(--color-gray-500);
+  font-weight: 400;
+}
+
+.selectedYear {
+  background-color: var(--color-primary-100);
+  border: 0.1rem solid var(--color-primary-600);
+  color: var(--color-primary-600);
+  font-weight: 600;
+}
+
+/* Hide horizontal scrollbar */
+.container::-webkit-scrollbar {
+  background-color: transparent;
+  height: 0;
+}
+
+@media screen and (min-width: 415px) {
+  .container {
+    display: none;
+  }
+}
