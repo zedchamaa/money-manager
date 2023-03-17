@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router'
 import { useAuthContext } from '@/hooks/useAuthContext'
 import { useState } from 'react'
+import { useCollection } from '@/hooks/useCollection'
 
 // components
 import MobileMenu from '@/components/MobileMenu'
@@ -16,13 +17,25 @@ import TransactionsSummaryDesktop from '@/components/TransactionsSummaryDesktop'
 export default function TransactionsYear() {
   const [showModal, setShowModal] = useState(false)
   const router = useRouter()
-  const { year } = router.query
   const { user } = useAuthContext()
+  const { year } = router.query
+
+  const { documents, error } = useCollection(
+    'transactions',
+    ['uid', '==', user.uid],
+    ['createdAt', 'desc']
+  )
 
   // hide the page content from non-logged in users
   // always run this if statement first
   if (!user) {
-    return
+    return <p>Please log in to view this page</p>
+  }
+
+  if (documents) {
+    console.log(documents)
+  } else if (error) {
+    console.log(error)
   }
 
   // show the modal
