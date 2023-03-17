@@ -1,0 +1,18 @@
+export default function VerticalDivider() {
+  return (
+    <svg
+      width='2'
+      height='58'
+      viewBox='0 0 2 58'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+    >
+      <rect
+        x='0.333496'
+        width='1'
+        height='58'
+        fill='#EAECF0'
+      />
+    </svg>
+  )
+}
