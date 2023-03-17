@@ -57,4 +57,9 @@
     background-color: transparent;
     height: 0;
   }
+
+  /* Hide horizontal scrollbar in Firefox */
+  .years {
+    overflow-x: hidden;
+  }
 }
