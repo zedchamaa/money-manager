@@ -22,6 +22,7 @@ export default function TransactionsYear() {
 
   const { documents, error } = useCollection(
     'transactions',
+    user,
     user && ['uid', '==', user.uid],
     ['createdAt', 'desc']
   )
