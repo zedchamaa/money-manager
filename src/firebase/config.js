@@ -3,7 +3,7 @@ import 'firebase/firestore'
 import 'firebase/auth'
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyCYkpfyNS7tpdbT2wAxQkcVZPB0oapzE2g',
+  apiKey: 'AIzaSyDIX22ifcGB3ImTdY12kVgdDm69KUmVQGg',
   authDomain: 'money-manager-demo-79ec4.firebaseapp.com',
   projectId: 'money-manager-demo-79ec4',
   storageBucket: 'money-manager-demo-79ec4.appspot.com',
