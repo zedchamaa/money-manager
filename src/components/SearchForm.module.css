@@ -1,0 +1,27 @@
+.container {
+  align-items: center;
+  background-color: var(--color-accent-white);
+  border-radius: 0.8rem;
+  border: 0.1rem solid var(--color-gray-200);
+  display: flex;
+  gap: 0.8rem;
+  height: 4.8rem;
+  padding: 1rem 1.4rem;
+  width: 34.3rem;
+}
+
+.container input {
+  border: none;
+  box-shadow: none;
+  color: var(--color-gray-500);
+  font-size: 1.8rem;
+  font-weight: 400;
+  height: 2.8rem;
+  width: 28.9rem;
+}
+
+.container input:focus {
+  border: none;
+  outline: 0;
+  transition: border 0.15s, box-shadow 0.15s;
+}
