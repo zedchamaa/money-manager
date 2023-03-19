@@ -22,7 +22,7 @@ export default function TransactionsYear() {
 
   const { documents, error } = useCollection(
     'transactions',
-    ['uid', '==', user.uid],
+    user && ['uid', '==', user.uid],
     ['createdAt', 'desc']
   )
 
@@ -32,7 +32,7 @@ export default function TransactionsYear() {
     return <p>Please log in to view this page</p>
   }
 
-  if (documents) {
+  if (user && documents) {
     console.log(documents)
   } else if (error) {
     console.log(error)
