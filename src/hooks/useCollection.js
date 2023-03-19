@@ -1,10 +1,13 @@
 import { useEffect, useState, useRef } from 'react'
 import { projectFirestore } from '@/firebase/config'
 
-export const useCollection = (collection, user, _orderBy) => {
+export const useCollection = (collection, user, _query, _orderBy) => {
   const [documents, setDocuments] = useState(null)
   const [error, setError] = useState(null)
 
+  // if we don't use a ref --> infinite loop in useEffect
+  // _query is an array and is "different" on every function call
+  const query = useRef(_query).current
   const orderBy = useRef(_orderBy).current
 
   useEffect(() => {
@@ -12,6 +15,9 @@ export const useCollection = (collection, user, _orderBy) => {
 
     if (user) {
       ref = ref.where('uid', '==', user.uid)
+    }
+    if (query) {
+      ref = ref.where(...query)
     }
     if (orderBy) {
       ref = ref.orderBy(...orderBy)
@@ -36,7 +42,7 @@ export const useCollection = (collection, user, _orderBy) => {
 
     // unsubscribe on unmount
     return () => unsubscribe()
-  }, [collection, user, orderBy])
+  }, [collection, user, query, orderBy])
 
   return { documents, error }
 }
