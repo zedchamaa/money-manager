@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  padding: 1.6rem;
+  width: 100%;
+  border: 2px solid red;
+  height: 70.3rem;
+  background-color: var(--color-accent-white);
+  margin-top: 2.7rem;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 2rem;
+  color: var(--color-gray-800);
+}
+
+@media screen and (min-width: 415px) {
+  .container {
+    display: none;
+  }
+}
