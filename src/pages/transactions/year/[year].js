@@ -13,6 +13,7 @@ import YearsCarouselMobile from '@/components/YearsCarouselMobile'
 import YearsCarouselDesktop from '@/components/YearsCarouselDesktop'
 import TransactionsSummaryMobile from '@/components/TransactionsSummaryMobile'
 import TransactionsSummaryDesktop from '@/components/TransactionsSummaryDesktop'
+import TransactionsHistoryMobile from '@/components/TransactionsHistoryMobile'
 
 export default function TransactionsYear() {
   const [showModal, setShowModal] = useState(false)
@@ -33,10 +34,10 @@ export default function TransactionsYear() {
     return
   }
 
-  if (user && documents) {
-    console.log(documents)
-  } else if (error) {
-    console.log(error)
+  let transactionsByYear
+
+  if (documents) {
+    transactionsByYear = documents.filter((doc) => doc.date.includes(year))
   }
 
   // show the modal
@@ -76,6 +77,7 @@ export default function TransactionsYear() {
         expenses={5000}
         balance={5000}
       />
+      <TransactionsHistoryMobile transactionsByYear={transactionsByYear} />
     </>
   )
 }
