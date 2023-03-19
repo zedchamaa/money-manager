@@ -20,7 +20,7 @@ export default function TransactionsSummary() {
   // hide the page content from non-logged in users
   // always run this if statement first
   if (!user) {
-    return <p>Please log in to view this page</p>
+    return
   }
 
   // show the modal
