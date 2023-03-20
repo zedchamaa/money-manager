@@ -13,19 +13,17 @@ import TrashIconMobile from './icons/TrashIconMobile'
 // libraries
 import { formatNumber } from 'accounting'
 
-export default function TransactionsListMobile({ transactionsByYear }) {
+export default function TransactionsListMobile({ filteredTransactions }) {
   let amountSign = ''
   const [alert, setAlert] = useState(false)
   const router = useRouter()
   const { year } = router.query
 
-  console.log(year)
-
   useEffect(() => {
-    if (transactionsByYear?.length === 0) {
+    if (filteredTransactions?.length === 0) {
       setAlert(true)
     } else setAlert(false)
-  }, [transactionsByYear])
+  }, [filteredTransactions])
 
   const handleEditTransaction = () => {
     console.log('Edit Transaction')
@@ -35,7 +33,7 @@ export default function TransactionsListMobile({ transactionsByYear }) {
     console.log('Delete Transaction')
   }
 
-  const transactions = transactionsByYear?.map((transaction) => (
+  const transactions = filteredTransactions?.map((transaction) => (
     <div
       className={styles.container}
       key={transaction.id}

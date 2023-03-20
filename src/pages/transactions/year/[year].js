@@ -16,6 +16,8 @@ import TransactionsSummaryDesktop from '@/components/TransactionsSummaryDesktop'
 import TransactionsHistoryMobile from '@/components/TransactionsHistoryMobile'
 
 export default function TransactionsYear() {
+  let filteredTransactions
+  const [searchTerm, setSearchTerm] = useState('')
   const [showModal, setShowModal] = useState(false)
   const router = useRouter()
   const { user } = useAuthContext()
@@ -38,6 +40,21 @@ export default function TransactionsYear() {
 
   if (documents) {
     transactionsByYear = documents.filter((doc) => doc.date.includes(year))
+  }
+
+  // filter the transactions based on user search input
+  if (transactionsByYear) {
+    filteredTransactions = transactionsByYear.filter(
+      (transaction) =>
+        transaction.amount.toString().includes(searchTerm) ||
+        transaction.category.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        transaction.type.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        transaction.date.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+  }
+
+  const handleChangeSearchTerm = (e) => {
+    setSearchTerm(e.target.value)
   }
 
   // show the modal
@@ -77,7 +94,10 @@ export default function TransactionsYear() {
         expenses={5000}
         balance={5000}
       />
-      <TransactionsHistoryMobile transactionsByYear={transactionsByYear} />
+      <TransactionsHistoryMobile
+        filteredTransactions={filteredTransactions}
+        handleChangeSearchTerm={handleChangeSearchTerm}
+      />
     </>
   )
 }
