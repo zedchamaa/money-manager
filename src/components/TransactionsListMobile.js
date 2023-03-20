@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
 
 // styles
 import styles from './TransactionsListMobile.module.css'
@@ -15,6 +16,10 @@ import { formatNumber } from 'accounting'
 export default function TransactionsListMobile({ transactionsByYear }) {
   let amountSign = ''
   const [alert, setAlert] = useState(false)
+  const router = useRouter()
+  const { year } = router.query
+
+  console.log(year)
 
   useEffect(() => {
     if (transactionsByYear?.length === 0) {
@@ -71,7 +76,11 @@ export default function TransactionsListMobile({ transactionsByYear }) {
 
   return (
     <>
-      {alert && <p>There are no transactions currently</p>}
+      {alert && (
+        <p>
+          There are no transactions currently for <strong>Year {year}</strong>
+        </p>
+      )}
       {!transactions && <p>Loading...</p>}
       {transactions}
     </>
