@@ -1,19 +1,18 @@
 .container {
+  background-color: var(--color-accent-white);
   display: flex;
   flex-direction: column;
   gap: 1.6rem;
+  height: 70.3rem;
+  margin-top: 2.7rem;
   padding: 1.6rem;
   width: 100%;
-  border: 2px solid red;
-  height: 70.3rem;
-  background-color: var(--color-accent-white);
-  margin-top: 2.7rem;
 }
 
 .title {
-  font-weight: 700;
-  font-size: 2rem;
   color: var(--color-gray-800);
+  font-size: 2rem;
+  font-weight: 700;
 }
 
 @media screen and (min-width: 415px) {

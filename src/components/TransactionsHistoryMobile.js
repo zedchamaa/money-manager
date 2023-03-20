@@ -6,6 +6,7 @@ import styles from './TransactionsHistoryMobile.module.css'
 // components
 import SearchForm from './SearchForm'
 import TransactionsListMobile from './TransactionsListMobile'
+import MobileDivider from './icons/MobileDivider'
 
 export default function TransactionsHistoryMobile({ transactionsByYear }) {
   const [searchTerm, setSearchTerm] = useState('')
@@ -24,6 +25,7 @@ export default function TransactionsHistoryMobile({ transactionsByYear }) {
         />
       </div>
       <div className={styles.transactionsList}>
+        <MobileDivider />
         <TransactionsListMobile transactionsByYear={transactionsByYear} />
       </div>
       <div className={styles.pagination}>Pagination Menu</div>
