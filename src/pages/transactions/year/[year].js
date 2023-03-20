@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import { useAuthContext } from '@/hooks/useAuthContext'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useCollection } from '@/hooks/useCollection'
 
 // components
@@ -16,7 +16,12 @@ import TransactionsSummaryDesktop from '@/components/TransactionsSummaryDesktop'
 import TransactionsHistoryMobile from '@/components/TransactionsHistoryMobile'
 
 export default function TransactionsYear() {
+  let transactionsByYear
   let filteredTransactions
+  let totalTransactions = 0
+  let totalIncome = 0
+  let totalExpenses = 0
+  let remainingBalance = 0
   const [searchTerm, setSearchTerm] = useState('')
   const [showModal, setShowModal] = useState(false)
   const router = useRouter()
@@ -36,14 +41,11 @@ export default function TransactionsYear() {
     return
   }
 
-  let transactionsByYear
-
   if (documents) {
+    // filter the transactions based on the page's year
     transactionsByYear = documents.filter((doc) => doc.date.includes(year))
-  }
 
-  // filter the transactions based on user search input
-  if (transactionsByYear) {
+    // filter the transactions based on user search input
     filteredTransactions = transactionsByYear.filter(
       (transaction) =>
         transaction.amount.toString().includes(searchTerm) ||
@@ -51,8 +53,34 @@ export default function TransactionsYear() {
         transaction.type.toLowerCase().includes(searchTerm.toLowerCase()) ||
         transaction.date.toLowerCase().includes(searchTerm.toLowerCase())
     )
+
+    // find the total quantity of transactions
+    totalTransactions = filteredTransactions.length
+
+    // find the total amount of income transactions
+    const incomeTransactions = filteredTransactions.filter(
+      (transaction) => transaction.type === 'income'
+    )
+
+    totalIncome = incomeTransactions.reduce(
+      (acc, transaction) => acc + transaction.amount,
+      0
+    )
+
+    // find the total amount of expenses transactions
+    const expensesTransactions = filteredTransactions.filter(
+      (transaction) => transaction.type === 'expense'
+    )
+
+    totalExpenses = expensesTransactions.reduce(
+      (acc, transaction) => acc + transaction.amount,
+      0
+    )
+
+    remainingBalance = totalIncome - totalExpenses
   }
 
+  // handle user search input
   const handleChangeSearchTerm = (e) => {
     setSearchTerm(e.target.value)
   }
@@ -83,16 +111,16 @@ export default function TransactionsYear() {
       <YearsCarouselMobile />
       <YearsCarouselDesktop />
       <TransactionsSummaryMobile
-        transactions={24}
-        income={10000}
-        expenses={5000}
-        balance={5000}
+        transactions={totalTransactions}
+        income={totalIncome}
+        expenses={totalExpenses}
+        balance={remainingBalance}
       />
       <TransactionsSummaryDesktop
-        transactions={24}
-        income={10000}
-        expenses={5000}
-        balance={5000}
+        transactions={totalTransactions}
+        income={totalIncome}
+        expenses={totalExpenses}
+        balance={remainingBalance}
       />
       <TransactionsHistoryMobile
         filteredTransactions={filteredTransactions}
