@@ -1,4 +1,69 @@
 .container {
+  border-bottom: 0.1rem solid var(--color-gray-200);
+  display: flex;
+  gap: 1.6rem;
+  height: 6.3rem;
+  margin-bottom: 1.2rem;
+  margin-top: 1.2rem;
+  padding: 0 0 1.2rem;
+  width: 34.3rem;
+}
+
+.boxOne {
+  align-items: center;
+  display: flex;
+  gap: 1.2rem;
+  height: 4.8rem;
+  width: 26.7rem;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.category {
+  color: var(--color-gray-900);
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.date {
+  color: var(--color-gray-500);
+  font-size: 1.4rem;
+  font-weight: 400;
+}
+
+.boxTwo {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  height: 5.1rem;
+  min-width: 10rem;
+  width: fit-content;
+}
+
+.icons {
+  display: flex;
+  gap: 1.2rem;
+  justify-content: flex-end;
+}
+
+.incomeAmount {
+  color: var(--color-accent-green);
+  display: flex;
+  font-size: 1.6rem;
+  font-weight: 500;
+  justify-content: flex-end;
+}
+
+.expenseAmount {
+  color: var(--color-accent-red);
+  display: flex;
+  font-size: 1.6rem;
+  font-weight: 500;
+  justify-content: flex-end;
 }
 
 @media screen and (min-width: 415px) {
