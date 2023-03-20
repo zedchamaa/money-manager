@@ -75,7 +75,7 @@ export default function TransactionsForm({ handleCancel }) {
       date: dateFormat(date, 'dddd, d mmm yyyy'),
       amount: Number(amount),
       type,
-      category: category.toLowerCase(),
+      category: category,
       uid: user.uid,
     })
 
