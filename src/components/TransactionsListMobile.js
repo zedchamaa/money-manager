@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
+import { useFirestore } from '@/hooks/useFirestore'
 
 // styles
 import styles from './TransactionsListMobile.module.css'
@@ -16,6 +17,7 @@ import { formatNumber } from 'accounting'
 export default function TransactionsListMobile({ filteredTransactions }) {
   let amountSign = ''
   const [alert, setAlert] = useState(false)
+  const { deleteDocument } = useFirestore('transactions')
   const router = useRouter()
   const { year } = router.query
 
@@ -29,8 +31,8 @@ export default function TransactionsListMobile({ filteredTransactions }) {
     console.log('Edit Transaction')
   }
 
-  const handleDeleteTransaction = () => {
-    console.log('Delete Transaction')
+  const handleDeleteTransaction = (transaction) => {
+    deleteDocument(transaction.id)
   }
 
   const transactions = filteredTransactions?.map((transaction) => (
@@ -54,7 +56,9 @@ export default function TransactionsListMobile({ filteredTransactions }) {
       <div className={styles.boxTwo}>
         <div className={styles.icons}>
           <EditIconMobile onClick={handleEditTransaction} />
-          <TrashIconMobile onClick={handleDeleteTransaction} />
+          <TrashIconMobile
+            onClick={() => handleDeleteTransaction(transaction)}
+          />
         </div>
         <div
           className={
