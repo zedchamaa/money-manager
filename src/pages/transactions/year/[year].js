@@ -100,7 +100,10 @@ export default function TransactionsYear() {
     <>
       {showModal && (
         <Modal title='Add Transaction'>
-          <TransactionsForm handleCancel={handleCancel} />
+          <TransactionsForm
+            handleCancel={handleCancel}
+            title='Add Transaction'
+          />
         </Modal>
       )}
       <MobileMenu />
