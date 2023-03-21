@@ -1,0 +1,52 @@
+.container {
+  display: flex;
+  height: auto;
+  justify-content: center;
+  margin-top: 3.2rem;
+  width: 100%;
+}
+
+.paginationButtons {
+  max-width: 100%;
+  height: 40px;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+
+.pageElement {
+  max-width: 4.2rem;
+}
+
+.paginationButtons a {
+  padding: 10px;
+  margin: 6px;
+  border-radius: 5px;
+  border: 1px solid var(--color-gray-200);
+  cursor: pointer;
+}
+
+.paginationButtons a:hover {
+  color: var(--color-primary-600);
+  background-color: var(--color-primary-25);
+}
+
+.paginationActive a {
+  background-color: var(--color-primary-25);
+  color: var(--color-primary-600);
+  border: 1px solid var(--color-primary-600);
+}
+
+.previousButton,
+.nextButton {
+  background-color: var(--color-gray-100);
+  color: var(--color-gray-900);
+}
+
+/* Use if necessary */
+
+/* .paginationDisabled a {
+  color: var(--color-gray-50);
+  background-color: var(--color-gray-50);
+  border: none;
+} */

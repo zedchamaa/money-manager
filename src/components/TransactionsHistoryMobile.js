@@ -24,7 +24,6 @@ export default function TransactionsHistoryMobile({
         <MobileDivider />
         <TransactionsListMobile filteredTransactions={filteredTransactions} />
       </div>
-      <div className={styles.pagination}>Pagination Menu</div>
     </div>
   )
 }
