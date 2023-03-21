@@ -11,6 +11,8 @@ import ExpenseIconMobile from './icons/ExpenseIconMobile'
 import EditIconMobile from './icons/EditIconMobile'
 import TrashIconMobile from './icons/TrashIconMobile'
 import PaginationMenu from './PaginationMenu'
+import TransactionsForm from './TransactionsForm'
+import Modal from './Modal'
 
 // libraries
 import { formatNumber } from 'accounting'
@@ -18,6 +20,11 @@ import { formatNumber } from 'accounting'
 export default function TransactionsListMobile({ filteredTransactions }) {
   let amountSign = ''
   const [alert, setAlert] = useState(false)
+  const [showModal, setShowModal] = useState(false)
+  const [transactionId, setTransactionId] = useState('')
+  const [transactionDate, setTransactionDate] = useState('')
+  const [transactionAmount, setTransactionAmount] = useState('')
+  const [transactionType, setTransactionType] = useState('')
   const { deleteDocument } = useFirestore('transactions')
   const router = useRouter()
   const { year } = router.query
@@ -51,8 +58,12 @@ export default function TransactionsListMobile({ filteredTransactions }) {
     } else setAlert(false)
   }, [filteredTransactions])
 
-  const handleEditTransaction = () => {
-    console.log('Edit Transaction')
+  const handleEditTransaction = (transaction) => {
+    setShowModal(true)
+    setTransactionId(transaction.id)
+    setTransactionDate(transaction.date)
+    setTransactionAmount(transaction.amount)
+    setTransactionType(transaction.type)
   }
 
   const handleDeleteTransaction = (transaction) => {
@@ -81,7 +92,9 @@ export default function TransactionsListMobile({ filteredTransactions }) {
         </div>
         <div className={styles.boxTwo}>
           <div className={styles.icons}>
-            <EditIconMobile onClick={handleEditTransaction} />
+            <EditIconMobile
+              onClick={() => handleEditTransaction(transaction)}
+            />
             <TrashIconMobile
               onClick={() => handleDeleteTransaction(transaction)}
             />
@@ -102,8 +115,25 @@ export default function TransactionsListMobile({ filteredTransactions }) {
       </div>
     ))
 
+  // hide the modal
+  const handleCancel = () => {
+    setShowModal(false)
+  }
+
   return (
     <>
+      {showModal && (
+        <Modal title='Edit Transaction'>
+          <TransactionsForm
+            handleCancel={handleCancel}
+            title='Edit Transaction'
+            transactionId={transactionId}
+            transactionDate={transactionDate}
+            transactionAmount={transactionAmount}
+            transactionType={transactionType}
+          />
+        </Modal>
+      )}
       {alert && (
         <p>
           There are no transactions currently for <strong>Year {year}</strong>

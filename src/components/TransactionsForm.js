@@ -14,9 +14,17 @@ import ExpenseIcon from './icons/ExpenseIcon'
 // libraries
 import dateFormat from 'dateformat'
 import { toast } from 'react-toastify'
+import moment from 'moment'
 
-export default function TransactionsForm({ handleCancel }) {
-  const { addDocument } = useFirestore('transactions')
+export default function TransactionsForm({
+  handleCancel,
+  title,
+  transactionId,
+  transactionDate,
+  transactionAmount,
+  transactionType,
+}) {
+  const { addDocument, updateDocument } = useFirestore('transactions')
   const { user } = useAuthContext()
 
   const [date, setDate] = useState('')
@@ -27,6 +35,10 @@ export default function TransactionsForm({ handleCancel }) {
   const [expenseColor, setExpenseColor] = useState('#667085')
   const [incomeSelected, setIncomeSelected] = useState(false)
   const [expenseSelected, setExpenseSelected] = useState(false)
+  const [showOriginalDate, setShowOriginalDate] = useState(true)
+  const [showOriginalAmount, setShowOriginalAmount] = useState(true)
+  const [showOriginalType, setShowOriginalType] = useState(true)
+  const [showNewType, setShowNewType] = useState(false)
 
   // category drop down menu
   const handleCategoryChange = (selectedOption) => {
@@ -56,13 +68,13 @@ export default function TransactionsForm({ handleCancel }) {
     e.preventDefault()
 
     // form validation
-    if (!date) {
+    if (!date && !transactionDate) {
       toast.error('Please select a date')
       return
-    } else if (!amount) {
+    } else if (!amount && !transactionAmount) {
       toast.error('Please enter an amount')
       return
-    } else if (!type) {
+    } else if (!type && !transactionType) {
       toast.error('Please select a type')
       return
     } else if (!category) {
@@ -70,20 +82,54 @@ export default function TransactionsForm({ handleCancel }) {
       return
     }
 
-    // add transactions to firebase database
-    addDocument({
-      date: dateFormat(date, 'dddd, d mmm yyyy'),
-      amount: Number(amount),
-      type,
-      category: category,
-      uid: user.uid,
-    })
+    if (title === 'Add Transaction') {
+      // add transaction to firebase database
+      addDocument({
+        date: dateFormat(date, 'dddd, d mmm yyyy'),
+        amount: Number(amount),
+        type,
+        category: category,
+        uid: user.uid,
+      })
+    } else if (title === 'Edit Transaction') {
+      // update transaction in firebase database
+      updateDocument(transactionId, {
+        date: dateFormat(date, 'dddd, d mmm yyyy'),
+        amount: Number(amount),
+        type,
+        category: category,
+        uid: user.uid,
+      })
+    }
 
     // scroll to the top of the page
     window.scrollTo(0, 0)
 
     // close the modal
     handleCancel()
+  }
+
+  const handleChangeDate = (e) => {
+    setShowOriginalDate(false)
+    setDate('')
+    setDate(e.target.value)
+  }
+
+  const handleChangeAmount = (e) => {
+    if (title === 'Add Transaction') {
+      setAmount(e.target.value)
+    }
+
+    if (title === 'Edit Transaction') {
+      setShowOriginalAmount(false)
+      setAmount('')
+      setAmount(e.target.value)
+    }
+  }
+
+  const handleHideOriginalType = () => {
+    setShowOriginalType(false)
+    setShowNewType(true)
   }
 
   return (
@@ -93,8 +139,14 @@ export default function TransactionsForm({ handleCancel }) {
           <span>Date</span>
           <input
             type='date'
-            onChange={(e) => setDate(e.target.value)}
-            value={date}
+            onChange={(e) => handleChangeDate(e)}
+            value={
+              showOriginalDate
+                ? moment(transactionDate, 'ddd, DD MMM YYYY').format(
+                    'YYYY-MM-DD'
+                  )
+                : date
+            }
             placeholder='Select date'
           />
         </label>
@@ -102,31 +154,61 @@ export default function TransactionsForm({ handleCancel }) {
           <span>Amount</span>
           <input
             type='number'
-            onChange={(e) => setAmount(e.target.value)}
-            value={amount}
+            onChange={(e) => handleChangeAmount(e)}
+            value={showOriginalAmount ? transactionAmount : amount}
             placeholder='Input amount'
           />
         </label>
         <label>
           <span>Transaction type</span>
-          <div className={styles.transactionType}>
-            <div
-              className={incomeSelected ? styles.incomeSelected : styles.income}
-              onClick={handleIncomeType}
-            >
-              <IncomeIcon color={incomeColor} />
-              Income
+          {showOriginalType && (
+            <div className={styles.transactionType}>
+              <div
+                className={
+                  transactionType === 'income'
+                    ? styles.incomeSelected
+                    : styles.income
+                }
+                onClick={handleHideOriginalType}
+              >
+                <IncomeIcon color={incomeColor} />
+                Income
+              </div>
+              <div
+                className={
+                  transactionType === 'expense'
+                    ? styles.expenseSelected
+                    : styles.expense
+                }
+                onClick={handleHideOriginalType}
+              >
+                <ExpenseIcon color={expenseColor} />
+                Expense
+              </div>
             </div>
-            <div
-              className={
-                expenseSelected ? styles.expenseSelected : styles.expense
-              }
-              onClick={handleExpenseType}
-            >
-              <ExpenseIcon color={expenseColor} />
-              Expense
+          )}
+          {showNewType && (
+            <div className={styles.transactionType}>
+              <div
+                className={
+                  incomeSelected ? styles.incomeSelected : styles.income
+                }
+                onClick={handleIncomeType}
+              >
+                <IncomeIcon color={incomeColor} />
+                Income
+              </div>
+              <div
+                className={
+                  expenseSelected ? styles.expenseSelected : styles.expense
+                }
+                onClick={handleExpenseType}
+              >
+                <ExpenseIcon color={expenseColor} />
+                Expense
+              </div>
             </div>
-          </div>
+          )}
         </label>
         <label>
           <span>Category</span>
