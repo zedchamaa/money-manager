@@ -14,6 +14,7 @@ import YearsCarouselDesktop from '@/components/YearsCarouselDesktop'
 import TransactionsSummaryMobile from '@/components/TransactionsSummaryMobile'
 import TransactionsSummaryDesktop from '@/components/TransactionsSummaryDesktop'
 import TransactionsHistoryMobile from '@/components/TransactionsHistoryMobile'
+import Footer from '@/components/Footer'
 
 export default function TransactionsYear() {
   let transactionsByYear
@@ -126,6 +127,7 @@ export default function TransactionsYear() {
         filteredTransactions={filteredTransactions}
         handleChangeSearchTerm={handleChangeSearchTerm}
       />
+      <Footer />
     </>
   )
 }
