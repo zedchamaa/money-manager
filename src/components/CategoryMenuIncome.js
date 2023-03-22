@@ -1,6 +1,6 @@
 import Select from 'react-select'
 
-export default function CategoryMenuIncome({ onChange, category }) {
+export default function CategoryMenuIncome({ onChange }) {
   const categories = [
     { value: 'Child Support', label: 'Child Support' },
     { value: 'Government Benefits', label: 'Government Benefits' },
@@ -21,7 +21,6 @@ export default function CategoryMenuIncome({ onChange, category }) {
     <Select
       options={categories.sort((a, b) => a.label.localeCompare(b.label))}
       onChange={onChange}
-      placeholder={category}
       menuPortalTarget={menuContainer}
     />
   )

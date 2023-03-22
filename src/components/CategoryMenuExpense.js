@@ -1,6 +1,6 @@
 import Select from 'react-select'
 
-export default function CategoryMenuExpense({ onChange, category }) {
+export default function CategoryMenuExpense({ onChange }) {
   const categories = [
     { value: 'Education', label: 'Education' },
     { value: 'Entertainment', label: 'Entertainment' },
@@ -23,7 +23,6 @@ export default function CategoryMenuExpense({ onChange, category }) {
     <Select
       options={categories.sort((a, b) => a.label.localeCompare(b.label))}
       onChange={onChange}
-      placeholder={category}
       menuPortalTarget={menuContainer}
     />
   )

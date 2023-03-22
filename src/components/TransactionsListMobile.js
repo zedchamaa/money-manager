@@ -25,6 +25,7 @@ export default function TransactionsListMobile({ filteredTransactions }) {
   const [transactionDate, setTransactionDate] = useState('')
   const [transactionAmount, setTransactionAmount] = useState('')
   const [transactionType, setTransactionType] = useState('')
+  const [transactionCategory, setTransactionCategory] = useState('')
   const { deleteDocument } = useFirestore('transactions')
   const router = useRouter()
   const { year } = router.query
@@ -64,6 +65,7 @@ export default function TransactionsListMobile({ filteredTransactions }) {
     setTransactionDate(transaction.date)
     setTransactionAmount(transaction.amount)
     setTransactionType(transaction.type)
+    setTransactionCategory(transaction.category)
   }
 
   const handleDeleteTransaction = (transaction) => {
@@ -131,6 +133,7 @@ export default function TransactionsListMobile({ filteredTransactions }) {
             transactionDate={transactionDate}
             transactionAmount={transactionAmount}
             transactionType={transactionType}
+            transactionCategory={transactionCategory}
           />
         </Modal>
       )}

@@ -23,6 +23,7 @@ export default function TransactionsForm({
   transactionDate,
   transactionAmount,
   transactionType,
+  transactionCategory,
 }) {
   const { addDocument, updateDocument } = useFirestore('transactions')
   const { user } = useAuthContext()
@@ -33,6 +34,8 @@ export default function TransactionsForm({
   const [category, setCategory] = useState('')
   const [incomeColor, setIncomeColor] = useState('#667085')
   const [expenseColor, setExpenseColor] = useState('#667085')
+  const [incomeSelected, setIncomeSelected] = useState(false)
+  const [expenseSelected, setExpenseSelected] = useState(false)
   const [showAddForm, setShowAddForm] = useState(false)
   const [showEditForm, setShowEditForm] = useState(false)
 
@@ -44,6 +47,7 @@ export default function TransactionsForm({
   const [editedDate, setEditedDate] = useState(transactionDateFormatted)
   const [editedAmount, setEditedAmount] = useState(transactionAmount)
   const [editedType, setEditedType] = useState(transactionType)
+  const [editedCategory, setEditedCategory] = useState(transactionCategory)
 
   // conditionally show the add and edit forms
   useEffect(() => {
@@ -53,11 +57,6 @@ export default function TransactionsForm({
       setShowEditForm(true)
     }
   }, [title])
-
-  // category drop down menu
-  const handleCategoryChange = (selectedOption) => {
-    setCategory(selectedOption.value)
-  }
 
   // handle submit form
   const handleSubmit = (e) => {
@@ -73,7 +72,7 @@ export default function TransactionsForm({
     } else if (!type && !transactionType) {
       toast.error('Please select a type')
       return
-    } else if (!category) {
+    } else if (!category && !transactionCategory) {
       toast.error('Please select a category')
       return
     }
@@ -93,7 +92,7 @@ export default function TransactionsForm({
         date: dateFormat(editedDate, 'dddd, d mmm yyyy'),
         amount: Number(editedAmount),
         type: editedType,
-        category: category,
+        category: editedCategory,
         uid: user.uid,
       })
     }
@@ -128,6 +127,9 @@ export default function TransactionsForm({
     if (editedType === 'expense') {
       setEditedType('income')
     }
+    setType('income')
+    setIncomeSelected(true)
+    setExpenseSelected(false)
     setIncomeColor('#43936C')
     setExpenseColor('#667085')
   }
@@ -137,11 +139,22 @@ export default function TransactionsForm({
     if (editedType === 'income') {
       setEditedType('expense')
     }
+    setType('expense')
+    setExpenseSelected(true)
+    setIncomeSelected(false)
     setExpenseColor('#CB3A31')
     setIncomeColor('#667085')
   }
 
-  console.log(editedType)
+  // category drop down menu
+  const handleCategoryChange = (selectedOption) => {
+    setCategory(selectedOption.value)
+  }
+
+  // edited category drop down menu
+  const handleEditedCategoryChange = (selectedOption) => {
+    setEditedCategory(selectedOption.value)
+  }
 
   // the add transaction form
   const addTransaction = () => {
@@ -268,10 +281,10 @@ export default function TransactionsForm({
           </label>
           <label>
             <span>Category</span>
-            {type === 'income' ? (
-              <CategoryMenuIncome onChange={handleCategoryChange} />
+            {editedType === 'income' ? (
+              <CategoryMenuIncome onChange={handleEditedCategoryChange} />
             ) : (
-              <CategoryMenuExpense onChange={handleCategoryChange} />
+              <CategoryMenuExpense onChange={handleEditedCategoryChange} />
             )}
           </label>
         </form>
