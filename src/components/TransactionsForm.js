@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useFirestore } from '@/hooks/useFirestore'
 import { useAuthContext } from '@/hooks/useAuthContext'
 
@@ -13,8 +13,8 @@ import ExpenseIcon from './icons/ExpenseIcon'
 
 // libraries
 import dateFormat from 'dateformat'
-import { toast } from 'react-toastify'
 import moment from 'moment'
+import { toast } from 'react-toastify'
 
 export default function TransactionsForm({
   handleCancel,
@@ -35,32 +35,32 @@ export default function TransactionsForm({
   const [expenseColor, setExpenseColor] = useState('#667085')
   const [incomeSelected, setIncomeSelected] = useState(false)
   const [expenseSelected, setExpenseSelected] = useState(false)
-  const [showOriginalDate, setShowOriginalDate] = useState(true)
-  const [showOriginalAmount, setShowOriginalAmount] = useState(true)
+  const [showAddForm, setShowAddForm] = useState(false)
+  const [showEditForm, setShowEditForm] = useState(false)
+
+  const transactionDateFormatted = moment(
+    transactionDate,
+    'ddd, DD MMM YYYY'
+  ).format('YYYY-MM-DD')
+
+  const [editedDate, setEditedDate] = useState(transactionDateFormatted)
+  const [editedAmount, setEditedAmount] = useState(transactionAmount)
+  const [editedType, setEditedType] = useState(transactionType)
   const [showOriginalType, setShowOriginalType] = useState(true)
   const [showNewType, setShowNewType] = useState(false)
+
+  // conditionally show the add and edit forms
+  useEffect(() => {
+    if (title === 'Add Transaction') {
+      setShowAddForm(true)
+    } else if (title === 'Edit Transaction') {
+      setShowEditForm(true)
+    }
+  }, [title])
 
   // category drop down menu
   const handleCategoryChange = (selectedOption) => {
     setCategory(selectedOption.value)
-  }
-
-  // handle income selection
-  const handleIncomeType = () => {
-    setType('income')
-    setIncomeSelected(true)
-    setExpenseSelected(false)
-    setIncomeColor('#43936C')
-    setExpenseColor('#667085')
-  }
-
-  // handle expense selection
-  const handleExpenseType = () => {
-    setType('expense')
-    setExpenseSelected(true)
-    setIncomeSelected(false)
-    setExpenseColor('#CB3A31')
-    setIncomeColor('#667085')
   }
 
   // handle submit form
@@ -94,9 +94,9 @@ export default function TransactionsForm({
     } else if (title === 'Edit Transaction') {
       // update transaction in firebase database
       updateDocument(transactionId, {
-        date: dateFormat(date, 'dddd, d mmm yyyy'),
-        amount: Number(amount),
-        type,
+        date: dateFormat(editedDate, 'dddd, d mmm yyyy'),
+        amount: Number(editedAmount),
+        type: editedType,
         category: category,
         uid: user.uid,
       })
@@ -110,9 +110,9 @@ export default function TransactionsForm({
   }
 
   const handleChangeDate = (e) => {
-    setShowOriginalDate(false)
-    setDate('')
-    setDate(e.target.value)
+    const selectedDate = e.target.value
+    setDate(selectedDate)
+    setEditedDate(selectedDate)
   }
 
   const handleChangeAmount = (e) => {
@@ -121,73 +121,66 @@ export default function TransactionsForm({
     }
 
     if (title === 'Edit Transaction') {
-      setShowOriginalAmount(false)
-      setAmount('')
-      setAmount(e.target.value)
+      const selectedAmount = e.target.value
+      setAmount(selectedAmount)
+      setEditedAmount(selectedAmount)
     }
   }
 
-  const handleHideOriginalType = () => {
+  const handleChangeType = () => {
     setShowOriginalType(false)
     setShowNewType(true)
   }
 
-  return (
-    <div className={styles.container}>
-      <form onSubmit={handleSubmit}>
-        <label>
-          <span>Date</span>
-          <input
-            type='date'
-            onChange={(e) => handleChangeDate(e)}
-            value={
-              showOriginalDate
-                ? moment(transactionDate, 'ddd, DD MMM YYYY').format(
-                    'YYYY-MM-DD'
-                  )
-                : date
-            }
-            placeholder='Select date'
-          />
-        </label>
-        <label>
-          <span>Amount</span>
-          <input
-            type='number'
-            onChange={(e) => handleChangeAmount(e)}
-            value={showOriginalAmount ? transactionAmount : amount}
-            placeholder='Input amount'
-          />
-        </label>
-        <label>
-          <span>Transaction type</span>
-          {showOriginalType && (
-            <div className={styles.transactionType}>
-              <div
-                className={
-                  transactionType === 'income'
-                    ? styles.incomeSelected
-                    : styles.income
-                }
-                onClick={handleHideOriginalType}
-              >
-                <IncomeIcon color={incomeColor} />
-                Income
-              </div>
-              <div
-                className={
-                  transactionType === 'expense'
-                    ? styles.expenseSelected
-                    : styles.expense
-                }
-                onClick={handleHideOriginalType}
-              >
-                <ExpenseIcon color={expenseColor} />
-                Expense
-              </div>
-            </div>
-          )}
-          {showNewType && (
+  // handle income selection
+  const handleIncomeType = () => {
+    if (editedType === 'expense') {
+      setEditedType('income')
+    }
+    setIncomeSelected(true)
+    setExpenseSelected(false)
+    setIncomeColor('#43936C')
+    setExpenseColor('#667085')
+    console.log(editedType)
+  }
+
+  // handle expense selection
+  const handleExpenseType = () => {
+    if (editedType === 'income') {
+      setEditedType('expense')
+    }
+    setExpenseSelected(true)
+    setIncomeSelected(false)
+    setExpenseColor('#CB3A31')
+    setIncomeColor('#667085')
+    console.log(editedType)
+  }
+
+  // the add transaction form
+  const addTransaction = () => {
+    return (
+      <div className={styles.container}>
+        <form onSubmit={handleSubmit}>
+          <label>
+            <span>Date</span>
+            <input
+              type='date'
+              onChange={(e) => setDate(e.target.value)}
+              value={date}
+              placeholder='Select date'
+            />
+          </label>
+          <label>
+            <span>Amount</span>
+            <input
+              type='number'
+              onChange={(e) => setAmount(e.target.value)}
+              value={amount}
+              placeholder='Input amount'
+            />
+          </label>
+          <label>
+            <span>Transaction type</span>
             <div className={styles.transactionType}>
               <div
                 className={
@@ -208,31 +201,139 @@ export default function TransactionsForm({
                 Expense
               </div>
             </div>
-          )}
-        </label>
-        <label>
-          <span>Category</span>
-          {type === 'income' ? (
-            <CategoryMenuIncome onChange={handleCategoryChange} />
-          ) : (
-            <CategoryMenuExpense onChange={handleCategoryChange} />
-          )}
-        </label>
-      </form>
-      <div className={styles.bottom}>
-        <button
-          className={styles.cancelButton}
-          onClick={handleCancel}
-        >
-          Cancel
-        </button>
-        <button
-          className={styles.confirmButton}
-          onClick={handleSubmit}
-        >
-          Confirm
-        </button>
+          </label>
+          <label>
+            <span>Category</span>
+            {type === 'income' ? (
+              <CategoryMenuIncome onChange={handleCategoryChange} />
+            ) : (
+              <CategoryMenuExpense onChange={handleCategoryChange} />
+            )}
+          </label>
+        </form>
+        <div className={styles.bottom}>
+          <button
+            className={styles.cancelButton}
+            onClick={handleCancel}
+          >
+            Cancel
+          </button>
+          <button
+            className={styles.confirmButton}
+            onClick={handleSubmit}
+          >
+            Confirm
+          </button>
+        </div>
       </div>
-    </div>
+    )
+  }
+
+  // the edit transaction form
+  const editTransaction = () => {
+    return (
+      <div className={styles.container}>
+        <form onSubmit={handleSubmit}>
+          <label>
+            <span>Date</span>
+            <input
+              type='date'
+              onChange={(e) => handleChangeDate(e)}
+              value={editedDate}
+              placeholder='Select date'
+            />
+          </label>
+          <label>
+            <span>Amount</span>
+            <input
+              type='number'
+              onChange={(e) => handleChangeAmount(e)}
+              value={editedAmount}
+              placeholder='Input amount'
+            />
+          </label>
+          <label>
+            <span>Transaction type</span>
+            {showOriginalType && (
+              <div className={styles.transactionType}>
+                <div
+                  className={
+                    transactionType === 'income'
+                      ? styles.incomeSelected
+                      : styles.income
+                  }
+                  onClick={handleChangeType}
+                >
+                  <IncomeIcon color={incomeColor} />
+                  Income
+                </div>
+                <div
+                  className={
+                    transactionType === 'expense'
+                      ? styles.expenseSelected
+                      : styles.expense
+                  }
+                  onClick={handleChangeType}
+                >
+                  <ExpenseIcon color={expenseColor} />
+                  Expense
+                </div>
+              </div>
+            )}
+            {showNewType && (
+              <div className={styles.transactionType}>
+                <div
+                  className={
+                    incomeSelected ? styles.incomeSelected : styles.income
+                  }
+                  onClick={handleIncomeType}
+                >
+                  <IncomeIcon color={incomeColor} />
+                  Income
+                </div>
+                <div
+                  className={
+                    expenseSelected ? styles.expenseSelected : styles.expense
+                  }
+                  onClick={handleExpenseType}
+                >
+                  <ExpenseIcon color={expenseColor} />
+                  Expense
+                </div>
+              </div>
+            )}
+          </label>
+          <label>
+            <span>Category</span>
+            {type === 'income' ? (
+              <CategoryMenuIncome onChange={handleCategoryChange} />
+            ) : (
+              <CategoryMenuExpense onChange={handleCategoryChange} />
+            )}
+          </label>
+        </form>
+        <div className={styles.bottom}>
+          <button
+            className={styles.cancelButton}
+            onClick={handleCancel}
+          >
+            Cancel
+          </button>
+          <button
+            className={styles.confirmButton}
+            onClick={handleSubmit}
+          >
+            Confirm
+          </button>
+        </div>
+      </div>
+    )
+  }
+
+  return (
+    <>
+      {showAddForm && addTransaction()}
+      {showEditForm && editTransaction()}
+    </>
   )
 }
