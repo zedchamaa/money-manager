@@ -33,8 +33,6 @@ export default function TransactionsForm({
   const [category, setCategory] = useState('')
   const [incomeColor, setIncomeColor] = useState('#667085')
   const [expenseColor, setExpenseColor] = useState('#667085')
-  const [incomeSelected, setIncomeSelected] = useState(false)
-  const [expenseSelected, setExpenseSelected] = useState(false)
   const [showAddForm, setShowAddForm] = useState(false)
   const [showEditForm, setShowEditForm] = useState(false)
 
@@ -46,8 +44,6 @@ export default function TransactionsForm({
   const [editedDate, setEditedDate] = useState(transactionDateFormatted)
   const [editedAmount, setEditedAmount] = useState(transactionAmount)
   const [editedType, setEditedType] = useState(transactionType)
-  const [showOriginalType, setShowOriginalType] = useState(true)
-  const [showNewType, setShowNewType] = useState(false)
 
   // conditionally show the add and edit forms
   useEffect(() => {
@@ -127,21 +123,13 @@ export default function TransactionsForm({
     }
   }
 
-  const handleChangeType = () => {
-    setShowOriginalType(false)
-    setShowNewType(true)
-  }
-
   // handle income selection
   const handleIncomeType = () => {
     if (editedType === 'expense') {
       setEditedType('income')
     }
-    setIncomeSelected(true)
-    setExpenseSelected(false)
     setIncomeColor('#43936C')
     setExpenseColor('#667085')
-    console.log(editedType)
   }
 
   // handle expense selection
@@ -149,12 +137,11 @@ export default function TransactionsForm({
     if (editedType === 'income') {
       setEditedType('expense')
     }
-    setExpenseSelected(true)
-    setIncomeSelected(false)
     setExpenseColor('#CB3A31')
     setIncomeColor('#667085')
-    console.log(editedType)
   }
+
+  console.log(editedType)
 
   // the add transaction form
   const addTransaction = () => {
@@ -254,54 +241,30 @@ export default function TransactionsForm({
           </label>
           <label>
             <span>Transaction type</span>
-            {showOriginalType && (
-              <div className={styles.transactionType}>
-                <div
-                  className={
-                    transactionType === 'income'
-                      ? styles.incomeSelected
-                      : styles.income
-                  }
-                  onClick={handleChangeType}
-                >
-                  <IncomeIcon color={incomeColor} />
-                  Income
-                </div>
-                <div
-                  className={
-                    transactionType === 'expense'
-                      ? styles.expenseSelected
-                      : styles.expense
-                  }
-                  onClick={handleChangeType}
-                >
-                  <ExpenseIcon color={expenseColor} />
-                  Expense
-                </div>
+            <div className={styles.transactionType}>
+              <div
+                className={
+                  editedType === 'income'
+                    ? styles.incomeSelected
+                    : styles.income
+                }
+                onClick={handleIncomeType}
+              >
+                <IncomeIcon color={incomeColor} />
+                Income
               </div>
-            )}
-            {showNewType && (
-              <div className={styles.transactionType}>
-                <div
-                  className={
-                    incomeSelected ? styles.incomeSelected : styles.income
-                  }
-                  onClick={handleIncomeType}
-                >
-                  <IncomeIcon color={incomeColor} />
-                  Income
-                </div>
-                <div
-                  className={
-                    expenseSelected ? styles.expenseSelected : styles.expense
-                  }
-                  onClick={handleExpenseType}
-                >
-                  <ExpenseIcon color={expenseColor} />
-                  Expense
-                </div>
+              <div
+                className={
+                  editedType === 'expense'
+                    ? styles.expenseSelected
+                    : styles.expense
+                }
+                onClick={handleExpenseType}
+              >
+                <ExpenseIcon color={expenseColor} />
+                Expense
               </div>
-            )}
+            </div>
           </label>
           <label>
             <span>Category</span>
