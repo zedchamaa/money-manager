@@ -177,7 +177,7 @@ export default function TransactionsListDesktop({ filteredTransactions }) {
         </p>
       )}
       {!transactions && <p>Loading...</p>}
-      {transactions.length === 0 ? (
+      {transactions?.length === 0 ? (
         ''
       ) : (
         <div className={styles.mainContainer}>
