@@ -8,6 +8,10 @@
     border: 0.1rem solid var(--color-gray-300);
   }
 
+  .mainContainerEmpty {
+    display: none;
+  }
+
   .container {
     align-items: center;
     display: flex;

@@ -180,20 +180,26 @@ export default function TransactionsListDesktop({ filteredTransactions }) {
       {transactions?.length === 0 ? (
         ''
       ) : (
-        <div className={styles.mainContainer}>
-          <div className={styles.headings}>
-            <div className={styles.dateHeading}>Date</div>
-            <div className={styles.typeHeading}>Type</div>
-            <div className={styles.categoryHeading}>
-              <CategoryIconDesktop />
-              Category
+        <div
+          className={
+            transactions ? styles.mainContainer : styles.mainContainerEmpty
+          }
+        >
+          {transactions && (
+            <div className={styles.headings}>
+              <div className={styles.dateHeading}>Date</div>
+              <div className={styles.typeHeading}>Type</div>
+              <div className={styles.categoryHeading}>
+                <CategoryIconDesktop />
+                Category
+              </div>
+              <div className={styles.amountHeading}>
+                <AmountIconDesktop />
+                Amount
+              </div>
+              <div className={styles.iconsHeading}></div>
             </div>
-            <div className={styles.amountHeading}>
-              <AmountIconDesktop />
-              Amount
-            </div>
-            <div className={styles.iconsHeading}></div>
-          </div>
+          )}
           {transactions}
         </div>
       )}
