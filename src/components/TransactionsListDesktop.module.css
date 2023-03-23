@@ -129,7 +129,6 @@
 
   .type {
     gap: 0.8rem;
-    padding: 1.6rem 0;
   }
 
   .icons {
@@ -137,6 +136,14 @@
     display: flex;
     gap: 2.4rem;
     justify-content: center;
+  }
+
+  .typeIcons {
+    align-items: center;
+    display: flex;
+    height: 3rem;
+    justify-content: center;
+    width: 3rem;
   }
 
   .incomeAmount,

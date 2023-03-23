@@ -123,11 +123,13 @@ export default function TransactionsListDesktop({ filteredTransactions }) {
           <>
             <div className={styles.date}>{transaction.date}</div>
             <div className={styles.type}>
-              {transaction.type === 'income' ? (
-                <IncomeIconDesktop />
-              ) : (
-                <ExpenseIconDesktop />
-              )}
+              <div className={styles.typeIcons}>
+                {transaction.type === 'income' ? (
+                  <IncomeIconDesktop />
+                ) : (
+                  <ExpenseIconDesktop />
+                )}
+              </div>
               <div className={styles.capitalize}>{transaction.type}</div>
             </div>
             <div className={styles.category}>{transaction.category}</div>
