@@ -14,6 +14,7 @@ import YearsCarouselDesktop from '@/components/YearsCarouselDesktop'
 import TransactionsSummaryMobile from '@/components/TransactionsSummaryMobile'
 import TransactionsSummaryDesktop from '@/components/TransactionsSummaryDesktop'
 import TransactionsHistoryMobile from '@/components/TransactionsHistoryMobile'
+import TransactionsHistoryDesktop from '@/components/TransactionsHistoryDesktop'
 import Footer from '@/components/Footer'
 
 export default function TransactionsYear() {
@@ -127,6 +128,10 @@ export default function TransactionsYear() {
         balance={remainingBalance}
       />
       <TransactionsHistoryMobile
+        filteredTransactions={filteredTransactions}
+        handleChangeSearchTerm={handleChangeSearchTerm}
+      />
+      <TransactionsHistoryDesktop
         filteredTransactions={filteredTransactions}
         handleChangeSearchTerm={handleChangeSearchTerm}
       />

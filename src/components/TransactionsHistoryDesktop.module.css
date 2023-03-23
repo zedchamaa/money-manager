@@ -1,0 +1,27 @@
+.container {
+  display: none;
+}
+
+@media screen and (min-width: 415px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+    height: 94.9rem;
+    margin: 3.2rem auto 0 auto;
+    width: 98.4rem;
+  }
+
+  .searchContainer {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.6rem;
+  }
+
+  .title {
+    color: var(--color-gray-800);
+    font-size: 2rem;
+    font-weight: 700;
+  }
+}
