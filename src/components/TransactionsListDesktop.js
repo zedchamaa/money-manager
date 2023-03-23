@@ -203,7 +203,6 @@ export default function TransactionsListDesktop({ filteredTransactions }) {
           {transactions}
         </div>
       )}
-
       {showPaginationMenu && (
         <div className={styles.paginationContainer}>
           <PaginationMenu
