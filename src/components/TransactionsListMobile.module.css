@@ -9,6 +9,51 @@
   width: 34.3rem;
 }
 
+.emptyContainer {
+  display: flex;
+  gap: 1.6rem;
+  height: 6.3rem;
+  margin-bottom: 1.2rem;
+  margin-top: 1.2rem;
+  padding: 0 0 1.2rem;
+  width: 34.3rem;
+}
+
+.warningContainer {
+  align-items: center;
+  background-color: var(--color-accent-red-three);
+  border-radius: 0.8rem;
+  color: var(--color-accent-red);
+  display: flex;
+  font-weight: 500;
+  gap: 2rem;
+  height: 5rem;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  margin-top: 1rem;
+  padding: 1rem;
+  width: 100%;
+}
+
+.buttons {
+  align-items: center;
+  display: flex;
+  height: 3rem;
+  justify-content: space-between;
+  width: 10rem;
+}
+
+.warningContainer button {
+  background-color: var(--color-gray-100);
+  border-radius: 0.8rem;
+  color: var(--color-primary-900);
+  font-size: 1.4rem;
+  font-weight: 400;
+  height: 3rem;
+  padding: 0.2rem;
+  width: 4rem;
+}
+
 .boxOne {
   align-items: center;
   display: flex;

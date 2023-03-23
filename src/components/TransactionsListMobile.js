@@ -20,12 +20,17 @@ import { formatNumber } from 'accounting'
 export default function TransactionsListMobile({ filteredTransactions }) {
   let amountSign = ''
   const [alert, setAlert] = useState(false)
+  const [deleteAlert, setDeleteAlert] = useState('')
+  const [showDeleteAlert, setShowDeleteAlert] = useState(false)
+  const [selectedTransaction, setSelectedTransaction] = useState(null)
+  const [showTransaction, setShowTransaction] = useState(true)
   const [showModal, setShowModal] = useState(false)
   const [transactionId, setTransactionId] = useState('')
   const [transactionDate, setTransactionDate] = useState('')
   const [transactionAmount, setTransactionAmount] = useState('')
   const [transactionType, setTransactionType] = useState('')
   const [transactionCategory, setTransactionCategory] = useState('')
+
   const { deleteDocument } = useFirestore('transactions')
   const router = useRouter()
   const { year } = router.query
@@ -68,59 +73,91 @@ export default function TransactionsListMobile({ filteredTransactions }) {
     setTransactionCategory(transaction.category)
   }
 
+  // hide the modal
+  const handleCancel = () => {
+    setShowModal(false)
+  }
+
+  // show or hide the delete transaction alert
+  const handleDeleteAlert = (transaction) => {
+    setShowTransaction(false)
+    setSelectedTransaction(transaction)
+    setDeleteAlert('Permanently delete?')
+    setShowDeleteAlert(true)
+  }
+
+  // cancel the delete transaction alert
+  const handleCancelAlert = () => {
+    setShowDeleteAlert(false)
+    setShowTransaction(true)
+  }
+
+  // delete the transaction on confirmation
   const handleDeleteTransaction = (transaction) => {
     deleteDocument(transaction.id)
+    setShowDeleteAlert(false)
+    setShowTransaction(true)
   }
 
   const transactions = filteredTransactions
     ?.slice(pagesVisited, pagesVisited + transactionsPerPage)
     .map((transaction) => (
       <div
-        className={styles.container}
+        className={showTransaction ? styles.container : styles.emptyContainer}
         key={transaction.id}
       >
-        <div className={styles.boxOne}>
-          <div>
-            {transaction.type === 'income' ? (
-              <IncomeIconMobile />
-            ) : (
-              <ExpenseIconMobile />
-            )}
+        {showDeleteAlert && selectedTransaction === transaction && (
+          <div className={styles.warningContainer}>
+            <div>{deleteAlert}</div>
+            <div className={styles.buttons}>
+              <button onClick={() => handleDeleteTransaction(transaction)}>
+                Yes
+              </button>
+              <button onClick={handleCancelAlert}>No</button>
+            </div>
           </div>
-          <div className={styles.info}>
-            <div className={styles.category}>{transaction.category}</div>
-            <div className={styles.date}>{transaction.date}</div>
-          </div>
-        </div>
-        <div className={styles.boxTwo}>
-          <div className={styles.icons}>
-            <EditIconMobile
-              onClick={() => handleEditTransaction(transaction)}
-            />
-            <TrashIconMobile
-              onClick={() => handleDeleteTransaction(transaction)}
-            />
-          </div>
-          <div
-            className={
-              transaction.type === 'income'
-                ? styles.incomeAmount
-                : styles.expenseAmount
-            }
-          >
-            {transaction.type === 'income'
-              ? (amountSign = '+')
-              : (amountSign = '-')}
-            ${formatNumber(transaction.amount)}
-          </div>
-        </div>
+        )}
+        {showTransaction && (
+          <>
+            <div className={styles.boxOne}>
+              <div>
+                {transaction.type === 'income' ? (
+                  <IncomeIconMobile />
+                ) : (
+                  <ExpenseIconMobile />
+                )}
+              </div>
+              <div className={styles.info}>
+                <div className={styles.category}>{transaction.category}</div>
+                <div className={styles.date}>{transaction.date}</div>
+              </div>
+            </div>
+            <div className={styles.boxTwo}>
+              <div className={styles.icons}>
+                <EditIconMobile
+                  onClick={() => handleEditTransaction(transaction)}
+                />
+                <TrashIconMobile
+                  onClick={() => handleDeleteAlert(transaction)}
+                />
+              </div>
+              <div
+                className={
+                  transaction.type === 'income'
+                    ? styles.incomeAmount
+                    : styles.expenseAmount
+                }
+              >
+                {transaction.type === 'income'
+                  ? (amountSign = '+')
+                  : (amountSign = '-')}
+                ${formatNumber(transaction.amount)}
+              </div>
+            </div>
+          </>
+        )}
       </div>
     ))
-
-  // hide the modal
-  const handleCancel = () => {
-    setShowModal(false)
-  }
 
   return (
     <>
