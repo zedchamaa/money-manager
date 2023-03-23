@@ -100,7 +100,8 @@ export default function TransactionsListMobile({ filteredTransactions }) {
   }
 
   const transactions = filteredTransactions
-    ?.slice(pagesVisited, pagesVisited + transactionsPerPage)
+    ?.sort((a, b) => new Date(b.date) - new Date(a.date))
+    .slice(pagesVisited, pagesVisited + transactionsPerPage)
     .map((transaction) => (
       <div
         className={showTransaction ? styles.container : styles.emptyContainer}
