@@ -28,3 +28,9 @@
   color: var(--color-primary-900);
   font-weight: 600;
 }
+
+@media screen and (min-width: 415px) {
+  .copyright {
+    font-size: 1.4rem;
+  }
+}
