@@ -178,7 +178,7 @@ export default function TransactionsListDesktop({ filteredTransactions }) {
           There are no transactions currently for <strong>Year {year}</strong>
         </p>
       )}
-      {!transactions && <p>Loading...</p>}
+      {!transactions && <h2>Loading...</h2>}
       {transactions?.length === 0 ? (
         ''
       ) : (
