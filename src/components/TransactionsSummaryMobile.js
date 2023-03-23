@@ -23,6 +23,14 @@ export default function TransactionsSummaryMobile({
   if (balance > 0) balanceSymbol = '+'
   if (balance < 0) balanceSymbol = '-'
 
+  // use 'transaction' singular format where applicable
+  let transactionText
+  if (transactions === 1) {
+    transactionText = 'transaction'
+  } else {
+    transactionText = 'transactions'
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.title}>Transactions Summary</div>
@@ -33,7 +41,9 @@ export default function TransactionsSummaryMobile({
           <div className={styles.subtitle}>Total Income</div>
           <div className={styles.income}>
             +${formatNumber(income)}{' '}
-            <span>in {formatNumber(transactions)} transactions</span>
+            <span>
+              in {formatNumber(transactions)} {transactionText}
+            </span>
           </div>
         </div>
       </div>
@@ -43,7 +53,9 @@ export default function TransactionsSummaryMobile({
           <div className={styles.subtitle}>Total Expenses</div>
           <div className={styles.expenses}>
             -${formatNumber(expenses)}{' '}
-            <span>in {formatNumber(transactions)} transactions</span>
+            <span>
+              in {formatNumber(transactions)} {transactionText}
+            </span>
           </div>
         </div>
       </div>
@@ -53,7 +65,9 @@ export default function TransactionsSummaryMobile({
           <div className={styles.subtitle}>Remaining Balance</div>
           <div className={styles.balance}>
             {balanceSymbol}${formatNumber(Math.abs(balance))}{' '}
-            <span>in {formatNumber(transactions)} transactions</span>
+            <span>
+              in {formatNumber(transactions)} {transactionText}
+            </span>
           </div>
         </div>
       </div>

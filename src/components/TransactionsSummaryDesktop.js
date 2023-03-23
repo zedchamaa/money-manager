@@ -24,6 +24,14 @@ export default function TransactionsSummaryDesktop({
   if (balance > 0) balanceSymbol = '+'
   if (balance < 0) balanceSymbol = '-'
 
+  // use 'transaction' singular format where applicable
+  let transactionText
+  if (transactions === 1) {
+    transactionText = 'transaction'
+  } else {
+    transactionText = 'transactions'
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.title}>
@@ -38,7 +46,9 @@ export default function TransactionsSummaryDesktop({
             <div className={styles.income}>
               +${formatNumber(income)}
               <div className={styles.transactions}>
-                <span>in {formatNumber(transactions)} transactions</span>
+                <span>
+                  in {formatNumber(transactions)} {transactionText}
+                </span>
               </div>
             </div>
           </div>
@@ -51,7 +61,9 @@ export default function TransactionsSummaryDesktop({
             <div className={styles.expenses}>
               -${formatNumber(expenses)}
               <div className={styles.transactions}>
-                <span>in {formatNumber(transactions)} transactions</span>
+                <span>
+                  in {formatNumber(transactions)} {transactionText}
+                </span>
               </div>
             </div>
           </div>
@@ -64,7 +76,9 @@ export default function TransactionsSummaryDesktop({
             <div className={styles.balance}>
               {balanceSymbol}${formatNumber(Math.abs(balance))}
               <div className={styles.transactions}>
-                <span>in {formatNumber(transactions)} transactions</span>
+                <span>
+                  in {formatNumber(transactions)} {transactionText}
+                </span>
               </div>
             </div>
           </div>
