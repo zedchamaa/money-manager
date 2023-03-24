@@ -11,7 +11,16 @@ import { Chart as ChartJS } from 'chart.js/auto'
 import classNames from 'classnames'
 import { formatNumber } from 'accounting'
 
-export default function PieChart({ title, chartData, labelOne, labelTwo }) {
+export default function PieChart({
+  title,
+  chartData,
+  labelOne,
+  labelTwo,
+  income,
+  expenses,
+  remaining,
+  budget,
+}) {
   if (!chartData) {
     return null
   }
@@ -45,25 +54,25 @@ export default function PieChart({ title, chartData, labelOne, labelTwo }) {
           <div className={styles.row}>
             <div className={styles.type}>Income</div>
             <div className={classNames(styles.amount, styles.positive)}>
-              $100
+              ${formatNumber(income)}
             </div>
           </div>
           <div className={styles.row}>
             <div className={styles.type}>Expenses</div>
             <div className={classNames(styles.amount, styles.negative)}>
-              $100
+              ${formatNumber(expenses)}
             </div>
           </div>
           <div className={styles.row}>
             <div className={styles.type}>Remaining</div>
             <div className={classNames(styles.amount, styles.neutral)}>
-              $100
+              ${formatNumber(remaining)}
             </div>
           </div>
           <div className={styles.row}>
             <div className={styles.type}>Budget</div>
             <div className={classNames(styles.amount, styles.neutral)}>
-              $100
+              ${formatNumber(budget)}
             </div>
           </div>
         </div>

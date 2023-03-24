@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router'
 import { useAuthContext } from '@/hooks/useAuthContext'
 import { useState } from 'react'
+import { useCollection } from '@/hooks/useCollection'
 
 // styles
 import styles from './summary.module.css'
@@ -16,26 +17,60 @@ import YearsCarouselDesktop from '@/components/YearsCarouselDesktop'
 import PieChart from '@/components/PieChart'
 
 export default function TransactionsSummary() {
+  let transactionsByYear
+  let totalIncome
+  let totalExpenses
   const [showModal, setShowModal] = useState(false)
   const router = useRouter()
   const { year } = router.query
   const { user } = useAuthContext()
 
-  // pie chart data for current year
-  const [currentYearData] = useState({
-    datasets: [
-      {
-        data: [1000, 5000],
-        backgroundColor: ['#7F56D9', '#E9D7FE'],
-        hoverOffset: 4,
-      },
-    ],
-  })
+  const { documents } = useCollection(
+    'transactions',
+    user,
+    user && ['uid', '==', user.uid],
+    ['createdAt', 'desc']
+  )
 
   // hide the page content from non-logged in users
   // always run this if statement first
   if (!user) {
     return
+  }
+
+  if (documents) {
+    // filter the transactions based on the page's year
+    transactionsByYear = documents.filter((doc) => doc.date.includes(year))
+
+    // find the total amount of income transactions
+    const incomeTransactions = transactionsByYear.filter(
+      (transaction) => transaction.type === 'income'
+    )
+
+    totalIncome = incomeTransactions.reduce(
+      (acc, transaction) => acc + transaction.amount,
+      0
+    )
+
+    // find the total amount of expenses transactions
+    const expensesTransactions = transactionsByYear.filter(
+      (transaction) => transaction.type === 'expense'
+    )
+
+    totalExpenses = expensesTransactions.reduce(
+      (acc, transaction) => acc + transaction.amount,
+      0
+    )
+  }
+  // pie chart data for current year
+  const currentYearData = {
+    datasets: [
+      {
+        data: [totalIncome, totalExpenses],
+        backgroundColor: ['#7F56D9', '#E9D7FE'],
+        hoverOffset: 4,
+      },
+    ],
   }
 
   // show the modal
@@ -69,6 +104,10 @@ export default function TransactionsSummary() {
           chartData={currentYearData}
           labelOne='Income'
           labelTwo='Expenses'
+          income={totalIncome}
+          expenses={totalExpenses}
+          remaining={totalIncome - totalExpenses}
+          budget={0}
         />
         <PieChart
           title='Monthly Average'
