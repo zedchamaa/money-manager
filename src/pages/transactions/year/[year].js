@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import { useAuthContext } from '@/hooks/useAuthContext'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useCollection } from '@/hooks/useCollection'
 
 // components
