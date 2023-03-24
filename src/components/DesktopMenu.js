@@ -65,10 +65,14 @@ export default function DesktopMenu({ onClick }) {
           </div>
         </nav>
         <div className={styles.rightContainer}>
-          <CallToActionButton
-            title='Add Transaction'
-            onClick={onClick}
-          />
+          {currentPath.includes('summary') ? (
+            ''
+          ) : (
+            <CallToActionButton
+              title='Add Transaction'
+              onClick={onClick}
+            />
+          )}
           <UserInfoDesktop />
         </div>
       </div>
