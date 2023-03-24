@@ -20,6 +20,8 @@ export default function TransactionsSummary() {
   let transactionsByYear
   let totalIncome
   let totalExpenses
+  let totalMonthlyAvgIncome
+  let totalMonthlyAvgExpenses
   const [showModal, setShowModal] = useState(false)
   const router = useRouter()
   const { year } = router.query
@@ -52,6 +54,8 @@ export default function TransactionsSummary() {
       0
     )
 
+    totalMonthlyAvgIncome = totalIncome / 12
+
     // find the total amount of expenses transactions
     const expensesTransactions = transactionsByYear.filter(
       (transaction) => transaction.type === 'expense'
@@ -61,12 +65,26 @@ export default function TransactionsSummary() {
       (acc, transaction) => acc + transaction.amount,
       0
     )
+
+    totalMonthlyAvgExpenses = totalExpenses / 12
   }
+
   // pie chart data for current year
   const currentYearData = {
     datasets: [
       {
         data: [totalIncome, totalExpenses],
+        backgroundColor: ['#7F56D9', '#E9D7FE'],
+        hoverOffset: 4,
+      },
+    ],
+  }
+
+  // pie chart data for current year monthly average
+  const currentYearMonthlyAvgData = {
+    datasets: [
+      {
+        data: [totalMonthlyAvgIncome, totalMonthlyAvgExpenses],
         backgroundColor: ['#7F56D9', '#E9D7FE'],
         hoverOffset: 4,
       },
@@ -114,6 +132,10 @@ export default function TransactionsSummary() {
           chartData={currentYearData}
           labelOne='Income'
           labelTwo='Expenses'
+          income={totalMonthlyAvgIncome}
+          expenses={totalMonthlyAvgExpenses}
+          remaining={totalMonthlyAvgIncome - totalMonthlyAvgExpenses}
+          budget={0}
         />
       </div>
     </>
