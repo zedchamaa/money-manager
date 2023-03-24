@@ -1,4 +1,5 @@
 .container {
+  align-items: center;
   background-color: var(--color-accent-white);
   border: 0.1rem solid var(--color-gray-200);
   display: flex;
@@ -13,6 +14,7 @@
   color: var(--color-gray-800);
   font-size: 2rem;
   font-weight: 700;
+  width: 34.2rem;
 }
 
 .dividerMobile {
