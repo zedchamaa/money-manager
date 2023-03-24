@@ -60,7 +60,7 @@ export default function PieChart({
           <div className={styles.row}>
             <div className={styles.type}>Expenses</div>
             <div className={classNames(styles.amount, styles.negative)}>
-              ${formatNumber(expenses)}
+              -${formatNumber(expenses)}
             </div>
           </div>
           <div className={styles.row}>
