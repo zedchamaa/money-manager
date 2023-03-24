@@ -34,10 +34,10 @@ function AppWrapper({ Component, pageProps }) {
   useEffect(() => {
     if (authIsReady) {
       if (currentPath === '/login' && user) {
-        router.push(`/transactions/summary/${currentYear}`)
+        router.push(`/transactions/year/${currentYear}`)
       }
       if (currentPath === '/signup' && user) {
-        router.push(`/transactions/summary/${currentYear}`)
+        router.push(`/transactions/year/${currentYear}`)
       }
       if (
         !user &&
