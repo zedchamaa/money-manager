@@ -105,15 +105,15 @@
 }
 
 .positive {
-  color: green;
+  color: var(--color-accent-green);
 }
 
 .negative {
-  color: red;
+  color: var(--color-accent-red);
 }
 
 .neutral {
-  color: black;
+  color: var(--color-gray-900);
 }
 
 @media screen and (min-width: 415px) {
