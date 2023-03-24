@@ -1,0 +1,126 @@
+.container {
+  background-color: var(--color-accent-white);
+  border: 0.1rem solid var(--color-gray-200);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  height: 23.85rem;
+  padding: 1.6rem;
+  width: 100%;
+}
+
+.title {
+  color: var(--color-gray-800);
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.dividerMobile {
+  display: block;
+  margin-top: -1rem;
+}
+
+.dividerDesktop {
+  display: none;
+}
+
+.chartInfoArea {
+  align-items: center;
+  display: flex;
+  gap: 3.2rem;
+}
+
+.chartArea {
+  align-items: center;
+  color: var(--color-gray-900);
+  display: flex;
+  flex-direction: column;
+  font-size: 1.2rem;
+  font-weight: 400;
+  gap: 1.4rem;
+  height: 14.95rem;
+  width: 9.55rem;
+}
+
+.chart {
+  height: auto;
+  width: 100%;
+}
+
+.labels {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  padding-left: 1rem;
+  width: 100%;
+}
+
+.labelOne {
+  align-items: center;
+  display: flex;
+  gap: 0.4rem;
+}
+
+.labelOneColor {
+  background-color: var(--color-primary-600);
+  border-radius: 50%;
+  height: 1.2rem;
+  width: 1.2rem;
+}
+
+.labelTwo {
+  align-items: center;
+  display: flex;
+  gap: 0.4rem;
+}
+
+.labelTwoColor {
+  background-color: var(--color-primary-200);
+  border-radius: 50%;
+  height: 1.2rem;
+  width: 1.2rem;
+}
+
+.infoArea {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  height: 12.4rem;
+  width: 21.45rem;
+}
+
+.row {
+  display: flex;
+  font-size: 1.6rem;
+  justify-content: space-between;
+}
+
+.type {
+  color: var(--color-gray-900);
+  font-weight: 400;
+}
+
+.amount {
+  font-weight: 600;
+}
+
+.positive {
+  color: green;
+}
+
+.negative {
+  color: red;
+}
+
+.neutral {
+  color: black;
+}
+
+@media screen and (min-width: 415px) {
+  .dividerMobile {
+    display: none;
+  }
+  .dividerDesktop {
+    display: block;
+  }
+}
