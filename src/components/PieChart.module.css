@@ -125,4 +125,47 @@
   .dividerDesktop {
     display: block;
   }
+  .container {
+    border-radius: 1.2rem;
+    gap: 1.6rem;
+    height: 25.113rem;
+    padding: 1.6rem;
+    padding: 2.4rem;
+    width: 47.85rem;
+  }
+  .title {
+    width: 100%;
+  }
+
+  .dividerDesktop {
+    height: 0.1rem;
+    margin-top: -1.6rem;
+  }
+  .chartInfoArea {
+    height: 14.613rem;
+    justify-content: space-between;
+    margin-top: 1.6rem;
+    width: 43.05rem;
+  }
+  .chartArea {
+    gap: 1.6rem;
+    height: fit-content;
+    width: 13.7rem;
+  }
+  .chart {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  .labels {
+    flex-direction: row;
+    justify-content: center;
+    margin-right: 1rem;
+  }
+  .infoArea {
+    font-size: 1.6rem;
+    font-weight: 400;
+    margin-top: -1rem;
+    width: 26.15rem;
+  }
 }

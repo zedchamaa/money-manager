@@ -5,3 +5,13 @@
   height: fit-content;
   margin-top: 2.4rem;
 }
+
+@media screen and (min-width: 415px) {
+  .pieCharts {
+    flex-direction: row;
+    width: 98.1rem;
+    margin: 3.2rem auto;
+    height: fit-content;
+    gap: 2.4rem;
+  }
+}
