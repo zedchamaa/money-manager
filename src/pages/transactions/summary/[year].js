@@ -15,6 +15,7 @@ import TransactionsForm from '@/components/TransactionsForm'
 import YearsCarouselMobile from '@/components/YearsCarouselMobile'
 import YearsCarouselDesktop from '@/components/YearsCarouselDesktop'
 import PieChart from '@/components/PieChart'
+import QuarterAverage from '@/components/QuarterAverage'
 
 export default function TransactionsSummary() {
   let transactionsByYear
@@ -22,6 +23,19 @@ export default function TransactionsSummary() {
   let totalExpenses
   let totalMonthlyAvgIncome
   let totalMonthlyAvgExpenses
+  let janIncome
+  let febIncome
+  let marIncome
+  let aprIncome
+  let mayIncome
+  let junIncome
+  let julIncome
+  let augIncome
+  let sepIncome
+  let octIncome
+  let novIncome
+  let decIncome
+  let avgIncomeQ1
   const [showModal, setShowModal] = useState(false)
   const router = useRouter()
   const { year } = router.query
@@ -137,6 +151,15 @@ export default function TransactionsSummary() {
           remaining={totalMonthlyAvgIncome - totalMonthlyAvgExpenses}
           budget={0}
         />
+      </div>
+      <div className={styles.averagesContainer}>
+        <QuarterAverage
+          title='Q1 Average'
+          income={avgIncomeQ1}
+        />
+        <QuarterAverage title='Q2 Average' />
+        <QuarterAverage title='Q3 Average' />
+        <QuarterAverage title='Q4 Average' />
       </div>
     </>
   )
