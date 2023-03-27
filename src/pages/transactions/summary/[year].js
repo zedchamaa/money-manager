@@ -136,6 +136,15 @@ export default function TransactionsSummary() {
     return (incomeMonthOne + incomeMonthTwo + incomeMonthThree) / 3
   }
 
+  // calculate the average expenses of a given quarter
+  function getAvgQuarterExpenses(
+    expensesMonthOne,
+    expensesMonthTwo,
+    expensesMonthThree
+  ) {
+    return (expensesMonthOne + expensesMonthTwo + expensesMonthThree) / 3
+  }
+
   return (
     <>
       {showModal && (
