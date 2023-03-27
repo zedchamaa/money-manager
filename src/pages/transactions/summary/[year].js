@@ -35,34 +35,6 @@ export default function TransactionsSummary() {
     ['createdAt', 'desc']
   )
 
-  // find the income of each month
-  const janIncome = getMonthlyIncome(documents, 'Jan')
-  const febIncome = getMonthlyIncome(documents, 'Feb')
-  const marIncome = getMonthlyIncome(documents, 'Mar')
-  const aprIncome = getMonthlyIncome(documents, 'Apr')
-  const mayIncome = getMonthlyIncome(documents, 'May')
-  const junIncome = getMonthlyIncome(documents, 'Jun')
-  const julIncome = getMonthlyIncome(documents, 'Jul')
-  const augIncome = getMonthlyIncome(documents, 'Aug')
-  const sepIncome = getMonthlyIncome(documents, 'Sep')
-  const octIncome = getMonthlyIncome(documents, 'Oct')
-  const novIncome = getMonthlyIncome(documents, 'Nov')
-  const decIncome = getMonthlyIncome(documents, 'Dec')
-
-  // find the expenses of each month
-  const janExpenses = getMonthlyExpense(documents, 'Jan')
-  const febExpenses = getMonthlyExpense(documents, 'Feb')
-  const marExpenses = getMonthlyExpense(documents, 'Mar')
-  const aprExpenses = getMonthlyExpense(documents, 'Aor')
-  const mayExpenses = getMonthlyExpense(documents, 'May')
-  const junExpenses = getMonthlyExpense(documents, 'Jun')
-  const julExpenses = getMonthlyExpense(documents, 'Jul')
-  const augExpenses = getMonthlyExpense(documents, 'Aug')
-  const sepExpenses = getMonthlyExpense(documents, 'Sep')
-  const octExpenses = getMonthlyExpense(documents, 'Oct')
-  const novExpenses = getMonthlyExpense(documents, 'Nov')
-  const decExpenses = getMonthlyExpense(documents, 'Dec')
-
   // hide the page content from non-logged in users
   // always run this if statement first
   if (!user) {
@@ -160,7 +132,7 @@ export default function TransactionsSummary() {
     incomeMonthTwo,
     incomeMonthThree
   ) {
-    return (incomeMonthOne + incomeMonthTwo + incomeMonthThree) / 3
+    return ((incomeMonthOne + incomeMonthTwo + incomeMonthThree) / 3).toFixed(2)
   }
 
   // calculate the average expenses of a given quarter
@@ -169,8 +141,45 @@ export default function TransactionsSummary() {
     expensesMonthTwo,
     expensesMonthThree
   ) {
-    return (expensesMonthOne + expensesMonthTwo + expensesMonthThree) / 3
+    return (
+      (expensesMonthOne + expensesMonthTwo + expensesMonthThree) /
+      3
+    ).toFixed(2)
   }
+
+  // find the income of each month
+  const janIncome = getMonthlyIncome(documents, 'Jan')
+  const febIncome = getMonthlyIncome(documents, 'Feb')
+  const marIncome = getMonthlyIncome(documents, 'Mar')
+  const aprIncome = getMonthlyIncome(documents, 'Apr')
+  const mayIncome = getMonthlyIncome(documents, 'May')
+  const junIncome = getMonthlyIncome(documents, 'Jun')
+  const julIncome = getMonthlyIncome(documents, 'Jul')
+  const augIncome = getMonthlyIncome(documents, 'Aug')
+  const sepIncome = getMonthlyIncome(documents, 'Sep')
+  const octIncome = getMonthlyIncome(documents, 'Oct')
+  const novIncome = getMonthlyIncome(documents, 'Nov')
+  const decIncome = getMonthlyIncome(documents, 'Dec')
+
+  // find the expenses of each month
+  const janExpenses = getMonthlyExpense(documents, 'Jan')
+  const febExpenses = getMonthlyExpense(documents, 'Feb')
+  const marExpenses = getMonthlyExpense(documents, 'Mar')
+  const aprExpenses = getMonthlyExpense(documents, 'Aor')
+  const mayExpenses = getMonthlyExpense(documents, 'May')
+  const junExpenses = getMonthlyExpense(documents, 'Jun')
+  const julExpenses = getMonthlyExpense(documents, 'Jul')
+  const augExpenses = getMonthlyExpense(documents, 'Aug')
+  const sepExpenses = getMonthlyExpense(documents, 'Sep')
+  const octExpenses = getMonthlyExpense(documents, 'Oct')
+  const novExpenses = getMonthlyExpense(documents, 'Nov')
+  const decExpenses = getMonthlyExpense(documents, 'Dec')
+
+  // calculate the income quarterly averages
+  const avgIncomeQ1 = getAvgQuarterIncome(janIncome, febIncome, marIncome)
+  const avgIncomeQ2 = getAvgQuarterIncome(aprIncome, mayIncome, junIncome)
+  const avgIncomeQ3 = getAvgQuarterIncome(julIncome, augIncome, sepIncome)
+  const avgIncomeQ4 = getAvgQuarterIncome(octIncome, novIncome, decIncome)
 
   return (
     <>
