@@ -23,7 +23,6 @@ export default function TransactionsSummary() {
   let totalExpenses
   let totalMonthlyAvgIncome
   let totalMonthlyAvgExpenses
-  let avgIncomeQ1
   const [showModal, setShowModal] = useState(false)
   const router = useRouter()
   const { year } = router.query
@@ -35,6 +34,20 @@ export default function TransactionsSummary() {
     user && ['uid', '==', user.uid],
     ['createdAt', 'desc']
   )
+
+  // find the income of each month
+  const janIncome = getMonthlyIncome(documents, 'Jan')
+  const febIncome = getMonthlyIncome(documents, 'Feb')
+  const marIncome = getMonthlyIncome(documents, 'Mar')
+  const aprIncome = getMonthlyIncome(documents, 'Apr')
+  const mayIncome = getMonthlyIncome(documents, 'May')
+  const junIncome = getMonthlyIncome(documents, 'Jun')
+  const julIncome = getMonthlyIncome(documents, 'Jul')
+  const augIncome = getMonthlyIncome(documents, 'Aug')
+  const sepIncome = getMonthlyIncome(documents, 'Sep')
+  const octIncome = getMonthlyIncome(documents, 'Oct')
+  const novIncome = getMonthlyIncome(documents, 'Nov')
+  const decIncome = getMonthlyIncome(documents, 'Dec')
 
   // hide the page content from non-logged in users
   // always run this if statement first
@@ -105,7 +118,7 @@ export default function TransactionsSummary() {
 
   // find the total income of a given month
   function getMonthlyIncome(documents, month) {
-    if (documents) {
+    if (documents && transactionsByYear) {
       return transactionsByYear
         .filter(
           (transaction) =>
@@ -117,7 +130,7 @@ export default function TransactionsSummary() {
 
   // find the total expense of a given month
   function getMonthlyExpense(documents, month) {
-    if (documents) {
+    if (documents && transactionsByYear) {
       return transactionsByYear
         .filter(
           (transaction) =>
@@ -183,10 +196,7 @@ export default function TransactionsSummary() {
         />
       </div>
       <div className={styles.averagesContainer}>
-        <QuarterAverage
-          title='Q1 Average'
-          income={avgIncomeQ1}
-        />
+        <QuarterAverage title='Q1 Average' />
         <QuarterAverage title='Q2 Average' />
         <QuarterAverage title='Q3 Average' />
         <QuarterAverage title='Q4 Average' />
