@@ -1,3 +1,7 @@
+.container {
+  width: 100rem;
+}
+
 .chartInfo {
   display: flex;
   flex-direction: column;
@@ -14,10 +18,7 @@
 
 .labels {
   display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-  padding-left: 1rem;
-  width: 100%;
+  gap: 2.4rem;
 }
 
 .labelOne {
@@ -46,7 +47,14 @@
   width: 1.2rem;
 }
 
-@media screen and (mind-width: 415px) {
+.chart {
+  margin-top: 1rem;
+}
+
+@media screen and (min-width: 415px) {
+  .container {
+    max-width: 100%;
+  }
   .chartInfo {
     flex-direction: row;
     gap: 2.4rem;

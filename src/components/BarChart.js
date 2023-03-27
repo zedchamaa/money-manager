@@ -1,6 +1,9 @@
 // styles
 import styles from './BarChart.module.css'
 
+// components
+import BarChartDivider from './icons/BarChartDivider'
+
 // libraries
 import { Bar } from 'react-chartjs-2'
 import { Chart as ChartJS } from 'chart.js/auto'
@@ -40,6 +43,7 @@ export default function BarChart({ title, chartData, labelOne, labelTwo }) {
           </div>
         </div>
       </div>
+      <BarChartDivider />
       <div className={styles.chart}>
         <Bar
           data={chartData}

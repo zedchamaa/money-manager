@@ -27,11 +27,16 @@
 .barChart {
   background-color: var(--color-accent-white);
   border: 0.1rem solid var(--color-gray-200);
-  height: 41.8rem;
+  height: fit-content;
   margin-top: 2.4rem;
   overflow-x: auto;
+  overscroll-behavior-inline: contain;
   padding: 2.4rem;
   width: 100%;
+}
+
+.barChart::-webkit-scrollbar {
+  display: none;
 }
 
 @media screen and (min-width: 415px) {
@@ -48,8 +53,12 @@
   }
   .barChart {
     border-radius: 1.2rem;
-    height: 38.5rem;
+    height: fit-content;
     margin: 3.2rem auto;
+    min-height: 38.5rem;
     width: 98.1rem;
+  }
+  .barChart::-webkit-scrollbar {
+    display: none;
   }
 }
