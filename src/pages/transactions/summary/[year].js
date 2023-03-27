@@ -111,6 +111,7 @@ export default function TransactionsSummary() {
             transaction.type === 'income' && transaction.date.includes(month)
         )
         .reduce((acc, transaction) => acc + transaction.amount, 0)
+        .toFixed(2)
     }
   }
 
@@ -123,6 +124,7 @@ export default function TransactionsSummary() {
             transaction.type === 'expense' && transaction.date.includes(month)
         )
         .reduce((acc, transaction) => acc + transaction.amount, 0)
+        .toFixed(2)
     }
   }
 
