@@ -23,18 +23,6 @@ export default function TransactionsSummary() {
   let totalExpenses
   let totalMonthlyAvgIncome
   let totalMonthlyAvgExpenses
-  let janIncome
-  let febIncome
-  let marIncome
-  let aprIncome
-  let mayIncome
-  let junIncome
-  let julIncome
-  let augIncome
-  let sepIncome
-  let octIncome
-  let novIncome
-  let decIncome
   let avgIncomeQ1
   const [showModal, setShowModal] = useState(false)
   const router = useRouter()
@@ -113,6 +101,18 @@ export default function TransactionsSummary() {
   // hide the modal
   const handleCancel = () => {
     setShowModal(false)
+  }
+
+  // find the total income of a given month
+  function getMonthlyIncome(documents, month) {
+    if (documents) {
+      return transactionsByYear
+        .filter(
+          (transaction) =>
+            transaction.type === 'income' && transaction.date.includes(month)
+        )
+        .reduce((acc, transaction) => acc + transaction.amount, 0)
+    }
   }
 
   return (
