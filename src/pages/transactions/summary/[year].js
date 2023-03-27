@@ -149,6 +149,11 @@ export default function TransactionsSummary() {
     ).toFixed(2)
   }
 
+  // calculate the quarterly average remaining value
+  function getAvgQuarterRemaining(income, expenses) {
+    return income - expenses
+  }
+
   // find the income of each month
   const janIncome = getMonthlyIncome(documents, 'Jan')
   const febIncome = getMonthlyIncome(documents, 'Feb')
