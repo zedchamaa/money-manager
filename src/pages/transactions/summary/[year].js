@@ -111,7 +111,6 @@ export default function TransactionsSummary() {
             transaction.type === 'income' && transaction.date.includes(month)
         )
         .reduce((acc, transaction) => acc + transaction.amount, 0)
-        .toFixed(2)
     }
   }
 
@@ -124,7 +123,6 @@ export default function TransactionsSummary() {
             transaction.type === 'expense' && transaction.date.includes(month)
         )
         .reduce((acc, transaction) => acc + transaction.amount, 0)
-        .toFixed(2)
     }
   }
 
@@ -134,7 +132,9 @@ export default function TransactionsSummary() {
     incomeMonthTwo,
     incomeMonthThree
   ) {
-    return ((incomeMonthOne + incomeMonthTwo + incomeMonthThree) / 3).toFixed(2)
+    return (
+      parseInt(incomeMonthOne + incomeMonthTwo + incomeMonthThree) / 3
+    ).toFixed(2)
   }
 
   // calculate the average expenses of a given quarter
@@ -144,8 +144,7 @@ export default function TransactionsSummary() {
     expensesMonthThree
   ) {
     return (
-      (expensesMonthOne + expensesMonthTwo + expensesMonthThree) /
-      3
+      parseInt(expensesMonthOne + expensesMonthTwo + expensesMonthThree) / 3
     ).toFixed(2)
   }
 
@@ -210,6 +209,12 @@ export default function TransactionsSummary() {
     decExpenses
   )
 
+  // calculate the remaining average of each quarter
+  const avgRemainingQ1 = getAvgQuarterRemaining(avgIncomeQ1, avgExpensesQ1)
+  const avgRemainingQ2 = getAvgQuarterRemaining(avgIncomeQ2, avgExpensesQ2)
+  const avgRemainingQ3 = getAvgQuarterRemaining(avgIncomeQ3, avgExpensesQ3)
+  const avgRemainingQ4 = getAvgQuarterRemaining(avgIncomeQ4, avgExpensesQ4)
+
   return (
     <>
       {showModal && (
@@ -248,10 +253,30 @@ export default function TransactionsSummary() {
         />
       </div>
       <div className={styles.averagesContainer}>
-        <QuarterAverage title='Q1 Average' />
-        <QuarterAverage title='Q2 Average' />
-        <QuarterAverage title='Q3 Average' />
-        <QuarterAverage title='Q4 Average' />
+        <QuarterAverage
+          title='Q1 Average'
+          income={avgIncomeQ1}
+          expenses={avgExpensesQ1}
+          remaining={avgRemainingQ1}
+        />
+        <QuarterAverage
+          title='Q2 Average'
+          income={avgIncomeQ2}
+          expenses={avgExpensesQ2}
+          remaining={avgRemainingQ2}
+        />
+        <QuarterAverage
+          title='Q3 Average'
+          income={avgIncomeQ3}
+          expenses={avgExpensesQ3}
+          remaining={avgRemainingQ3}
+        />
+        <QuarterAverage
+          title='Q4 Average'
+          income={avgIncomeQ4}
+          expenses={avgExpensesQ4}
+          remaining={avgRemainingQ4}
+        />
       </div>
     </>
   )
