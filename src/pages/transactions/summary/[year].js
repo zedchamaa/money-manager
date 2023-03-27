@@ -15,6 +15,7 @@ import TransactionsForm from '@/components/TransactionsForm'
 import YearsCarouselMobile from '@/components/YearsCarouselMobile'
 import YearsCarouselDesktop from '@/components/YearsCarouselDesktop'
 import PieChart from '@/components/PieChart'
+import BarChart from '@/components/BarChart'
 import QuarterAverage from '@/components/QuarterAverage'
 
 export default function TransactionsSummary() {
@@ -215,6 +216,64 @@ export default function TransactionsSummary() {
   const avgRemainingQ3 = getAvgQuarterRemaining(avgIncomeQ3, avgExpensesQ3)
   const avgRemainingQ4 = getAvgQuarterRemaining(avgIncomeQ4, avgExpensesQ4)
 
+  // bar chart data for current year
+  const currentYearBarChartData = {
+    labels: [
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec',
+    ],
+    datasets: [
+      {
+        // monthly income
+        data: [
+          janIncome,
+          febIncome,
+          marIncome,
+          aprIncome,
+          mayIncome,
+          junIncome,
+          julIncome,
+          augIncome,
+          sepIncome,
+          octIncome,
+          novIncome,
+          decIncome,
+        ],
+        backgroundColor: ['#7F56D9'],
+        hoverOffset: 4,
+      },
+      {
+        // monthly expenses
+        data: [
+          janExpenses,
+          febExpenses,
+          marExpenses,
+          aprExpenses,
+          mayExpenses,
+          junExpenses,
+          julExpenses,
+          augExpenses,
+          sepExpenses,
+          octExpenses,
+          novExpenses,
+          decExpenses,
+        ],
+        backgroundColor: ['#E9D7FE'],
+        hoverOffset: 4,
+      },
+    ],
+  }
+
   return (
     <>
       {showModal && (
@@ -243,7 +302,7 @@ export default function TransactionsSummary() {
         />
         <PieChart
           title='Monthly Average'
-          chartData={currentYearData}
+          chartData={currentYearMonthlyAvgData}
           labelOne='Income'
           labelTwo='Expenses'
           income={totalMonthlyAvgIncome}
@@ -276,6 +335,14 @@ export default function TransactionsSummary() {
           income={avgIncomeQ4}
           expenses={avgExpensesQ4}
           remaining={avgRemainingQ4}
+        />
+      </div>
+      <div className={styles.barChart}>
+        <BarChart
+          title='Monthly Summary'
+          chartData={currentYearBarChartData}
+          labelOne='Income'
+          labelTwo='Expenses'
         />
       </div>
     </>
