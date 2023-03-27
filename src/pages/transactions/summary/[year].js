@@ -49,6 +49,20 @@ export default function TransactionsSummary() {
   const novIncome = getMonthlyIncome(documents, 'Nov')
   const decIncome = getMonthlyIncome(documents, 'Dec')
 
+  // find the expenses of each month
+  const janExpenses = getMonthlyExpense(documents, 'Jan')
+  const febExpenses = getMonthlyExpense(documents, 'Feb')
+  const marExpenses = getMonthlyExpense(documents, 'Mar')
+  const aprExpenses = getMonthlyExpense(documents, 'Aor')
+  const mayExpenses = getMonthlyExpense(documents, 'May')
+  const junExpenses = getMonthlyExpense(documents, 'Jun')
+  const julExpenses = getMonthlyExpense(documents, 'Jul')
+  const augExpenses = getMonthlyExpense(documents, 'Aug')
+  const sepExpenses = getMonthlyExpense(documents, 'Sep')
+  const octExpenses = getMonthlyExpense(documents, 'Oct')
+  const novExpenses = getMonthlyExpense(documents, 'Nov')
+  const decExpenses = getMonthlyExpense(documents, 'Dec')
+
   // hide the page content from non-logged in users
   // always run this if statement first
   if (!user) {
