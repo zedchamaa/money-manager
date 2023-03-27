@@ -183,6 +183,28 @@ export default function TransactionsSummary() {
   const avgIncomeQ3 = getAvgQuarterIncome(julIncome, augIncome, sepIncome)
   const avgIncomeQ4 = getAvgQuarterIncome(octIncome, novIncome, decIncome)
 
+  // calculate the expenses quarterly averages
+  const avgExpensesQ1 = getAvgQuarterExpenses(
+    janExpenses,
+    febExpenses,
+    marExpenses
+  )
+  const avgExpensesQ2 = getAvgQuarterExpenses(
+    aprExpenses,
+    mayExpenses,
+    junExpenses
+  )
+  const avgExpensesQ3 = getAvgQuarterExpenses(
+    julExpenses,
+    augExpenses,
+    sepExpenses
+  )
+  const avgExpensesQ4 = getAvgQuarterExpenses(
+    octExpenses,
+    novExpenses,
+    decExpenses
+  )
+
   return (
     <>
       {showModal && (
