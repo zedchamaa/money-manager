@@ -1,0 +1,57 @@
+.chartInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  height: 5.7rem;
+  width: 32.7rem;
+}
+
+.title {
+  color: var(--color-gray-800);
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.labels {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  padding-left: 1rem;
+  width: 100%;
+}
+
+.labelOne {
+  align-items: center;
+  display: flex;
+  gap: 0.4rem;
+}
+
+.labelOneColor {
+  background-color: var(--color-primary-600);
+  border-radius: 50%;
+  height: 1.2rem;
+  width: 1.2rem;
+}
+
+.labelTwo {
+  align-items: center;
+  display: flex;
+  gap: 0.4rem;
+}
+
+.labelTwoColor {
+  background-color: var(--color-primary-200);
+  border-radius: 50%;
+  height: 1.2rem;
+  width: 1.2rem;
+}
+
+@media screen and (mind-width: 415px) {
+  .chartInfo {
+    flex-direction: row;
+    gap: 2.4rem;
+    height: 2.4rem;
+    justify-content: space-between;
+    width: 93.3rem;
+  }
+}
