@@ -127,6 +127,15 @@ export default function TransactionsSummary() {
     }
   }
 
+  // calculate the average income of a given quarter
+  function getAvgQuarterIncome(
+    incomeMonthOne,
+    incomeMonthTwo,
+    incomeMonthThree
+  ) {
+    return (incomeMonthOne + incomeMonthTwo + incomeMonthThree) / 3
+  }
+
   return (
     <>
       {showModal && (
