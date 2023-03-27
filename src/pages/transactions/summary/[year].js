@@ -115,6 +115,18 @@ export default function TransactionsSummary() {
     }
   }
 
+  // find the total expense of a given month
+  function getMonthlyExpense(documents, month) {
+    if (documents) {
+      return transactionsByYear
+        .filter(
+          (transaction) =>
+            transaction.type === 'expense' && transaction.date.includes(month)
+        )
+        .reduce((acc, transaction) => acc + transaction.amount, 0)
+    }
+  }
+
   return (
     <>
       {showModal && (
