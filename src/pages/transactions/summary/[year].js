@@ -55,7 +55,7 @@ export default function TransactionsSummary() {
       0
     )
 
-    totalMonthlyAvgIncome = totalIncome / 12
+    totalMonthlyAvgIncome = Math.round(totalIncome / 12)
 
     // find the total amount of expenses transactions
     const expensesTransactions = transactionsByYear.filter(
@@ -67,7 +67,7 @@ export default function TransactionsSummary() {
       0
     )
 
-    totalMonthlyAvgExpenses = totalExpenses / 12
+    totalMonthlyAvgExpenses = Math.round(totalExpenses / 12)
   }
 
   // pie chart data for current year
