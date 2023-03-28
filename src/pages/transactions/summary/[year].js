@@ -17,6 +17,8 @@ import YearsCarouselDesktop from '@/components/YearsCarouselDesktop'
 import PieChart from '@/components/PieChart'
 import BarChart from '@/components/BarChart'
 import QuarterAverage from '@/components/QuarterAverage'
+import MonthlyDetailMobileDivider from '@/components/icons/MonthlyDetailMobileDivider'
+import MonthlyDetailMobile from '@/components/MonthlyDetailMobile'
 
 export default function TransactionsSummary() {
   let transactionsByYear
@@ -343,6 +345,19 @@ export default function TransactionsSummary() {
           chartData={currentYearBarChartData}
           labelOne='Income'
           labelTwo='Expenses'
+        />
+      </div>
+      <div className={styles.monthlyDetailMobile}>
+        <div className={styles.title}>Monthly Detail</div>
+        <div className={styles.divider}>
+          <MonthlyDetailMobileDivider />
+        </div>
+        <MonthlyDetailMobile
+          month='January'
+          income={1000}
+          expenses={500}
+          remaining={500}
+          budget={800}
         />
       </div>
     </>

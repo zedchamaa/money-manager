@@ -39,6 +39,27 @@
   display: none;
 }
 
+.monthlyDetailMobile {
+  background-color: var(--color-accent-white);
+  border: 0.1rem solid var(--color-gray-200);
+  height: fit-content;
+  margin-top: 2.4rem;
+  padding: 1.6rem;
+  width: 100%;
+}
+
+.title {
+  color: var(--color-gray-800);
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 1.6rem 0;
+}
+
+.divider {
+  margin-bottom: 1.6rem;
+  margin-top: -0.6rem;
+}
+
 @media screen and (min-width: 415px) {
   .pieCharts {
     flex-direction: row;
@@ -59,6 +80,9 @@
     width: 98.1rem;
   }
   .barChart::-webkit-scrollbar {
+    display: none;
+  }
+  .monthlyDetailMobile {
     display: none;
   }
 }
