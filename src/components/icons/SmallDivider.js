@@ -1,0 +1,17 @@
+export default function SmallDivider() {
+  return (
+    <svg
+      width='311'
+      height='1'
+      viewBox='0 0 311 1'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+    >
+      <rect
+        width='311'
+        height='1'
+        fill='#EAECF0'
+      />
+    </svg>
+  )
+}
