@@ -74,6 +74,10 @@ export default function MonthlyDetailMobile({
   const handleAddBudget = (e) => {
     e.preventDefault()
 
+    if (budgetInput === '' || budgetInput === 0) {
+      return
+    }
+
     // add budget to firebase database
     addDocument({
       amount: budgetInput,
@@ -113,13 +117,15 @@ export default function MonthlyDetailMobile({
       budgetId = budgetId[0]
     }
 
-    // edit budget in firebase database
-    updateDocument(budgetId, {
-      amount: editedBudgetInput,
-      year: year,
-      month: month,
-      uid: user.uid,
-    })
+    if (editedBudgetInput !== '' && editedBudgetInput !== 0) {
+      // edit budget in firebase database
+      updateDocument(budgetId, {
+        amount: editedBudgetInput,
+        year: year,
+        month: month,
+        uid: user.uid,
+      })
+    }
 
     if (editedBudgetInput > expenses) {
       setStatus(happyFace)
