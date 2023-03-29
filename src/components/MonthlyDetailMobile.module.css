@@ -98,5 +98,12 @@
   padding: 1rem 1.8rem;
 }
 
-.button {
+.budget {
+  color: var(--color-gray-500);
+  display: flex;
+  font-size: 1.6rem;
+  font-weight: 500;
+  justify-content: end;
+  padding-right: 1rem;
+  width: 15rem;
 }
