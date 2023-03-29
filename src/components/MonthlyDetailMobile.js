@@ -36,7 +36,9 @@ export default function MonthlyDetailMobile({
   const [showEditButton, setShowEditButton] = useState(false)
   const [showEditBudget, setShowEditBudget] = useState(false)
 
-  const [monthBudget, setMonthBudget] = useState(0)
+  let monthBudget
+
+  // const [monthBudget, setMonthBudget] = useState(0)
   const [janBudget2023, setJanBudget2023] = useState(0)
   const [febBudget2023, setFebBudget2023] = useState(0)
   const [marBudget2023, setMarBudget2023] = useState(0)
@@ -51,17 +53,6 @@ export default function MonthlyDetailMobile({
     user && ['uid', '==', user.uid],
     ['createdAt', 'desc']
   )
-
-  // set month budget
-  useEffect(() => {
-    if (month === 'January' && year === '2023') {
-      setMonthBudget(janBudget2023)
-    } else if (month === 'February' && year === '2023') {
-      setMonthBudget(febBudget2023)
-    } else if (month === 'March' && year === '2023') {
-      setMonthBudget(marBudget2023)
-    }
-  }, [year])
 
   useEffect(() => {
     if (monthBudget > expenses) {
@@ -86,6 +77,15 @@ export default function MonthlyDetailMobile({
 
     setShowAddBudget(false)
     setShowEditButton(true)
+  }
+
+  // display correct month budget after adding new budget
+  if (budgets) {
+    const monthlyBudgets = budgets.filter(
+      (budget) => budget.month === month && budget.year === year
+    )
+
+    monthBudget = monthlyBudgets.reduce((acc, budget) => acc + budget.amount, 0)
   }
 
   // handle show edit button
@@ -128,7 +128,7 @@ export default function MonthlyDetailMobile({
     }
   }, [year])
 
-  // set January 2023 budget
+  // set January budgets
   useEffect(() => {
     if (budgets && budgets.length > 0) {
       const janBudgetDoc = budgets.find(
@@ -148,7 +148,7 @@ export default function MonthlyDetailMobile({
     }
   }, [budgets, year])
 
-  // set February 2023 budget
+  // set February budgets
   useEffect(() => {
     if (budgets && budgets.length > 0) {
       const febBudgetDoc = budgets.find(
@@ -168,7 +168,7 @@ export default function MonthlyDetailMobile({
     }
   }, [budgets, year])
 
-  // set March 2023 budget
+  // set March budgets
   useEffect(() => {
     if (budgets && budgets.length > 0) {
       const marBudgetDoc = budgets.find(
@@ -191,7 +191,9 @@ export default function MonthlyDetailMobile({
   return (
     <div className={styles.container}>
       <div className={styles.top}>
-        <div className={styles.month}>{month}</div>
+        <div className={styles.month}>
+          {month} {year}
+        </div>
         <div className={styles.icon}>
           <Image
             src={`/assets/images/${status}`}
