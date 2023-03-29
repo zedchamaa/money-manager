@@ -293,7 +293,7 @@ export default function TransactionsSummary() {
       <YearsCarouselDesktop />
       <div className={styles.pieCharts}>
         <PieChart
-          title='Year 2023'
+          title={`Year ${year}`}
           chartData={currentYearData}
           labelOne='Income'
           labelTwo='Expenses'
