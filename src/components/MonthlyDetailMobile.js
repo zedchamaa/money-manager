@@ -431,7 +431,6 @@ export default function MonthlyDetailMobile({
                   <input
                     type='number'
                     onChange={(e) => setBudgetInput(Number(e.target.value))}
-                    value={budgetInput}
                     placeholder={'Enter Budget'}
                   />
                 </form>
