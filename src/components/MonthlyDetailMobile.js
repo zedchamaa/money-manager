@@ -26,6 +26,7 @@ export default function MonthlyDetailMobile({
   remaining,
 }) {
   let monthBudget
+  let budgetId
 
   const { addDocument, updateDocument } = useFirestore('budgets')
   const { user } = useAuthContext()
@@ -35,6 +36,7 @@ export default function MonthlyDetailMobile({
 
   const [status, setStatus] = useState('')
   const [budgetInput, setBudgetInput] = useState('')
+  const [editedBudgetInput, setEditedBudgetInput] = useState('')
   const [showAddBudget, setShowAddBudget] = useState(true)
   const [showEditButton, setShowEditButton] = useState(false)
   const [showEditBudget, setShowEditBudget] = useState(false)
@@ -94,9 +96,19 @@ export default function MonthlyDetailMobile({
   const handleEditBudget = (e) => {
     e.preventDefault()
 
+    if (budgets) {
+      const monthlyBudgets = budgets.filter(
+        (budget) => budget.month === month && budget.year === year
+      )
+
+      budgetId = monthlyBudgets.map((budget) => budget.id)
+
+      budgetId = budgetId[0]
+    }
+
     // edit budget in firebase database
-    updateDocument({
-      amount: budgetInput,
+    updateDocument(budgetId, {
+      amount: editedBudgetInput,
       year: year,
       month: month,
       uid: user.uid,
@@ -428,8 +440,10 @@ export default function MonthlyDetailMobile({
                 <form onSubmit={handleEditBudget}>
                   <input
                     type='number'
-                    onChange={(e) => setBudgetInput(Number(e.target.value))}
-                    value={monthBudget}
+                    onChange={(e) =>
+                      setEditedBudgetInput(Number(e.target.value))
+                    }
+                    value={editedBudgetInput}
                   />
                 </form>
                 <div className={styles.button}>
