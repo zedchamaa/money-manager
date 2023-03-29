@@ -382,6 +382,48 @@ export default function TransactionsSummary() {
           expenses={mayExpenses}
           remaining={mayIncome - mayExpenses}
         />
+        <MonthlyDetailMobile
+          month='June'
+          income={junIncome}
+          expenses={junExpenses}
+          remaining={junIncome - junExpenses}
+        />
+        <MonthlyDetailMobile
+          month='July'
+          income={julIncome}
+          expenses={julExpenses}
+          remaining={julIncome - julExpenses}
+        />
+        <MonthlyDetailMobile
+          month='August'
+          income={augIncome}
+          expenses={augExpenses}
+          remaining={augIncome - augExpenses}
+        />
+        <MonthlyDetailMobile
+          month='September'
+          income={sepIncome}
+          expenses={sepExpenses}
+          remaining={sepIncome - sepExpenses}
+        />
+        <MonthlyDetailMobile
+          month='October'
+          income={octIncome}
+          expenses={octExpenses}
+          remaining={octIncome - octExpenses}
+        />
+        <MonthlyDetailMobile
+          month='November'
+          income={novIncome}
+          expenses={novExpenses}
+          remaining={novIncome - novExpenses}
+        />
+        <MonthlyDetailMobile
+          month='December'
+          income={decIncome}
+          expenses={decExpenses}
+          remaining={decIncome - decExpenses}
+        />
       </div>
     </>
   )
