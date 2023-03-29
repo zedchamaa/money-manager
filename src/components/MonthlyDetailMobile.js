@@ -395,6 +395,7 @@ export default function MonthlyDetailMobile({
             alt='Status'
             width={24}
             height={24}
+            unoptimized
           />
         </div>
       </div>
