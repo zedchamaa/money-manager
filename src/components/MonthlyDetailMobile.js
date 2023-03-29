@@ -61,6 +61,15 @@ export default function MonthlyDetailMobile({
     } else setStatus(neutralFace)
   }, [expenses, monthBudget])
 
+  // display correct month budget after adding new budget
+  if (budgets) {
+    const monthlyBudgets = budgets.filter(
+      (budget) => budget.month === month && budget.year === year
+    )
+
+    monthBudget = monthlyBudgets.reduce((acc, budget) => acc + budget.amount, 0)
+  }
+
   // handle add budget
   const handleAddBudget = (e) => {
     e.preventDefault()
@@ -74,17 +83,14 @@ export default function MonthlyDetailMobile({
       uid: user.uid,
     })
 
+    if (budgetInput > expenses) {
+      setStatus(happyFace)
+    } else if (budgetInput < expenses) {
+      setStatus(sadFace)
+    } else setStatus(neutralFace)
+
     setShowAddBudget(false)
     setShowEditButton(true)
-  }
-
-  // display correct month budget after adding new budget
-  if (budgets) {
-    const monthlyBudgets = budgets.filter(
-      (budget) => budget.month === month && budget.year === year
-    )
-
-    monthBudget = monthlyBudgets.reduce((acc, budget) => acc + budget.amount, 0)
   }
 
   // handle show edit button
@@ -114,6 +120,12 @@ export default function MonthlyDetailMobile({
       month: month,
       uid: user.uid,
     })
+
+    if (editedBudgetInput > expenses) {
+      setStatus(happyFace)
+    } else if (editedBudgetInput < expenses) {
+      setStatus(sadFace)
+    } else setStatus(neutralFace)
 
     setShowEditBudget(false)
     setShowEditButton(true)
