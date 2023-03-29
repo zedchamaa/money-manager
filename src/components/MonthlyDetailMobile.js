@@ -416,7 +416,9 @@ export default function MonthlyDetailMobile({
             )}
             {showEditButton && (
               <>
-                <div>{monthBudget}</div>
+                <div className={styles.budget}>
+                  ${formatNumber(monthBudget)}
+                </div>
                 <div className={styles.button}>
                   <button onClick={handleShowEdit}>Edit</button>
                 </div>
