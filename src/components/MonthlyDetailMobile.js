@@ -52,13 +52,14 @@ export default function MonthlyDetailMobile({
     ['createdAt', 'desc']
   )
 
+  // update status state
   useEffect(() => {
     if (monthBudget > expenses) {
       setStatus(happyFace)
     } else if (monthBudget < expenses) {
       setStatus(sadFace)
     } else setStatus(neutralFace)
-  }, [monthBudget, expenses])
+  }, [expenses, monthBudget])
 
   // handle add budget
   const handleAddBudget = (e) => {
