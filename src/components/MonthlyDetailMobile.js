@@ -24,6 +24,8 @@ export default function MonthlyDetailMobile({
   expenses,
   remaining,
 }) {
+  let monthBudget
+
   const { addDocument, updateDocument } = useFirestore('budgets')
   const { user } = useAuthContext()
 
@@ -35,13 +37,6 @@ export default function MonthlyDetailMobile({
   const [showAddBudget, setShowAddBudget] = useState(true)
   const [showEditButton, setShowEditButton] = useState(false)
   const [showEditBudget, setShowEditBudget] = useState(false)
-
-  let monthBudget
-
-  // const [monthBudget, setMonthBudget] = useState(0)
-  const [janBudget2023, setJanBudget2023] = useState(0)
-  const [febBudget2023, setFebBudget2023] = useState(0)
-  const [marBudget2023, setMarBudget2023] = useState(0)
 
   const happyFace = 'happy-face.png'
   const sadFace = 'sad-face.png'
@@ -138,7 +133,6 @@ export default function MonthlyDetailMobile({
           budget.added === true
       )
       if (janBudgetDoc) {
-        setJanBudget2023(janBudgetDoc.amount)
         setShowAddBudget(false)
         setShowEditButton(true)
       } else if (monthBudget === 0 && month === 'January') {
@@ -158,7 +152,6 @@ export default function MonthlyDetailMobile({
           budget.added === true
       )
       if (febBudgetDoc) {
-        setFebBudget2023(febBudgetDoc.amount)
         setShowAddBudget(false)
         setShowEditButton(true)
       } else if (monthBudget === 0 && month === 'February') {
@@ -178,10 +171,47 @@ export default function MonthlyDetailMobile({
           budget.added === true
       )
       if (marBudgetDoc) {
-        setMarBudget2023(marBudgetDoc.amount)
         setShowAddBudget(false)
         setShowEditButton(true)
       } else if (monthBudget === 0 && month === 'March') {
+        setShowAddBudget(true)
+        setShowEditButton(false)
+      }
+    }
+  }, [budgets, year])
+
+  // set Apr budgets
+  useEffect(() => {
+    if (budgets && budgets.length > 0) {
+      const aprBudgetDoc = budgets.find(
+        (budget) =>
+          budget.month === 'April' &&
+          budget.year === year &&
+          budget.added === true
+      )
+      if (aprBudgetDoc) {
+        setShowAddBudget(false)
+        setShowEditButton(true)
+      } else if (monthBudget === 0 && month === 'April') {
+        setShowAddBudget(true)
+        setShowEditButton(false)
+      }
+    }
+  }, [budgets, year])
+
+  // set May budgets
+  useEffect(() => {
+    if (budgets && budgets.length > 0) {
+      const mayBudgetDoc = budgets.find(
+        (budget) =>
+          budget.month === 'May' &&
+          budget.year === year &&
+          budget.added === true
+      )
+      if (mayBudgetDoc) {
+        setShowAddBudget(false)
+        setShowEditButton(true)
+      } else if (monthBudget === 0 && month === 'May') {
         setShowAddBudget(true)
         setShowEditButton(false)
       }
