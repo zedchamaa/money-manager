@@ -456,7 +456,6 @@ export default function MonthlyDetailMobile({
                     onChange={(e) =>
                       setEditedBudgetInput(Number(e.target.value))
                     }
-                    value={editedBudgetInput}
                   />
                 </form>
                 <div className={styles.button}>
