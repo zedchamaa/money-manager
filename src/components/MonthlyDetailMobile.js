@@ -14,6 +14,7 @@ import ExpensesIconSmall from './icons/ExpensesIconSmall'
 import RemainingIconSmall from './icons/RemainingIconSmall'
 import BudgetIconSmall from './icons/BudgetIconSmall'
 import SmallDivider from './icons/SmallDivider'
+import EditIconMobile from './icons/EditIconMobile'
 
 // libraries
 import { formatNumber } from 'accounting'
@@ -415,14 +416,12 @@ export default function MonthlyDetailMobile({
               </>
             )}
             {showEditButton && (
-              <>
+              <div className={styles.budgetInfo}>
+                <EditIconMobile onClick={handleShowEdit} />
                 <div className={styles.budget}>
                   ${formatNumber(monthBudget)}
                 </div>
-                <div className={styles.button}>
-                  <button onClick={handleShowEdit}>Edit</button>
-                </div>
-              </>
+              </div>
             )}
             {showEditBudget && (
               <>

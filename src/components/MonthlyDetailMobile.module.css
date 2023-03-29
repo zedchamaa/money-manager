@@ -98,12 +98,18 @@
   padding: 1rem 1.8rem;
 }
 
+.budgetInfo {
+  align-items: center;
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  width: 100%;
+}
+
 .budget {
+  align-items: center;
   color: var(--color-gray-500);
   display: flex;
   font-size: 1.6rem;
   font-weight: 500;
-  justify-content: end;
-  padding-right: 1rem;
-  width: 15rem;
 }
