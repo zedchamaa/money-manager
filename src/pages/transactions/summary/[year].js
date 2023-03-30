@@ -26,6 +26,7 @@ export default function TransactionsSummary() {
   let totalExpenses
   let totalMonthlyAvgIncome
   let totalMonthlyAvgExpenses
+  let yearBudget
   const [showModal, setShowModal] = useState(false)
   const router = useRouter()
   const { year } = router.query
@@ -33,6 +34,13 @@ export default function TransactionsSummary() {
 
   const { documents } = useCollection(
     'transactions',
+    user,
+    user && ['uid', '==', user.uid],
+    ['createdAt', 'desc']
+  )
+
+  const { documents: budgets } = useCollection(
+    'budgets',
     user,
     user && ['uid', '==', user.uid],
     ['createdAt', 'desc']
@@ -155,6 +163,15 @@ export default function TransactionsSummary() {
   function getAvgQuarterRemaining(income, expenses) {
     return income - expenses
   }
+
+  // calculate the total budget amount of current year
+  if (budgets) {
+    yearBudget = budgets
+      .filter((budget) => budget.year === year)
+      .reduce((acc, budget) => acc + budget.amount, 0)
+  }
+
+  console.log(yearBudget)
 
   // find the income of each month
   const janIncome = getMonthlyIncome(documents, 'Jan')
@@ -300,7 +317,7 @@ export default function TransactionsSummary() {
           income={totalIncome}
           expenses={totalExpenses}
           remaining={totalIncome - totalExpenses}
-          budget={0}
+          budget={yearBudget}
         />
         <PieChart
           title='Monthly Average'
