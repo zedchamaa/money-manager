@@ -160,6 +160,13 @@ export default function MonthlyDetailMobile({
       setShowAddBudget(true)
       setShowEditButton(false)
     }
+
+    // update status state
+    if (monthBudget > expenses) {
+      setStatus(happyFace)
+    } else if (monthBudget < expenses) {
+      setStatus(sadFace)
+    } else setStatus(neutralFace)
   }
 
   // set January budgets
