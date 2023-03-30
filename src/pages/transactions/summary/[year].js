@@ -176,55 +176,34 @@ export default function TransactionsSummary() {
   }
 
   // calculate the average budget of each quarter
-  if (budgets) {
-    // calculate the average budget of Q1
-    avgBudgetQ1 =
-      budgets
-        .filter(
-          (budget) =>
-            budget.year === year &&
-            (budget.month === 'January' ||
-              budget.month === 'February' ||
-              budget.month === 'March')
-        )
-        .reduce((acc, budget) => acc + budget.amount, 0) / 3
+  function getAvgQuarterBudget(monthOne, monthTwo, monthThree) {
+    if (budgets) {
+      const avgQuarterBudget =
+        budgets
+          .filter(
+            (budget) =>
+              budget.year === year &&
+              (budget.month === monthOne ||
+                budget.month === monthTwo ||
+                budget.month === monthThree)
+          )
+          .reduce((acc, budget) => acc + budget.amount, 0) / 3
 
-    // calculate the average budget of Q2
-    avgBudgetQ2 =
-      budgets
-        .filter(
-          (budget) =>
-            budget.year === year &&
-            (budget.month === 'April' ||
-              budget.month === 'May' ||
-              budget.month === 'June')
-        )
-        .reduce((acc, budget) => acc + budget.amount, 0) / 3
-
-    // calculate the average budget of Q3
-    avgBudgetQ3 =
-      budgets
-        .filter(
-          (budget) =>
-            budget.year === year &&
-            (budget.month === 'July' ||
-              budget.month === 'August' ||
-              budget.month === 'September')
-        )
-        .reduce((acc, budget) => acc + budget.amount, 0) / 3
-
-    // calculate the average budget of Q4
-    avgBudgetQ4 =
-      budgets
-        .filter(
-          (budget) =>
-            budget.year === year &&
-            (budget.month === 'October' ||
-              budget.month === 'November' ||
-              budget.month === 'December')
-        )
-        .reduce((acc, budget) => acc + budget.amount, 0) / 3
+      return avgQuarterBudget
+    }
   }
+
+  // calculate the average budget of Q1
+  avgBudgetQ1 = getAvgQuarterBudget('January', 'February', 'March')
+
+  // calculate the average budget of Q2
+  avgBudgetQ2 = getAvgQuarterBudget('April', 'May', 'June')
+
+  // calculate the average budget of Q3
+  avgBudgetQ3 = getAvgQuarterBudget('July', 'August', 'September')
+
+  // calculate the average budget of Q4
+  avgBudgetQ4 = getAvgQuarterBudget('October', 'November', 'December')
 
   // find the income of each month
   const janIncome = getMonthlyIncome(documents, 'Jan')
