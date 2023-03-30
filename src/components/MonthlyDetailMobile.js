@@ -155,231 +155,194 @@ export default function MonthlyDetailMobile({
     }
   }, [year])
 
+  function setMonthBudget(
+    monthName,
+    budgets,
+    year,
+    monthBudget,
+    setShowAddBudget,
+    setShowEditButton
+  ) {
+    const monthNameBudget = budgets.find(
+      (budget) =>
+        budget.month === monthName &&
+        budget.year === year &&
+        budget.added === true
+    )
+    if (monthNameBudget) {
+      setShowAddBudget(false)
+      setShowEditButton(true)
+    } else if (monthBudget === 0 && month === monthName) {
+      setShowAddBudget(true)
+      setShowEditButton(false)
+    }
+  }
+
   // set January budgets
   useEffect(() => {
     if (budgets && budgets.length > 0) {
-      const janBudget = budgets.find(
-        (budget) =>
-          budget.month === 'January' &&
-          budget.year === year &&
-          budget.added === true
+      setMonthBudget(
+        'January',
+        budgets,
+        year,
+        monthBudget,
+        setShowAddBudget,
+        setShowEditButton
       )
-      if (janBudget) {
-        setShowAddBudget(false)
-        setShowEditButton(true)
-      } else if (monthBudget === 0 && month === 'January') {
-        setShowAddBudget(true)
-        setShowEditButton(false)
-      }
     }
   }, [budgets, year])
 
   // set February budgets
   useEffect(() => {
     if (budgets && budgets.length > 0) {
-      const febBudget = budgets.find(
-        (budget) =>
-          budget.month === 'February' &&
-          budget.year === year &&
-          budget.added === true
+      setMonthBudget(
+        'February',
+        budgets,
+        year,
+        monthBudget,
+        setShowAddBudget,
+        setShowEditButton
       )
-      if (febBudget) {
-        setShowAddBudget(false)
-        setShowEditButton(true)
-      } else if (monthBudget === 0 && month === 'February') {
-        setShowAddBudget(true)
-        setShowEditButton(false)
-      }
     }
   }, [budgets, year])
 
   // set March budgets
   useEffect(() => {
     if (budgets && budgets.length > 0) {
-      const marBudget = budgets.find(
-        (budget) =>
-          budget.month === 'March' &&
-          budget.year === year &&
-          budget.added === true
+      setMonthBudget(
+        'March',
+        budgets,
+        year,
+        monthBudget,
+        setShowAddBudget,
+        setShowEditButton
       )
-      if (marBudget) {
-        setShowAddBudget(false)
-        setShowEditButton(true)
-      } else if (monthBudget === 0 && month === 'March') {
-        setShowAddBudget(true)
-        setShowEditButton(false)
-      }
     }
   }, [budgets, year])
 
-  // set Apr budgets
+  // set April budgets
   useEffect(() => {
     if (budgets && budgets.length > 0) {
-      const aprBudget = budgets.find(
-        (budget) =>
-          budget.month === 'April' &&
-          budget.year === year &&
-          budget.added === true
+      setMonthBudget(
+        'April',
+        budgets,
+        year,
+        monthBudget,
+        setShowAddBudget,
+        setShowEditButton
       )
-      if (aprBudget) {
-        setShowAddBudget(false)
-        setShowEditButton(true)
-      } else if (monthBudget === 0 && month === 'April') {
-        setShowAddBudget(true)
-        setShowEditButton(false)
-      }
     }
   }, [budgets, year])
 
   // set May budgets
   useEffect(() => {
     if (budgets && budgets.length > 0) {
-      const mayBudget = budgets.find(
-        (budget) =>
-          budget.month === 'May' &&
-          budget.year === year &&
-          budget.added === true
+      setMonthBudget(
+        'May',
+        budgets,
+        year,
+        monthBudget,
+        setShowAddBudget,
+        setShowEditButton
       )
-      if (mayBudget) {
-        setShowAddBudget(false)
-        setShowEditButton(true)
-      } else if (monthBudget === 0 && month === 'May') {
-        setShowAddBudget(true)
-        setShowEditButton(false)
-      }
     }
   }, [budgets, year])
 
-  // set Jun budgets
+  // set June budgets
   useEffect(() => {
     if (budgets && budgets.length > 0) {
-      const junBudget = budgets.find(
-        (budget) =>
-          budget.month === 'June' &&
-          budget.year === year &&
-          budget.added === true
+      setMonthBudget(
+        'June',
+        budgets,
+        year,
+        monthBudget,
+        setShowAddBudget,
+        setShowEditButton
       )
-      if (junBudget) {
-        setShowAddBudget(false)
-        setShowEditButton(true)
-      } else if (monthBudget === 0 && month === 'June') {
-        setShowAddBudget(true)
-        setShowEditButton(false)
-      }
     }
   }, [budgets, year])
 
-  // set Jul budgets
+  // set July budgets
   useEffect(() => {
     if (budgets && budgets.length > 0) {
-      const julBudget = budgets.find(
-        (budget) =>
-          budget.month === 'July' &&
-          budget.year === year &&
-          budget.added === true
+      setMonthBudget(
+        'July',
+        budgets,
+        year,
+        monthBudget,
+        setShowAddBudget,
+        setShowEditButton
       )
-      if (julBudget) {
-        setShowAddBudget(false)
-        setShowEditButton(true)
-      } else if (monthBudget === 0 && month === 'July') {
-        setShowAddBudget(true)
-        setShowEditButton(false)
-      }
     }
   }, [budgets, year])
 
-  // set Aug budgets
+  // set August budgets
   useEffect(() => {
     if (budgets && budgets.length > 0) {
-      const augBudget = budgets.find(
-        (budget) =>
-          budget.month === 'August' &&
-          budget.year === year &&
-          budget.added === true
+      setMonthBudget(
+        'August',
+        budgets,
+        year,
+        monthBudget,
+        setShowAddBudget,
+        setShowEditButton
       )
-      if (augBudget) {
-        setShowAddBudget(false)
-        setShowEditButton(true)
-      } else if (monthBudget === 0 && month === 'August') {
-        setShowAddBudget(true)
-        setShowEditButton(false)
-      }
     }
   }, [budgets, year])
 
-  // set Sep budgets
+  // set September budgets
   useEffect(() => {
     if (budgets && budgets.length > 0) {
-      const sepBudget = budgets.find(
-        (budget) =>
-          budget.month === 'September' &&
-          budget.year === year &&
-          budget.added === true
+      setMonthBudget(
+        'September',
+        budgets,
+        year,
+        monthBudget,
+        setShowAddBudget,
+        setShowEditButton
       )
-      if (sepBudget) {
-        setShowAddBudget(false)
-        setShowEditButton(true)
-      } else if (monthBudget === 0 && month === 'September') {
-        setShowAddBudget(true)
-        setShowEditButton(false)
-      }
     }
   }, [budgets, year])
 
-  // set Oct budgets
+  // set October budgets
   useEffect(() => {
     if (budgets && budgets.length > 0) {
-      const octBudget = budgets.find(
-        (budget) =>
-          budget.month === 'October' &&
-          budget.year === year &&
-          budget.added === true
+      setMonthBudget(
+        'October',
+        budgets,
+        year,
+        monthBudget,
+        setShowAddBudget,
+        setShowEditButton
       )
-      if (octBudget) {
-        setShowAddBudget(false)
-        setShowEditButton(true)
-      } else if (monthBudget === 0 && month === 'October') {
-        setShowAddBudget(true)
-        setShowEditButton(false)
-      }
     }
   }, [budgets, year])
 
-  // set Nov budgets
+  // set November budgets
   useEffect(() => {
     if (budgets && budgets.length > 0) {
-      const novBudget = budgets.find(
-        (budget) =>
-          budget.month === 'November' &&
-          budget.year === year &&
-          budget.added === true
+      setMonthBudget(
+        'November',
+        budgets,
+        year,
+        monthBudget,
+        setShowAddBudget,
+        setShowEditButton
       )
-      if (novBudget) {
-        setShowAddBudget(false)
-        setShowEditButton(true)
-      } else if (monthBudget === 0 && month === 'November') {
-        setShowAddBudget(true)
-        setShowEditButton(false)
-      }
     }
   }, [budgets, year])
 
-  // set Dec budgets
+  // set December budgets
   useEffect(() => {
     if (budgets && budgets.length > 0) {
-      const decBudget = budgets.find(
-        (budget) =>
-          budget.month === 'December' &&
-          budget.year === year &&
-          budget.added === true
+      setMonthBudget(
+        'December',
+        budgets,
+        year,
+        monthBudget,
+        setShowAddBudget,
+        setShowEditButton
       )
-      if (decBudget) {
-        setShowAddBudget(false)
-        setShowEditButton(true)
-      } else if (monthBudget === 0 && month === 'December') {
-        setShowAddBudget(true)
-        setShowEditButton(false)
-      }
     }
   }, [budgets, year])
 
