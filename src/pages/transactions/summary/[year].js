@@ -171,8 +171,6 @@ export default function TransactionsSummary() {
       .reduce((acc, budget) => acc + budget.amount, 0)
   }
 
-  console.log(yearBudget)
-
   // find the income of each month
   const janIncome = getMonthlyIncome(documents, 'Jan')
   const febIncome = getMonthlyIncome(documents, 'Feb')
@@ -327,7 +325,7 @@ export default function TransactionsSummary() {
           income={totalMonthlyAvgIncome}
           expenses={totalMonthlyAvgExpenses}
           remaining={totalMonthlyAvgIncome - totalMonthlyAvgExpenses}
-          budget={0}
+          budget={yearBudget / 12}
         />
       </div>
       <div className={styles.averagesContainer}>
