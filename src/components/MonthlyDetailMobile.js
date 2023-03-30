@@ -34,6 +34,8 @@ export default function MonthlyDetailMobile({
   const router = useRouter()
   const { year } = router.query
 
+  let cardId = month + ' ' + year
+
   const [status, setStatus] = useState('')
   const [budgetInput, setBudgetInput] = useState('')
   const [editedBudgetInput, setEditedBudgetInput] = useState('')
@@ -84,6 +86,7 @@ export default function MonthlyDetailMobile({
       year: year,
       month: month,
       added: true,
+      cardId: cardId,
       uid: user.uid,
     })
 
@@ -92,9 +95,6 @@ export default function MonthlyDetailMobile({
     } else if (budgetInput < expenses) {
       setStatus(sadFace)
     } else setStatus(neutralFace)
-
-    setShowAddBudget(false)
-    setShowEditButton(true)
   }
 
   // handle show edit button
@@ -150,7 +150,8 @@ export default function MonthlyDetailMobile({
       (budget) =>
         budget.month === monthName &&
         budget.year === year &&
-        budget.added === true
+        budget.added === true &&
+        budget.cardId === cardId
     )
     if (monthNameBudget) {
       setShowAddBudget(false)
@@ -332,9 +333,7 @@ export default function MonthlyDetailMobile({
   return (
     <div className={styles.container}>
       <div className={styles.top}>
-        <div className={styles.month}>
-          {month} {year}
-        </div>
+        <div className={styles.month}>{cardId}</div>
         <div className={styles.icon}>
           <Image
             src={`/assets/images/${status}`}
