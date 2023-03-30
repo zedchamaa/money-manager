@@ -137,24 +137,6 @@ export default function MonthlyDetailMobile({
     setShowEditButton(true)
   }
 
-  // useEffect(() => {
-  //   if (budgets && budgets.length > 0) {
-  //     const monthBudgetDoc = budgets.find(
-  //       (budget) =>
-  //         budget.month === month &&
-  //         budget.year === year &&
-  //         budget.added === true
-  //     )
-  //     if (monthBudgetDoc) {
-  //       setShowAddBudget(false)
-  //       setShowEditButton(true)
-  //     } else {
-  //       setShowAddBudget(true)
-  //       setShowEditButton(false)
-  //     }
-  //   }
-  // }, [year])
-
   function setMonthBudget(
     monthName,
     budgets,
