@@ -27,6 +27,10 @@ export default function TransactionsSummary() {
   let totalMonthlyAvgIncome
   let totalMonthlyAvgExpenses
   let yearBudget
+  let avgBudgetQ1
+  let avgBudgetQ2
+  let avgBudgetQ3
+  let avgBudgetQ4
   const [showModal, setShowModal] = useState(false)
   const router = useRouter()
   const { year } = router.query
@@ -169,6 +173,57 @@ export default function TransactionsSummary() {
     yearBudget = budgets
       .filter((budget) => budget.year === year)
       .reduce((acc, budget) => acc + budget.amount, 0)
+  }
+
+  // calculate the average budget of each quarter
+  if (budgets) {
+    // calculate the average budget of Q1
+    avgBudgetQ1 =
+      budgets
+        .filter(
+          (budget) =>
+            budget.year === year &&
+            (budget.month === 'January' ||
+              budget.month === 'February' ||
+              budget.month === 'March')
+        )
+        .reduce((acc, budget) => acc + budget.amount, 0) / 3
+
+    // calculate the average budget of Q2
+    avgBudgetQ2 =
+      budgets
+        .filter(
+          (budget) =>
+            budget.year === year &&
+            (budget.month === 'April' ||
+              budget.month === 'May' ||
+              budget.month === 'June')
+        )
+        .reduce((acc, budget) => acc + budget.amount, 0) / 3
+
+    // calculate the average budget of Q3
+    avgBudgetQ3 =
+      budgets
+        .filter(
+          (budget) =>
+            budget.year === year &&
+            (budget.month === 'July' ||
+              budget.month === 'August' ||
+              budget.month === 'September')
+        )
+        .reduce((acc, budget) => acc + budget.amount, 0) / 3
+
+    // calculate the average budget of Q4
+    avgBudgetQ4 =
+      budgets
+        .filter(
+          (budget) =>
+            budget.year === year &&
+            (budget.month === 'October' ||
+              budget.month === 'November' ||
+              budget.month === 'December')
+        )
+        .reduce((acc, budget) => acc + budget.amount, 0) / 3
   }
 
   // find the income of each month
@@ -334,24 +389,28 @@ export default function TransactionsSummary() {
           income={avgIncomeQ1}
           expenses={avgExpensesQ1}
           remaining={avgRemainingQ1}
+          budget={avgBudgetQ1}
         />
         <QuarterAverage
           title='Q2 Average'
           income={avgIncomeQ2}
           expenses={avgExpensesQ2}
           remaining={avgRemainingQ2}
+          budget={avgBudgetQ2}
         />
         <QuarterAverage
           title='Q3 Average'
           income={avgIncomeQ3}
           expenses={avgExpensesQ3}
           remaining={avgRemainingQ3}
+          budget={avgBudgetQ3}
         />
         <QuarterAverage
           title='Q4 Average'
           income={avgIncomeQ4}
           expenses={avgExpensesQ4}
           remaining={avgRemainingQ4}
+          budget={avgBudgetQ4}
         />
       </div>
       <div className={styles.barChart}>
