@@ -19,6 +19,7 @@ import BarChart from '@/components/BarChart'
 import QuarterAverage from '@/components/QuarterAverage'
 import MonthlyDetailMobileDivider from '@/components/icons/MonthlyDetailMobileDivider'
 import MonthlyDetailMobile from '@/components/MonthlyDetailMobile'
+import MonthlyDetailDesktop from '@/components/MonthlyDetailDesktop'
 
 export default function TransactionsSummary() {
   let transactionsByYear
@@ -476,6 +477,14 @@ export default function TransactionsSummary() {
           income={decIncome}
           expenses={decExpenses}
           remaining={decIncome - decExpenses}
+        />
+      </div>
+      <div className={styles.monthlyDetailDesktop}>
+        <MonthlyDetailDesktop
+          month='January'
+          income={janIncome}
+          expenses={janExpenses}
+          remaining={janIncome - janExpenses}
         />
       </div>
     </>
