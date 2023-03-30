@@ -1,3 +1,5 @@
+import { useState, useEffect } from 'react'
+
 // styles
 import styles from './PieChart.module.css'
 
@@ -24,6 +26,19 @@ export default function PieChart({
   if (!chartData) {
     return null
   }
+
+  const [showNegativeSymbol, setShowNegativeSymbol] = useState(false)
+  const [showNoSymbol, setShowNoSymbol] = useState(false)
+
+  useEffect(() => {
+    if (remaining < 0) {
+      setShowNegativeSymbol(true)
+      setShowNoSymbol(false)
+    } else {
+      setShowNegativeSymbol(false)
+      setShowNoSymbol(true)
+    }
+  }, [remaining])
 
   return (
     <div className={styles.container}>
@@ -63,12 +78,22 @@ export default function PieChart({
               -${formatNumber(expenses)}
             </div>
           </div>
-          <div className={styles.row}>
-            <div className={styles.type}>Remaining</div>
-            <div className={classNames(styles.amount, styles.neutral)}>
-              ${formatNumber(remaining)}
+          {showNoSymbol && (
+            <div className={styles.row}>
+              <div className={styles.type}>Remaining</div>
+              <div className={classNames(styles.amount, styles.neutral)}>
+                ${formatNumber(remaining)}
+              </div>
             </div>
-          </div>
+          )}
+          {showNegativeSymbol && (
+            <div className={styles.row}>
+              <div className={styles.type}>Remaining</div>
+              <div className={classNames(styles.amount, styles.neutral)}>
+                -${formatNumber(Math.abs(remaining))}
+              </div>
+            </div>
+          )}
           <div className={styles.row}>
             <div className={styles.type}>Budget</div>
             <div className={classNames(styles.amount, styles.neutral)}>
