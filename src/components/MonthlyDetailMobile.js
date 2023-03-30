@@ -137,6 +137,7 @@ export default function MonthlyDetailMobile({
     setShowEditButton(true)
   }
 
+  // set the monthly budgets
   function setMonthBudget(
     monthName,
     budgets,
