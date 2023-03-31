@@ -127,12 +127,6 @@ export default function MonthlyDetailMobile({
       })
     }
 
-    if (editedBudgetInput > expenses) {
-      setStatus(happyFace)
-    } else if (editedBudgetInput < expenses) {
-      setStatus(sadFace)
-    } else setStatus(neutralFace)
-
     setShowEditBudget(false)
     setShowEditButton(true)
   }

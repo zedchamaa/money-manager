@@ -122,12 +122,6 @@ export default function MonthlyDetailDesktop({
       })
     }
 
-    if (editedBudgetInput > expenses) {
-      setStatus(happyFace)
-    } else if (editedBudgetInput < expenses) {
-      setStatus(sadFace)
-    } else setStatus(neutralFace)
-
     setShowEditBudget(false)
     setShowEditButton(true)
   }
