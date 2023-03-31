@@ -20,6 +20,10 @@ import QuarterAverage from '@/components/QuarterAverage'
 import MonthlyDetailMobileDivider from '@/components/icons/MonthlyDetailMobileDivider'
 import MonthlyDetailMobile from '@/components/MonthlyDetailMobile'
 import MonthlyDetailDesktop from '@/components/MonthlyDetailDesktop'
+import IncomeIconSmall from '@/components/icons/IncomeIconSmall'
+import ExpensesIconSmall from '@/components/icons/ExpensesIconSmall'
+import RemainingIconSmall from '@/components/icons/RemainingIconSmall'
+import BudgetIconSmall from '@/components/icons/BudgetIconSmall'
 
 export default function TransactionsSummary() {
   let transactionsByYear
@@ -480,6 +484,26 @@ export default function TransactionsSummary() {
         />
       </div>
       <div className={styles.monthlyDetailDesktop}>
+        <div className={styles.titles}>
+          <div className={styles.month}>Month</div>
+          <div className={styles.income}>
+            <IncomeIconSmall />
+            Income
+          </div>
+          <div className={styles.expenses}>
+            <ExpensesIconSmall />
+            Expenses
+          </div>
+          <div className={styles.remaining}>
+            <RemainingIconSmall />
+            Remaining
+          </div>
+          <div className={styles.budget}>
+            <BudgetIconSmall />
+            Budget
+          </div>
+          <div className={styles.status}>Status</div>
+        </div>
         <MonthlyDetailDesktop
           month='January'
           income={janIncome}
