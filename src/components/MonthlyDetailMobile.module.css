@@ -108,7 +108,7 @@
 
 .budget {
   align-items: center;
-  color: var(--color-gray-500);
+  color: var(--color-primary-600);
   display: flex;
   font-size: 1.6rem;
   font-weight: 500;
