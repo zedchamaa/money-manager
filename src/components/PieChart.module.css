@@ -118,6 +118,10 @@
   color: var(--color-gray-900);
 }
 
+.budget {
+  color: var(--color-primary-600);
+}
+
 @media screen and (min-width: 415px) {
   .dividerMobile {
     display: none;

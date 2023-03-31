@@ -96,7 +96,7 @@ export default function PieChart({
           )}
           <div className={styles.row}>
             <div className={styles.type}>Budget</div>
-            <div className={classNames(styles.amount, styles.neutral)}>
+            <div className={classNames(styles.amount, styles.budget)}>
               ${formatNumber(budget)}
             </div>
           </div>
