@@ -25,6 +25,7 @@ import IncomeIconSmall from '@/components/icons/IncomeIconSmall'
 import ExpensesIconSmall from '@/components/icons/ExpensesIconSmall'
 import RemainingIconSmall from '@/components/icons/RemainingIconSmall'
 import BudgetIconSmall from '@/components/icons/BudgetIconSmall'
+import Footer from '@/components/Footer'
 
 export default function TransactionsSummary() {
   let transactionsByYear
@@ -587,6 +588,7 @@ export default function TransactionsSummary() {
           remaining={decIncome - decExpenses}
         />
       </div>
+      <Footer />
     </>
   )
 }
