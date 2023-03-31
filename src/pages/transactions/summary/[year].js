@@ -2,6 +2,7 @@ import { useRouter } from 'next/router'
 import { useAuthContext } from '@/hooks/useAuthContext'
 import { useState } from 'react'
 import { useCollection } from '@/hooks/useCollection'
+import Head from 'next/head'
 
 // styles
 import styles from './summary.module.css'
@@ -332,6 +333,15 @@ export default function TransactionsSummary() {
 
   return (
     <>
+      <Head>
+        <title>
+          Transactions Summary | Money Manager Demo App by ZED CHAMAA
+        </title>
+        <meta
+          name='description'
+          content='View your transactions summary and get a quick overview of your finances.'
+        />
+      </Head>
       {showModal && (
         <Modal title='Add Transaction'>
           <TransactionsForm handleCancel={handleCancel} />

@@ -2,6 +2,7 @@ import { useRouter } from 'next/router'
 import { useAuthContext } from '@/hooks/useAuthContext'
 import { useState } from 'react'
 import { useCollection } from '@/hooks/useCollection'
+import Head from 'next/head'
 
 // components
 import MobileMenu from '@/components/MobileMenu'
@@ -99,6 +100,15 @@ export default function TransactionsYear() {
 
   return (
     <>
+      <Head>
+        <title>
+          Manage Transactions | Money Manager Demo App by ZED CHAMAA
+        </title>
+        <meta
+          name='description'
+          content='Manage your transactions and keep track of your income and expenses.'
+        />
+      </Head>
       {showModal && (
         <Modal title='Add Transaction'>
           <TransactionsForm
