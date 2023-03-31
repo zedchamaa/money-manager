@@ -96,6 +96,7 @@
     flex-direction: column;
     height: 96.1rem;
     margin: 3.2rem auto;
+    overflow: hidden;
     width: 98.1rem;
   }
 }

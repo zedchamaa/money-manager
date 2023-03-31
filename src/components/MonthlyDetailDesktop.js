@@ -9,12 +9,7 @@ import { useCollection } from '@/hooks/useCollection'
 import styles from './MonthlyDetailDesktop.module.css'
 
 // components
-import IncomeIconSmall from './icons/IncomeIconSmall'
-import ExpensesIconSmall from './icons/ExpensesIconSmall'
-import RemainingIconSmall from './icons/RemainingIconSmall'
-import BudgetIconSmall from './icons/BudgetIconSmall'
-import SmallDivider from './icons/SmallDivider'
-import EditIconMobile from './icons/EditIconMobile'
+import EditIconDesktop from './icons/EditIconDesktop'
 
 // libraries
 import { formatNumber } from 'accounting'
@@ -339,9 +334,50 @@ export default function MonthlyDetailDesktop({
 
   return (
     <div className={styles.container}>
-      <div className={styles.top}>
-        <div className={styles.month}>{cardId}</div>
-        <div className={styles.icon}>
+      <div className={styles.month}>{cardId}</div>
+      <div className={styles.incomeValue}>+${formatNumber(income)}</div>
+      <div className={styles.expensesValue}>-${formatNumber(expenses)}</div>
+      <div className={styles.remainingValue}>${formatNumber(remaining)}</div>
+      <div className={styles.budget}>
+        {showAddBudget && (
+          <div className={styles.budgetInput}>
+            <form onSubmit={handleAddBudget}>
+              <input
+                type='number'
+                onChange={(e) => setBudgetInput(Number(e.target.value))}
+                placeholder={'Enter Budget'}
+              />
+            </form>
+            <div className={styles.button}>
+              <button onClick={handleAddBudget}>Add</button>
+            </div>
+          </div>
+        )}
+        {showEditButton && (
+          <div className={styles.budgetInfo}>
+            <div className={styles.icon}>
+              <EditIconDesktop onClick={handleShowEdit} />
+            </div>
+            <div>${formatNumber(monthBudget)}</div>
+          </div>
+        )}
+        {showEditBudget && (
+          <div className={styles.budgetInput}>
+            <form onSubmit={handleEditBudget}>
+              <input
+                type='number'
+                onChange={(e) => setEditedBudgetInput(Number(e.target.value))}
+                placeholder={'Edit Budget'}
+              />
+            </form>
+            <div className={styles.button}>
+              <button onClick={handleEditBudget}>Save</button>
+            </div>
+          </div>
+        )}
+      </div>
+      <div className={styles.status}>
+        <div>
           <Image
             src={`/assets/images/${status}`}
             alt='Status'
@@ -349,80 +385,6 @@ export default function MonthlyDetailDesktop({
             height={24}
             unoptimized
           />
-        </div>
-      </div>
-      <div className={styles.middle}>
-        <div className={styles.row}>
-          <div className={styles.type}>
-            <IncomeIconSmall />
-            <div>Income</div>
-          </div>
-          <div className={styles.incomeValue}>+${formatNumber(income)}</div>
-        </div>
-        <div className={styles.row}>
-          <div className={styles.type}>
-            <ExpensesIconSmall />
-            <div>Expenses</div>
-          </div>
-          <div className={styles.expensesValue}>-${formatNumber(expenses)}</div>
-        </div>
-        <div className={styles.row}>
-          <div className={styles.type}>
-            <RemainingIconSmall />
-            <div>Remaining</div>
-          </div>
-          <div className={styles.remainingValue}>
-            ${formatNumber(remaining)}
-          </div>
-        </div>
-        <div className={styles.divider}>
-          <SmallDivider />
-        </div>
-        <div className={styles.bottom}>
-          <div className={styles.type}>
-            <BudgetIconSmall />
-            <div>Budget</div>
-          </div>
-          <div className={styles.budgetInput}>
-            {showAddBudget && (
-              <>
-                <form onSubmit={handleAddBudget}>
-                  <input
-                    type='number'
-                    onChange={(e) => setBudgetInput(Number(e.target.value))}
-                    placeholder={'Enter Budget'}
-                  />
-                </form>
-                <div className={styles.button}>
-                  <button onClick={handleAddBudget}>Add</button>
-                </div>
-              </>
-            )}
-            {showEditButton && (
-              <div className={styles.budgetInfo}>
-                <EditIconMobile onClick={handleShowEdit} />
-                <div className={styles.budget}>
-                  ${formatNumber(monthBudget)}
-                </div>
-              </div>
-            )}
-            {showEditBudget && (
-              <>
-                <form onSubmit={handleEditBudget}>
-                  <input
-                    type='number'
-                    onChange={(e) =>
-                      setEditedBudgetInput(Number(e.target.value))
-                    }
-                    placeholder={'Edit Budget'}
-                  />
-                </form>
-                <div className={styles.button}>
-                  <button onClick={handleEditBudget}>Save</button>
-                </div>
-              </>
-            )}
-          </div>
         </div>
       </div>
     </div>

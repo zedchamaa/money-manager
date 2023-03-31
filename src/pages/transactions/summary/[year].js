@@ -486,6 +486,72 @@ export default function TransactionsSummary() {
           expenses={janExpenses}
           remaining={janIncome - janExpenses}
         />
+        <MonthlyDetailDesktop
+          month='February'
+          income={febIncome}
+          expenses={febExpenses}
+          remaining={febIncome - febExpenses}
+        />
+        <MonthlyDetailDesktop
+          month='March'
+          income={marIncome}
+          expenses={marExpenses}
+          remaining={marIncome - marExpenses}
+        />
+        <MonthlyDetailDesktop
+          month='April'
+          income={aprIncome}
+          expenses={aprExpenses}
+          remaining={aprIncome - aprExpenses}
+        />
+        <MonthlyDetailDesktop
+          month='May'
+          income={mayIncome}
+          expenses={mayExpenses}
+          remaining={mayIncome - mayExpenses}
+        />
+        <MonthlyDetailDesktop
+          month='June'
+          income={junIncome}
+          expenses={junExpenses}
+          remaining={junIncome - junExpenses}
+        />
+        <MonthlyDetailDesktop
+          month='July'
+          income={julIncome}
+          expenses={julExpenses}
+          remaining={julIncome - julExpenses}
+        />
+        <MonthlyDetailDesktop
+          month='August'
+          income={augIncome}
+          expenses={augExpenses}
+          remaining={augIncome - augExpenses}
+        />
+        <MonthlyDetailDesktop
+          month='September'
+          income={sepIncome}
+          expenses={sepExpenses}
+          remaining={sepIncome - sepExpenses}
+        />
+        <MonthlyDetailDesktop
+          month='October'
+          income={octIncome}
+          expenses={octExpenses}
+          remaining={octIncome - octExpenses}
+        />
+        <MonthlyDetailDesktop
+          month='November'
+          income={novIncome}
+          expenses={novExpenses}
+          remaining={novIncome - novExpenses}
+        />
+        <MonthlyDetailDesktop
+          month='December'
+          income={decIncome}
+          expenses={decExpenses}
+          remaining={decIncome - decExpenses}
+        />
       </div>
     </>
   )
