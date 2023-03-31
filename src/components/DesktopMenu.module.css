@@ -40,4 +40,8 @@
   .navItemSelected {
     border-bottom: 0.3rem solid var(--color-primary-600);
   }
+  .empty {
+    height: 4rem;
+    min-width: 19rem;
+  }
 }
