@@ -32,6 +32,7 @@ function AppWrapper({ Component, pageProps }) {
   const currentYear = date.getFullYear()
 
   useEffect(() => {
+    // if user is logged in
     if (authIsReady) {
       if (currentPath === '/login' && user) {
         router.push(`/transactions/year/${currentYear}`)
@@ -39,6 +40,10 @@ function AppWrapper({ Component, pageProps }) {
       if (currentPath === '/signup' && user) {
         router.push(`/transactions/year/${currentYear}`)
       }
+      if (currentPath === '/_error' && user) {
+        router.push(`/transactions/year/${currentYear}`)
+      }
+      // if user is not logged in
       if (
         !user &&
         currentPath !== '/login' &&
