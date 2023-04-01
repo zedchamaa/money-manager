@@ -230,7 +230,7 @@ export default function TransactionsSummary() {
   const janExpenses = getMonthlyExpense(documents, 'Jan')
   const febExpenses = getMonthlyExpense(documents, 'Feb')
   const marExpenses = getMonthlyExpense(documents, 'Mar')
-  const aprExpenses = getMonthlyExpense(documents, 'Aor')
+  const aprExpenses = getMonthlyExpense(documents, 'Apr')
   const mayExpenses = getMonthlyExpense(documents, 'May')
   const junExpenses = getMonthlyExpense(documents, 'Jun')
   const julExpenses = getMonthlyExpense(documents, 'Jul')
