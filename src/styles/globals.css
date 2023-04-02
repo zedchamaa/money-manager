@@ -228,3 +228,9 @@ footer a:hover {
 .link-container-active a {
   color: var(--color-gray-500);
 }
+
+/* 404 page error message */
+
+.error-message {
+  padding: 1rem;
+}
