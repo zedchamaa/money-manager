@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 import { useFirestore } from '@/hooks/useFirestore'
@@ -372,12 +371,11 @@ export default function MonthlyDetailDesktop({
       </div>
       <div className={styles.status}>
         <div>
-          <Image
+          <img
             src={`/assets/images/${status}`}
             alt='Status'
             width={24}
             height={24}
-            unoptimized
           />
         </div>
       </div>
