@@ -14,7 +14,9 @@ export default function TransactionsSummaryMobile({
   income,
   expenses,
   balance,
-  transactions,
+  totalTransactions,
+  totalIncomeTransactions,
+  totalExpensesTransactions,
 }) {
   // change balance symbol depending on balance value
   let balanceSymbol
@@ -24,11 +26,26 @@ export default function TransactionsSummaryMobile({
   if (balance < 0) balanceSymbol = '-'
 
   // use 'transaction' singular format where applicable
-  let transactionText
-  if (transactions === 1) {
-    transactionText = 'transaction'
+  let totalTransactionsText
+  let totalIncomeTransactionsText
+  let totalExpensesTransactionsText
+
+  if (totalTransactions === 1) {
+    totalTransactionsText = 'transaction'
   } else {
-    transactionText = 'transactions'
+    totalTransactionsText = 'transactions'
+  }
+
+  if (totalIncomeTransactions === 1) {
+    totalIncomeTransactionsText = 'transaction'
+  } else {
+    totalIncomeTransactionsText = 'transactions'
+  }
+
+  if (totalExpensesTransactions === 1) {
+    totalExpensesTransactionsText = 'transaction'
+  } else {
+    totalExpensesTransactionsText = 'transactions'
   }
 
   return (
@@ -42,7 +59,8 @@ export default function TransactionsSummaryMobile({
           <div className={styles.income}>
             +${formatNumber(income)}{' '}
             <span>
-              in {formatNumber(transactions)} {transactionText}
+              in {formatNumber(totalIncomeTransactions)}{' '}
+              {totalIncomeTransactionsText}
             </span>
           </div>
         </div>
@@ -54,7 +72,8 @@ export default function TransactionsSummaryMobile({
           <div className={styles.expenses}>
             -${formatNumber(expenses)}{' '}
             <span>
-              in {formatNumber(transactions)} {transactionText}
+              in {formatNumber(totalExpensesTransactions)}{' '}
+              {totalExpensesTransactionsText}
             </span>
           </div>
         </div>
@@ -66,7 +85,7 @@ export default function TransactionsSummaryMobile({
           <div className={styles.balance}>
             {balanceSymbol}${formatNumber(Math.abs(balance))}{' '}
             <span>
-              in {formatNumber(transactions)} {transactionText}
+              in {formatNumber(totalTransactions)} {totalTransactionsText}
             </span>
           </div>
         </div>

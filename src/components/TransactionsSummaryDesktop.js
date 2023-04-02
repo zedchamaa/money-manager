@@ -15,7 +15,9 @@ export default function TransactionsSummaryDesktop({
   income,
   expenses,
   balance,
-  transactions,
+  totalTransactions,
+  totalIncomeTransactions,
+  totalExpensesTransactions,
 }) {
   // change balance symbol depending on balance value
   let balanceSymbol
@@ -25,11 +27,26 @@ export default function TransactionsSummaryDesktop({
   if (balance < 0) balanceSymbol = '-'
 
   // use 'transaction' singular format where applicable
-  let transactionText
-  if (transactions === 1) {
-    transactionText = 'transaction'
+  let totalTransactionsText
+  let totalIncomeTransactionsText
+  let totalExpensesTransactionsText
+
+  if (totalTransactions === 1) {
+    totalTransactionsText = 'transaction'
   } else {
-    transactionText = 'transactions'
+    totalTransactionsText = 'transactions'
+  }
+
+  if (totalIncomeTransactions === 1) {
+    totalIncomeTransactionsText = 'transaction'
+  } else {
+    totalIncomeTransactionsText = 'transactions'
+  }
+
+  if (totalExpensesTransactions === 1) {
+    totalExpensesTransactionsText = 'transaction'
+  } else {
+    totalExpensesTransactionsText = 'transactions'
   }
 
   return (
@@ -47,7 +64,8 @@ export default function TransactionsSummaryDesktop({
               +${formatNumber(income)}
               <div className={styles.transactions}>
                 <span>
-                  in {formatNumber(transactions)} {transactionText}
+                  in {formatNumber(totalIncomeTransactions)}{' '}
+                  {totalIncomeTransactionsText}
                 </span>
               </div>
             </div>
@@ -62,7 +80,8 @@ export default function TransactionsSummaryDesktop({
               -${formatNumber(expenses)}
               <div className={styles.transactions}>
                 <span>
-                  in {formatNumber(transactions)} {transactionText}
+                  in {formatNumber(totalExpensesTransactions)}{' '}
+                  {totalExpensesTransactionsText}
                 </span>
               </div>
             </div>
@@ -77,7 +96,7 @@ export default function TransactionsSummaryDesktop({
               {balanceSymbol}${formatNumber(Math.abs(balance))}
               <div className={styles.transactions}>
                 <span>
-                  in {formatNumber(transactions)} {transactionText}
+                  in {formatNumber(totalTransactions)} {totalTransactionsText}
                 </span>
               </div>
             </div>

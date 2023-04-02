@@ -21,6 +21,8 @@ import Footer from '@/components/Footer'
 export default function TransactionsYear() {
   let transactionsByYear
   let filteredTransactions
+  let totalIncomeTransactions = 0
+  let totalExpensesTransactions = 0
   let totalTransactions = 0
   let totalIncome = 0
   let totalExpenses = 0
@@ -70,6 +72,9 @@ export default function TransactionsYear() {
       0
     )
 
+    // find the total quantity of income transactions
+    totalIncomeTransactions = incomeTransactions.length
+
     // find the total amount of expenses transactions
     const expensesTransactions = filteredTransactions.filter(
       (transaction) => transaction.type === 'expense'
@@ -79,6 +84,9 @@ export default function TransactionsYear() {
       (acc, transaction) => acc + transaction.amount,
       0
     )
+
+    // find the total quantity of expenses transactions
+    totalExpensesTransactions = expensesTransactions.length
 
     remainingBalance = totalIncome - totalExpenses
   }
@@ -126,13 +134,17 @@ export default function TransactionsYear() {
       <YearsCarouselMobile />
       <YearsCarouselDesktop />
       <TransactionsSummaryMobile
-        transactions={totalTransactions}
+        totalTransactions={totalTransactions}
+        totalIncomeTransactions={totalIncomeTransactions}
+        totalExpensesTransactions={totalExpensesTransactions}
         income={totalIncome}
         expenses={totalExpenses}
         balance={remainingBalance}
       />
       <TransactionsSummaryDesktop
-        transactions={totalTransactions}
+        totalTransactions={totalTransactions}
+        totalIncomeTransactions={totalIncomeTransactions}
+        totalExpensesTransactions={totalExpensesTransactions}
         income={totalIncome}
         expenses={totalExpenses}
         balance={remainingBalance}
