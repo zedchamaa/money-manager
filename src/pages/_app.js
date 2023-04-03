@@ -11,10 +11,10 @@ import 'react-toastify/dist/ReactToastify.css'
 import { ToastContainer } from 'react-toastify'
 import TagManager from 'react-gtm-module'
 
-// implement Google Tag Manager
-TagManager.initialize({
-  gtmId: 'GTM-WMB43RQ',
-})
+// // implement Google Tag Manager
+// TagManager.initialize({
+//   gtmId: 'GTM-WMB43RQ',
+// })
 
 export default function App({ Component, pageProps }) {
   return (
