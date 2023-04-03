@@ -17,7 +17,7 @@ export default function PolicyPage() {
       <div className={styles.container}>
         <h2>Money Manager App Cookie Policy</h2>
 
-        <p>Last updated: 1 Mar 2023</p>
+        <p>Last updated: 3 Apr 2023</p>
 
         <h2>1. Introduction</h2>
 
