@@ -1,6 +1,6 @@
 <h1>Money Manager (React Web App)</h1>
 
-<p>Manage and track your income and expenses with this easy to use web application. View transactions totals by month, quarterly or yearly and set a budget for each.</p>
+<p>Manage and track your income and expenses with this easy to use web application. View transactions totals monthly, quarterly or yearly and set a budget for each.</p>
 
 <img src="https://www.zedchamaa.com/assets/images/money-manager-placeholder.png">
 
