@@ -114,9 +114,7 @@ export default function ForgotPasswordPage() {
                 src='/assets/images/mockup.png'
                 alt='mockup'
                 width='980'
-                height='637'
-                style={{ width: '100%', height: 'auto' }}
-                priority
+                height='600'
               />
             </div>
           </div>
