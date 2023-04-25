@@ -265,6 +265,7 @@
     margin-bottom: -1rem;
     margin-left: 12.4rem;
     margin-top: 4.9rem;
+    max-width: 50rem;
   }
   .btnContainer {
     margin-top: 20rem;
