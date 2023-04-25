@@ -147,10 +147,8 @@ export default function LoginPage() {
               <Image
                 src='/assets/images/mockup.png'
                 alt='mockup'
-                width='980'
-                height='637'
-                style={{ width: '100%', height: 'auto' }}
-                priority
+                width='880'
+                height='600'
               />
             </div>
           </div>
